@@ -1,64 +1,48 @@
-This is a template for the EDAV final project. It is based on the template created with *File, New Project..., New Directory, Book Project using bookdown* in RStudio. 
+## CRIMES ANALYSIS
 
+*Shaurya Malik, Rahul Agarwal, Keertan Krishnan*
 
-## ABSOLUTE ESSENTIALS
+### About
 
-*If you have any difficulties or have feedback of any kind, please file an issue.*
+*Topic: Analyzing crimes: types, risks groups/victim demographics, perpetrator profiles and possible psychological, legal aspects and handling of different types of crimes.*
 
-### Copy this template
+Our motivation for choosing this topic stems from several recent events including racial hate crimes, police brutality concerns, crimes influenced by political polarization etc. across the world. Thus we intend to analyze the trend of crimes over time, possible seasonalities and other influential factors.
 
-- [ ] 1. Click the green "Use this template" button above.  DO NOT FORK THE REPO. Choose a descriptive name for your repo, such as "federalbudget" or "AIDSdeaths".  (If you change your mind before you do any work, delete your new repo and start over.)
+Some questions which we expect to address include:
 
-- [ ] 2. In the Description field, write: "Bookdown source files for EDAV final project".
+- 1. What roles do location, demographics, literacy and other external factors play on the frequency and type/severity of crimes?
+- 2. What are the factors leading to a certain type of crime? This includes a wide group of crimes such as social, financial, cyber, hate influenced, those influenced by political opinions, intellectual property, drug abuse, human trafficking, sexual crimes, domestic abuse and assault, insider trading etc.
+  - a. Further analyzing events that may have caused an increase of such crimes
+- 3. Were complaints filed for these crimes and how did the authorities deal with said crimes? Were accusations wrong?
+- 4. How policy change has affected crime rates?
+  - a. Does increasing punishment type, degree and duration reduce crime?
+- 5. Has COVID-19 affected the crime rates/types/frequency and how so?
 
-### Set up GitHub Pages	
-- [ ] 1. On the home page of your repo, click Settings. Scroll down to the GitHub pages section and change **Source** from **None** to **main**, change **/ (root)** to **/docs** folder, and click Save. Above the **Source** line, a bar will appear with your book's URL. The bar will initially be blue and indicate that your book is *ready* to be published and will change to green once it is published. Copy the URL. (Note that sometimes there is a delay until your book actually appears at that URL. If it doesn't appear after a few minutes, make a change and commit it to trigger a GitHub Pages build.)	
+Tentative data-sets and their original sources are as below, however this list is not exhaustive and our analysis may not be limited to only New York trends:
 
-- [ ] 2. Click the gear button near "About" on the home page of the repo and paste your book URL into the **Website** field that appears on the right.
+- 1. NYPD Hate Crimes Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78
+- 2. NYPD Shooting Incident Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8
+- 3. NYC Park Crime Data: https://data.cityofnewyork.us/Public-Safety/NYC-Park-Crime-Data/ezds-sqp6
+- 4. Citywide Crime Stats https://data.cityofnewyork.us/Public-Safety/Citywide-Crime-Statistics/c5dk-m6ea
+- 5. NYPD Arrest Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
+- 6. Criminal Justice Statistics: https://www.criminaljustice.ny.gov/crimnet/ojsa/stats.htm
+- 7. FBI crime data: https://crime-data-explorer.fr.cloud.gov/
 
-### Clone the repo
+### Other references:
 
-- [ ] 1. Clone your new repo with *File, New Project..., Version Control, Git* in RStudio.
+- 1. https://www.unodc.org/documents/data-and-analysis/covid/Property_Crime_Brief_2020.pdf
+- 2. https://covid19.counciloncj.org/2021/01/31/impact-report-covid-19-and-crime-3/
+- 3. https://www.nap.edu/read/18613/chapter/5#71
 
-### Edit some key files
+### Link between data and questions:
 
-- [ ] 1. In `index.Rmd`, change YOUR TITLE HERE to your title.
+These datasets span a large class of crimes which include information about demographics, along with information of types and severity, helping us gain insight into answers about these questions.
 
-- [ ] 2. In `index.Rmd`, change YOUR NAMES HERE to your names.
+For instance, the answers to question 2 and 5 will require a more nuanced understanding of certain events (political, financial, COVID) and understanding of the influencing factors behind these crimes. This would require correlation of the type of the crime and the point/interval of time when these events (political/financial etc) took place.
 
-- [ ] 3. In `_bookdown.yml`, change YOUR GITHUB USERNAME to your GitHub username in the two places it appears.
-
-- [ ] 4. In `_bookdown.yml`, change YOUR GITHUB REPO to your GitHub repo name in the two places it appears.
-
-(Note that 3. and 4. provide links to the `.Rmd` files of your project for editing and viewing. If you move your `.Rmd` files you will need to update these file paths. Once your book is rendered, test that the edit (pen) and view (eye) buttons work.)
-
-- [ ] 5. In `_output.yml`, change YOUR SHORT TITLE to a shortened version of your title. (Leave the "after:" line indicating that the book was published with bookdown as is.)
-
-### Render the book
-
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the most recent version.
-
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")` or clicking the *Build book* button which should appear in the Build tab (in the same pane as Environment, History, Connections, ...).
-
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
-
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
-
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README	
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:	
+Answers to question 3 can be found through matching the crime records data and the crime complaint data. Often, policy changes are influential in affecting the crimes. Using data of policy changes through the years, and the types/counts of crimes that took place over the years, we wish to find insights on crime trends.	
 
 *This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
-
-### Demo Video	
-
-A demo video showing how to create a **bookdown book** following these similar instructions: http://bit.ly/fiveminutebookdown Note that this video uses a different template.
-
-### Additional features	
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
 
 
 

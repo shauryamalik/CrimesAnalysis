@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Crimes Analysis"
+author: "Shaurya Malik, Rahul Agarwal, Keertan Krishnan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
