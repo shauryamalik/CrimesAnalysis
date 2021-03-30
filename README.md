@@ -10,29 +10,29 @@ Our motivation for choosing this topic stems from several recent events includin
 
 Some questions which we expect to address include:
 
-- 1. What roles do location, demographics, literacy and other external factors play on the frequency and type/severity of crimes?
-- 2. What are the factors leading to a certain type of crime? This includes a wide group of crimes such as social, financial, cyber, hate influenced, those influenced by political opinions, intellectual property, drug abuse, human trafficking, sexual crimes, domestic abuse and assault, insider trading etc.
+- What roles do location, demographics, literacy and other external factors play on the frequency and type/severity of crimes?
+- What are the factors leading to a certain type of crime? This includes a wide group of crimes such as social, financial, cyber, hate influenced, those influenced by political opinions, intellectual property, drug abuse, human trafficking, sexual crimes, domestic abuse and assault, insider trading etc.
   - a. Further analyzing events that may have caused an increase of such crimes
-- 3. Were complaints filed for these crimes and how did the authorities deal with said crimes? Were accusations wrong?
-- 4. How policy change has affected crime rates?
+- Were complaints filed for these crimes and how did the authorities deal with said crimes? Were accusations wrong?
+- How policy change has affected crime rates?
   - a. Does increasing punishment type, degree and duration reduce crime?
-- 5. Has COVID-19 affected the crime rates/types/frequency and how so?
+- Has COVID-19 affected the crime rates/types/frequency and how so?
 
 Tentative data-sets and their original sources are as below, however this list is not exhaustive and our analysis may not be limited to only New York trends:
 
-- 1. NYPD Hate Crimes Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78
-- 2. NYPD Shooting Incident Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8
-- 3. NYC Park Crime Data: https://data.cityofnewyork.us/Public-Safety/NYC-Park-Crime-Data/ezds-sqp6
-- 4. Citywide Crime Stats https://data.cityofnewyork.us/Public-Safety/Citywide-Crime-Statistics/c5dk-m6ea
-- 5. NYPD Arrest Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
-- 6. Criminal Justice Statistics: https://www.criminaljustice.ny.gov/crimnet/ojsa/stats.htm
-- 7. FBI crime data: https://crime-data-explorer.fr.cloud.gov/
+- NYPD Hate Crimes Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78
+- NYPD Shooting Incident Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8
+- NYC Park Crime Data: https://data.cityofnewyork.us/Public-Safety/NYC-Park-Crime-Data/ezds-sqp6
+- Citywide Crime Stats https://data.cityofnewyork.us/Public-Safety/Citywide-Crime-Statistics/c5dk-m6ea
+- NYPD Arrest Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
+- Criminal Justice Statistics: https://www.criminaljustice.ny.gov/crimnet/ojsa/stats.htm
+- FBI crime data: https://crime-data-explorer.fr.cloud.gov/
 
 ### Other references:
 
-- 1. https://www.unodc.org/documents/data-and-analysis/covid/Property_Crime_Brief_2020.pdf
-- 2. https://covid19.counciloncj.org/2021/01/31/impact-report-covid-19-and-crime-3/
-- 3. https://www.nap.edu/read/18613/chapter/5#71
+- https://www.unodc.org/documents/data-and-analysis/covid/Property_Crime_Brief_2020.pdf
+- https://covid19.counciloncj.org/2021/01/31/impact-report-covid-19-and-crime-3/
+- https://www.nap.edu/read/18613/chapter/5#71
 
 ### Link between data and questions:
 
