@@ -12,10 +12,10 @@ Some questions which we expect to address include:
 
 - What roles do location, demographics, literacy and other external factors play on the frequency and type/severity of crimes?
 - What are the factors leading to a certain type of crime? This includes a wide group of crimes such as social, financial, cyber, hate influenced, those influenced by political opinions, intellectual property, drug abuse, human trafficking, sexual crimes, domestic abuse and assault, insider trading etc.
-  - a. Further analyzing events that may have caused an increase of such crimes
+  - Further analyzing events that may have caused an increase of such crimes
 - Were complaints filed for these crimes and how did the authorities deal with said crimes? Were accusations wrong?
 - How policy change has affected crime rates?
-  - a. Does increasing punishment type, degree and duration reduce crime?
+  - Does increasing punishment type, degree and duration reduce crime?
 - Has COVID-19 affected the crime rates/types/frequency and how so?
 
 Tentative data-sets and their original sources are as below, however this list is not exhaustive and our analysis may not be limited to only New York trends:
@@ -27,6 +27,8 @@ Tentative data-sets and their original sources are as below, however this list i
 - NYPD Arrest Data: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
 - Criminal Justice Statistics: https://www.criminaljustice.ny.gov/crimnet/ojsa/stats.htm
 - FBI crime data: https://crime-data-explorer.fr.cloud.gov/
+
+*Our final lists of datasets can be found in the 02-data.Rmd file.*
 
 ### Other references:
 
