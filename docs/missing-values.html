@@ -24,7 +24,7 @@
 <meta name="author" content="Shaurya Malik, Rahul Agarwal, Keertan Krishnan" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-04-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -71,9 +71,19 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#nypd-hate-crimes"><i class="fa fa-check"></i><b>2.1</b> NYPD Hate Crimes</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#nypd-shooting-incident-data-year-to-date"><i class="fa fa-check"></i><b>2.2</b> NYPD Shooting Incident Data (Year To Date)</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#nypd-arrest-data-year-to-date"><i class="fa fa-check"></i><b>2.3</b> NYPD Arrest Data (Year to Date)</a></li>
+<li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#fbi-human-trafficking-data"><i class="fa fa-check"></i><b>2.4</b> FBI Human Trafficking Data</a></li>
+<li class="chapter" data-level="2.5" data-path="data-sources.html"><a href="data-sources.html#fbi-arrest-data---reported-number-of-drug-arrests"><i class="fa fa-check"></i><b>2.5</b> FBI Arrest Data - Reported Number of Drug Arrests</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#human-trafficking"><i class="fa fa-check"></i><b>4.1</b> Human Trafficking</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -98,7 +108,27 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
+<div id="human-trafficking" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Human Trafficking</h2>
+<p><em>For Human Trafficking data, we analyze missing values as following:</em></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Alternatively, we can also view missing data as below:</p>
+<pre><code>##              DATA_YEAR                    ORI        PUB_AGENCY_NAME 
+##                      0                      0                      0 
+##        PUB_AGENCY_UNIT       AGENCY_TYPE_NAME             STATE_ABBR 
+##                   3191                      0                      0 
+##             STATE_NAME          DIVISION_NAME            COUNTY_NAME 
+##                      0                      0                     81 
+##            REGION_NAME  POPULATION_GROUP_CODE  POPULATION_GROUP_DESC 
+##                      0                      0                      0 
+##      OFFENSE_SUBCAT_ID           OFFENSE_NAME    OFFENSE_SUBCAT_NAME 
+##                      0                      0                      0 
+##           ACTUAL_COUNT        UNFOUNDED_COUNT          CLEARED_COUNT 
+##                      0                      0                      0 
+## JUVENILE_CLEARED_COUNT 
+##                      0</code></pre>
 
+</div>
 </div>
             </section>
 
