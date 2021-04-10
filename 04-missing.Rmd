@@ -1,1 +1,29 @@
 # Missing values
+
+```{r setup, include=FALSE}
+# keep this chunk in your .Rmd file
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+## Human Trafficking
+
+*For Human Trafficking data, we analyze missing values as following:*
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(mi)
+```
+
+```{r}
+df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
+fbiHT_df <- as.data.frame(df_fbi_ht)
+x <- missing_data.frame(fbiHT_df)
+image(x)
+```
+
+Alternatively, we can also view missing data as below:
+
+```{r}
+colSums(is.na(df_fbi_ht))
+```

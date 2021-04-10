@@ -4,25 +4,37 @@
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78*
 
+```{r}
 df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
+head(df_hate_crimes)
+```
 
 ## NYPD Shooting Incident Data (Year To Date)
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
 
+```{r}
 df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv")
+head(df_shooting_ytd)
+```
 
 ## NYPD Arrest Data (Year to Date)
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc*
 
+```{r}
 df_arrest_ytd <- readr::read_csv("datasets/NYPD_Arrest_Data__Year_to_Date_.csv")
+head(df_arrest_ytd)
+```
 
 ## FBI Human Trafficking Data
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
+```{r}
 df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
+head(df_fbi_ht)
+```
 
 *Many other important datasets can be found on this website.*
 
@@ -30,4 +42,7 @@ df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
+```{r}  
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
+head(df_fbi_drug_arrests)
+```

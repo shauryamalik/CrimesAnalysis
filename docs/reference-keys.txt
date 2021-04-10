@@ -1,7 +1,13 @@
 introduction
 data-sources
+nypd-hate-crimes
+nypd-shooting-incident-data-year-to-date
+nypd-arrest-data-year-to-date
+fbi-human-trafficking-data
+fbi-arrest-data---reported-number-of-drug-arrests
 data-transformation
 missing-values
+human-trafficking
 results
 interactive-component
 conclusion
