@@ -22,7 +22,7 @@ x <- missing_data.frame(fbiHT_df)
 image(x)
 ```
 
-Alternatively, we can also view missing data as seen below:
+Alternatively, we can also view missing data as below:
 
 ```{r}
 colSums(is.na(df_fbi_ht))
