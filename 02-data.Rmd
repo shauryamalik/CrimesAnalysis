@@ -31,3 +31,9 @@ df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
+
+## NYC citizen CENSUS DATA
+
+* Source: https://datausa.io/profile/geo/new-york-ny#economy
+
+df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
