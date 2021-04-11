@@ -9,7 +9,11 @@ df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
 head(df_hate_crimes)
 ```
 
-## NYPD Shooting Incident Data (Year To Date)
+## NYC Shooting Data 
+
+### About Dataset
+
+#### NYPD Shooting Incident Data (Year To Date)
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
 
@@ -17,6 +21,26 @@ head(df_hate_crimes)
 df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv")
 head(df_shooting_ytd)
 ```
+
+ - This is a breakdown of every shooting incident that occurred in NYC during the current calendar year. (2020) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website.
+Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. 
+ - In addition, information related to suspect and victim demographics is also included. For example, has information about the sex, Age, Race of the victim.
+
+#### NYPD Shooting Incident Historic Data
+
+*Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8*
+
+```{r}
+df_shooting_old <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Historic_.csv")
+head(df_shooting_old)
+```
+ - This is a breakdown of every shooting incident that occurred in NYC going back to 2006 through the end of the previous calendar year.(2019) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website. Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. In addition, information related to suspect and victim demographics is also included.
+ 
+### Initial Questions
+
+ - The information about the shootings in across locations and multiple demographics can help identify groups more susceptible.
+ - Further, Historical data of the shootings can help identify dangerous  neighborhoods for different groups. Possible hot-spots to avoid.
+ - Also, might help analyze the overall trend in shooting across NYC over the years/months/day-of-week/time-of-day.
 
 ## NYPD Arrest Data (Year to Date)
 
@@ -46,6 +70,6 @@ df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
 
 ## NYC citizen CENSUS DATA
 
-* Source: https://datausa.io/profile/geo/new-york-ny#economy
+*Source: https://datausa.io/profile/geo/new-york-ny#economy
 
 df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
