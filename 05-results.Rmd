@@ -1,1 +1,85 @@
 # Results
+
+## Shootings in NYC
+
+### Trend in number of shootings
+
+#### yearly 
+#### monthly or yearly (DISCUSS)
+
+##### Whole NYC
+
+```{r}
+df_shoot_grouped2 <- df_shooting_total %>%
+  select(year, month, STATISTICAL_MURDER_FLAG, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
+  group_by(year, month, STATISTICAL_MURDER_FLAG, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
+  summarize(occurances = n())
+
+df_shoot_grouped2$date<-as.Date(paste(df_shoot_grouped2$year, df_shoot_grouped2$month,"1",sep="-"), format = "%Y-%b-%d")
+
+temp_df<- df_shoot_grouped2 %>% 
+  filter(year>=2019) %>%
+  group_by(date, month) %>%
+  summarize(total_shots= sum(occurances))#%>%
+  # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
+
+temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+```
+
+```{r, echo=TRUE, fig.width=10,fig.height=11}
+ggplot(temp_df, aes(x= date)) + 
+  geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
+  geom_text(aes( label = scales::percent(monthly_change),
+                  y= monthly_change ), stat= "identity",angle = 90) +
+  scale_y_continuous(labels = scales::percent) +
+  ggtitle("Is it that time of the year?!",
+          subtitle = "Percentage change in number of Shootings by month") +
+  labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+
+ - We see every year in the month of May and June the number of shootings rise.
+ - Last year, (possibly due to covid restrictions easing up) saw 92-95% increase in these months.
+
+#### weekly
+
+```{r}
+df_shoot_grouped_week <- df_shooting_total %>%
+  select(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
+  group_by(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
+  summarize(occurances = n())
+
+# df_shoot_grouped_week$date<-as.Date(paste(df_shoot_grouped_Week$year, df_shoot_grouped_Week$month,"1",sep="-"), format = "%Y-%b-%d")
+
+temp_df<- df_shoot_grouped_week %>% 
+  group_by(day) %>%
+  summarize(total_shots= mean(occurances))#%>%
+  # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
+
+temp_df$weekly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+```
+
+```{r, echo=TRUE}
+ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("%0.2f", round(total_shots, digits = 2)))) + 
+  geom_bar(stat="identity") +
+  geom_text( vjust=-.5) +
+  ggtitle("Does the day of the week matter?!",
+          subtitle = "Average number of shootings on the day of the week") +
+  labs(y = "Average shooting count", x="Day", fill="Weekday", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+#### daily
+
+### Trend in number of deaths
+
+### Susciptible groups
+
+### Hot-spot neighbourhoods/AREAS 
+
+ - (discuss!)
+
+ 
