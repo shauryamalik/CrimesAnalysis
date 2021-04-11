@@ -104,6 +104,8 @@ theme_dotplot <- theme_bw(14) +
 
 ## Human Trafficking
 
+### Data By State
+
 ```{r}
 df_fbi_ht_temp <- df_fbi_ht %>%
   group_by(STATE_NAME) %>%
@@ -117,6 +119,22 @@ ggplot(df_fbi_ht_temp, aes(x = Total, y = reorder(STATE_NAME, Total))) +
   ggtitle("Registered Human Trafficking cases by State (2013-19)")
 ```
 
+#### Alternative visualization 
+
+```{r}
+library(choroplethr)
+
+df_fbi_ht_by_states <- df_fbi_ht %>%
+  group_by(STATE_NAME) %>%
+  summarise(Total = n())
+
+state_choropleth(df_fbi_ht_by_states %>% as.data.frame() %>% 
+                   transmute(region = tolower(`STATE_NAME`), value = Total),
+                 title = "Human Trafficking Cases By State",
+                 legend = "Number of Cases")
+```
+
+Please note: The following regions were missing and are being set to NA: pennsylvania, california, alabama, iowa, new york, district of columbia.
 
 ## NYPD Arrests
 
@@ -138,6 +156,8 @@ ggplot(df_arrest_by_offense_type, aes(x = Total, y = reorder(OFNS_DESC, Total)))
   ylab("Type of crime") +
   ggtitle("Most common crimes (as per NYPD Arrests Data)")
 ```
+
+
 From the above plot, Assault, Felony Assault, larceny, drugs among others are the most common offenses seen in New York.
 
 #### Most Common Arrest Offenses By Sex
@@ -157,6 +177,8 @@ ggplot(df_arrest_by_offense_type_perpsex, aes(x = Total, y = reorder(OFNS_DESC, 
   ylab("Type of crime") +
   ggtitle("Most common crimes by sex (as per NYPD Arrests Data)")
 ```
+
+
 The above plot follows a similar trend when it comes to the perpetrator's sex. However some offenses see an increase in the ratio of Female offenders to Men. These crimes include Criminal Mischief, Grand Larceny and offenses against public administration, among others.
 
 ### Assault Offenses by Borough
@@ -176,6 +198,8 @@ ggplot(arrests_boro, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=AR
   ylab("Total arrests") +
   coord_flip()
 ```
+
+
 It is seen that Bronx and Brooklyn are most affected by Assault related offenses, whereas Staten Island is least affected. A basic cause for this could be assumed to be population of these boroughs but it is important to note here that while population decreases in the following order: Brooklyn, Queens, Manhattan, Bronx, Staten Island, this is not the trend of assault crimes.
 
 ### Offenses by Borough and Age Group
@@ -194,6 +218,8 @@ ggplot(arrests_boro_age, aes(x = AGE_GROUP, y = Total, fill=AGE_GROUP)) +
   ylab("Total arrests") +
   facet_wrap(~ARREST_BORO)
 ```
+
+
 The above plots show a similar trend across Boroughs with a majority of perpetrators belonging to the 25-44 age group. However it is important to note here that except for Manhattan, the number of perpetrators belonging to the 18-24 category are more than those belonging to 45-64 age group.
 
 ### Identifying race of perpetrators by Borough
@@ -211,10 +237,11 @@ ggplot(arrests_race, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=PE
   xlab("Race") +
   ylab("Total arrests")
 ```
+
 The majority of perpetrator race seen here is Black, followed by White Hispanic. However it is important to note some other points as well:
-  - State Island sees a similar distribution of Black as well as White perpetrators
-  - Queens has a larger share of perpetrators belonging to Asian community
-  - The Bronx has a very small percentage of perpetrators who are White. On the contrary, Black Hispanic is a more common group.
+ - State Island sees a similar distribution of Black as well as White perpetrators
+ - Queens has a larger share of perpetrators belonging to Asian community
+ - The Bronx has a very small percentage of perpetrators who are White. On the contrary, Black Hispanic is a more common group.
 
 ## Hate Crimes 
 

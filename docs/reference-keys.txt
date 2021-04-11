@@ -1,4 +1,7 @@
 introduction
+about
+other-references
+link-between-data-and-questions
 data-sources
 nypd-hate-crimes
 nyc-shooting-data
@@ -32,6 +35,8 @@ trend-in-number-of-deaths
 susciptible-groups
 hot-spot-neighbourhoodsareas
 human-trafficking-1
+data-by-state
+alternative-visualization
 nypd-arrests-1
 most-common-arrest-offenses
 most-common-arrest-offenses-by-sex

@@ -4,6 +4,7 @@ library(ggalluvial)
 library(mi)
 library(GGally)
 library(parcoords)
+library(choroplethr)
 
 df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 fbiHT_df <- as.data.frame(df_fbi_ht)
@@ -54,4 +55,10 @@ ggplot(df_fbi_ht_states_year %>%
        aes(x=DATA_YEAR, y=Total, color=STATE_NAME))+
   geom_line(size=1)+
   scale_x_continuous(limits = c(2013, 2019), breaks = seq(2013, 2019, 1))
+
+state_choropleth(df_fbi_ht_by_states %>% 
+                   as.data.frame() %>% 
+                   transmute(region = tolower(`STATE_NAME`), value = Total),
+                 title = "",
+                 legend = "")
        
