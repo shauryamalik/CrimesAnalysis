@@ -43,6 +43,9 @@ most-common-arrest-offenses-by-sex
 assault-offenses-by-borough
 offenses-by-borough-and-age-group
 identifying-race-of-perpetrators-by-borough
+drugs-based-crimes-in-nyc
+sexual-crimes
+sexual-crimes-frequency-by-location
 hate-crimes-1
 insights
 insights-1

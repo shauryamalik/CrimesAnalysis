@@ -138,7 +138,6 @@ Please note: The following regions were missing and are being set to NA: pennsyl
 
 ## NYPD Arrests
 
-
 ### Most Common Arrest Offenses
 
 The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD. 
@@ -242,6 +241,56 @@ The majority of perpetrator race seen here is Black, followed by White Hispanic.
  - State Island sees a similar distribution of Black as well as White perpetrators
  - Queens has a larger share of perpetrators belonging to Asian community
  - The Bronx has a very small percentage of perpetrators who are White. On the contrary, Black Hispanic is a more common group.
+
+### Drugs based crimes in NYC
+
+```{r}
+base_plot <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% "DANGEROUS DRUGS"), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Drugs Based Crimes, by Borough")
+
+base_plot + theme_minimal()
+```
+
+### Sexual Crimes
+
+An important aspect of crime analysis is understanding trends in sexual crimes and what areas are they more frequent in.
+
+```{r}
+sex_crimes <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape")
+
+sex_crimes + theme_minimal()
+```
+
+The above location based scatter plot shows the spread in location where sexual crimes tend to occur. To get a clearer picture, we plot the below density curve.
+
+### Sexual Crimes Frequency by Location
+
+```{r}
+sex_crimes2 <- ggplot(df_arrest_ytd %>% 
+                       filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  #geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape") + 
+  stat_density2d(aes(fill = ..level..), alpha = .5,
+                 geom = "polygon", data = df_arrest_ytd %>% 
+                   filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")))+ 
+  scale_fill_viridis_c() + 
+  theme(legend.position = 'none')
+
+sex_crimes2 + theme_minimal()
+```
+
+This plot identifies certain locations which tend to have a higher frequency of sexual crimes in NYC. 
 
 ## Hate Crimes 
 

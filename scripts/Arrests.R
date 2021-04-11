@@ -97,11 +97,42 @@ ggplot(arrests_race, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=PE
   xlab("Race") +
   ylab("Total arrests")
 
+drugs_plot <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% "DANGEROUS DRUGS"), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes")
 
+drugs_plot + theme_minimal()
 
+sex_crimes <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape")
 
+sex_crimes + theme_minimal()
 
+arrests_sex_boro <- df_arrest_ytd %>% 
+  filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")) %>% 
+  group_by(Latitude, Longitude, ARREST_BORO) %>%
+  summarise(Total = n())
 
+sex_crimes2 <- ggplot(df_arrest_ytd %>% 
+                       filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  #geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape") + 
+  stat_density2d(aes(fill = ..level..), alpha = .5,
+                 geom = "polygon", data = df_arrest_ytd %>% 
+                   filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")))+ 
+  scale_fill_viridis_c() + 
+  theme(legend.position = 'none')
+
+sex_crimes2 + theme_minimal()
 
 
 

@@ -47,7 +47,7 @@ colnames(df_shooting_ytd)<- toupper(colnames(df_shooting_ytd))
 
  - Column names in the old and new data have different case, converting to a common format for merging the 2 later.
 
-```{r}
+```{r, echo=TRUE}
 df_shooting_ytd$OCCUR_DATE <-as.Date(df_shooting_ytd$OCCUR_DATE, format = "%m/%d/%Y")
 df_shooting_old$OCCUR_DATE <-as.Date(df_shooting_old$OCCUR_DATE, format = "%m/%d/%Y")
 
