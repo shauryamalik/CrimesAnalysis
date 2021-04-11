@@ -5,6 +5,12 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
+<!-- ```{r setup, include=FALSE} -->
+<!-- ## Rahul setup -->
+<!-- df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv") -->
+<!-- df_shooting_old <- readr::read_csv("https://data.cityofnewyork.us/resource/833y-fsy8.csv") -->
+<!-- ``` -->
+
 ## Human Trafficking
 
 *For Human Trafficking data, we analyze missing values as following:*
@@ -28,6 +34,14 @@ Alternatively, we can also view missing data as we can see below:
 colSums(is.na(df_fbi_ht))
 ```
 
+## Shootings in NYC
+
+```{r}
+gg_miss_var(df_shooting_total)
+```
+
+ - dropping the missing columns, as they cannot be imputed in anyway. We intend to focus on the victim trend in this analysis. Hence, it is fine to not consider the above columns in the current analysis.
+
 ## FBI Drug Arrests Data
 
 *For FBI Drug Arrests data, we analyze missing values as following:*
@@ -44,6 +58,7 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_drug_arrests))
 ```
+
 
 ## Hate Crimes 
 

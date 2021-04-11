@@ -53,6 +53,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -74,22 +137,38 @@
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#nypd-hate-crimes"><i class="fa fa-check"></i><b>2.1</b> NYPD Hate Crimes</a></li>
-<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#nypd-shooting-incident-data-year-to-date"><i class="fa fa-check"></i><b>2.2</b> NYPD Shooting Incident Data (Year To Date)</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#nyc-shooting-data"><i class="fa fa-check"></i><b>2.2</b> NYC Shooting Data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-sources.html"><a href="data-sources.html#about-dataset"><i class="fa fa-check"></i><b>2.2.1</b> About Dataset</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-sources.html"><a href="data-sources.html#initial-questions"><i class="fa fa-check"></i><b>2.2.2</b> Initial Questions</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#nypd-arrest-data-year-to-date"><i class="fa fa-check"></i><b>2.3</b> NYPD Arrest Data (Year to Date)</a></li>
 <li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#fbi-human-trafficking-data"><i class="fa fa-check"></i><b>2.4</b> FBI Human Trafficking Data</a></li>
 <li class="chapter" data-level="2.5" data-path="data-sources.html"><a href="data-sources.html#fbi-arrest-data---reported-number-of-drug-arrests"><i class="fa fa-check"></i><b>2.5</b> FBI Arrest Data - Reported Number of Drug Arrests</a></li>
+<li class="chapter" data-level="2.6" data-path="data-sources.html"><a href="data-sources.html#nyc-citizen-census-data"><i class="fa fa-check"></i><b>2.6</b> NYC citizen CENSUS DATA</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#shootings-in-nyc"><i class="fa fa-check"></i><b>3.1</b> Shootings in NYC</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#pre-processing-data"><i class="fa fa-check"></i><b>3.1.1</b> Pre-processing Data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#feature-engineering"><i class="fa fa-check"></i><b>3.1.2</b> Feature Engineering</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#human-trafficking"><i class="fa fa-check"></i><b>4.1</b> Human Trafficking</a></li>
-<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#fbi-drug-arrests-data"><i class="fa fa-check"></i><b>4.2</b> FBI Drug Arrests Data</a></li>
-<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#hate-crimes"><i class="fa fa-check"></i><b>4.3</b> Hate Crimes</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#shootings-in-nyc-1"><i class="fa fa-check"></i><b>4.2</b> Shootings in NYC</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#human-trafficking-1"><i class="fa fa-check"></i><b>5.1</b> Human Trafficking</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#hate-crimes-1"><i class="fa fa-check"></i><b>5.2</b> Hate Crimes</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#shootings-in-nyc-2"><i class="fa fa-check"></i><b>5.1</b> Shootings in NYC</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="results.html"><a href="results.html#trend-in-number-of-shootings"><i class="fa fa-check"></i><b>5.1.1</b> Trend in number of shootings</a></li>
+<li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#trend-in-number-of-deaths"><i class="fa fa-check"></i><b>5.1.2</b> Trend in number of deaths</a></li>
+<li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#susciptible-groups"><i class="fa fa-check"></i><b>5.1.3</b> Susciptible groups</a></li>
+<li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#hot-spot-neighbourhoodsareas"><i class="fa fa-check"></i><b>5.1.4</b> Hot-spot neighbourhoods/AREAS</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -118,67 +197,108 @@
 <h2><span class="header-section-number">2.1</span> NYPD Hate Crimes</h2>
 <p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78</a></em></p>
 <pre><code>## # A tibble: 6 x 15
-##   `Full Complaint~ `Complaint Year~ `Month Number` `Record Create ~
-##              &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;           
-## 1  201904600132799             2019              2 02/08/2019      
-## 2  201904800157499             2019              3 03/09/2019      
-## 3  201904800154599             2019              3 03/08/2019      
-## 4  201904800159299             2019              3 03/10/2019      
-## 5  201904200333499             2019              5 05/11/2019      
-## 6  201904200333499             2019              5 05/11/2019      
-## # ... with 11 more variables: `Complaint Precinct Code` &lt;dbl&gt;, `Patrol Borough
-## #   Name` &lt;chr&gt;, County &lt;chr&gt;, `Law Code Category Description` &lt;chr&gt;, `Offense
-## #   Description` &lt;chr&gt;, `PD Code Description` &lt;chr&gt;, `Bias Motive
-## #   Description` &lt;chr&gt;, `Offense Category` &lt;chr&gt;, `Other Motive
-## #   Description` &lt;chr&gt;, `Arrest Date` &lt;chr&gt;, `Arrest Id` &lt;chr&gt;</code></pre>
+##   `Full Complaint ID` `Complaint Year Number` `Month Number` `Record Create Dat~
+##                 &lt;dbl&gt;                   &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              
+## 1     201904600132799                    2019              2 02/08/2019         
+## 2     201904800157499                    2019              3 03/09/2019         
+## 3     201904800154599                    2019              3 03/08/2019         
+## 4     201904800159299                    2019              3 03/10/2019         
+## 5     201904200333499                    2019              5 05/11/2019         
+## 6     201904200333499                    2019              5 05/11/2019         
+## # ... with 11 more variables: Complaint Precinct Code &lt;dbl&gt;,
+## #   Patrol Borough Name &lt;chr&gt;, County &lt;chr&gt;,
+## #   Law Code Category Description &lt;chr&gt;, Offense Description &lt;chr&gt;,
+## #   PD Code Description &lt;chr&gt;, Bias Motive Description &lt;chr&gt;,
+## #   Offense Category &lt;chr&gt;, Other Motive Description &lt;chr&gt;, Arrest Date &lt;chr&gt;,
+## #   Arrest Id &lt;chr&gt;</code></pre>
 </div>
-<div id="nypd-shooting-incident-data-year-to-date" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> NYPD Shooting Incident Data (Year To Date)</h2>
+<div id="nyc-shooting-data" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> NYC Shooting Data</h2>
+<div id="about-dataset" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> About Dataset</h3>
+<div id="nypd-shooting-incident-data-year-to-date" class="section level4" number="2.2.1.1">
+<h4><span class="header-section-number">2.2.1.1</span> NYPD Shooting Incident Data (Year To Date)</h4>
 <p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8</a></em></p>
 <pre><code>## # A tibble: 6 x 19
-##   INCIDENT_KEY OCCUR_DATE OCCUR_TIME BORO  PRECINCT JURISDICTION_CO~
-##          &lt;dbl&gt; &lt;chr&gt;      &lt;time&gt;     &lt;chr&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-## 1    221467363 12/07/2020 05:50      BRONX       40                0
-## 2    213923358 06/06/2020 21:00      BRONX       47                0
-## 3    217218947 08/30/2020 01:39      BROO~       73                0
-## 4    216209200 08/05/2020 20:01      QUEE~      104                0
-## 5    221795938 12/13/2020 16:00      BROO~       75                0
-## 6    214607781 06/25/2020 19:58      MANH~       30                0
+##   INCIDENT_KEY OCCUR_DATE OCCUR_TIME BORO      PRECINCT JURISDICTION_CODE
+##          &lt;dbl&gt; &lt;chr&gt;      &lt;time&gt;     &lt;chr&gt;        &lt;dbl&gt;             &lt;dbl&gt;
+## 1    221467363 12/07/2020 05:50      BRONX           40                 0
+## 2    213923358 06/06/2020 21:00      BRONX           47                 0
+## 3    217218947 08/30/2020 01:39      BROOKLYN        73                 0
+## 4    216209200 08/05/2020 20:01      QUEENS         104                 0
+## 5    221795938 12/13/2020 16:00      BROOKLYN        75                 0
+## 6    214607781 06/25/2020 19:58      MANHATTAN       30                 0
 ## # ... with 13 more variables: LOCATION_DESC &lt;chr&gt;,
 ## #   STATISTICAL_MURDER_FLAG &lt;lgl&gt;, PERP_AGE_GROUP &lt;chr&gt;, PERP_SEX &lt;chr&gt;,
 ## #   PERP_RACE &lt;chr&gt;, VIC_AGE_GROUP &lt;chr&gt;, VIC_SEX &lt;chr&gt;, VIC_RACE &lt;chr&gt;,
-## #   X_COORD_CD &lt;dbl&gt;, Y_COORD_CD &lt;dbl&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, `New
-## #   Georeferenced Column` &lt;chr&gt;</code></pre>
+## #   X_COORD_CD &lt;dbl&gt;, Y_COORD_CD &lt;dbl&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;,
+## #   New Georeferenced Column &lt;chr&gt;</code></pre>
+<ul>
+<li>This is a breakdown of every shooting incident that occurred in NYC during the current calendar year. (2020) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website.
+Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence.</li>
+<li>In addition, information related to suspect and victim demographics is also included. For example, has information about the sex, Age, Race of the victim.</li>
+</ul>
+</div>
+<div id="nypd-shooting-incident-historic-data" class="section level4" number="2.2.1.2">
+<h4><span class="header-section-number">2.2.1.2</span> NYPD Shooting Incident Historic Data</h4>
+<p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8</a></em></p>
+<pre><code>## # A tibble: 6 x 19
+##   INCIDENT_KEY OCCUR_DATE OCCUR_TIME BORO          PRECINCT JURISDICTION_CODE
+##          &lt;dbl&gt; &lt;chr&gt;      &lt;time&gt;     &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;
+## 1    201575314 08/23/2019 22:10      QUEENS             103                 0
+## 2    205748546 11/27/2019 15:54      BRONX               40                 0
+## 3    193118596 02/02/2019 19:40      MANHATTAN           23                 0
+## 4    204192600 10/24/2019 00:52      STATEN ISLAND      121                 0
+## 5    201483468 08/22/2019 18:03      BRONX               46                 0
+## 6    198255460 06/07/2019 17:50      BROOKLYN            73                 0
+## # ... with 13 more variables: LOCATION_DESC &lt;chr&gt;,
+## #   STATISTICAL_MURDER_FLAG &lt;lgl&gt;, PERP_AGE_GROUP &lt;chr&gt;, PERP_SEX &lt;chr&gt;,
+## #   PERP_RACE &lt;chr&gt;, VIC_AGE_GROUP &lt;chr&gt;, VIC_SEX &lt;chr&gt;, VIC_RACE &lt;chr&gt;,
+## #   X_COORD_CD &lt;dbl&gt;, Y_COORD_CD &lt;dbl&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;,
+## #   Lon_Lat &lt;chr&gt;</code></pre>
+<ul>
+<li>This is a breakdown of every shooting incident that occurred in NYC going back to 2006 through the end of the previous calendar year.(2019) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website. Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. In addition, information related to suspect and victim demographics is also included.</li>
+</ul>
+</div>
+</div>
+<div id="initial-questions" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Initial Questions</h3>
+<ul>
+<li>The information about the shootings in across locations and multiple demographics can help identify groups more susceptible.</li>
+<li>Further, Historical data of the shootings can help identify dangerous neighborhoods for different groups. Possible hot-spots to avoid.</li>
+<li>Also, might help analyze the overall trend in shooting across NYC over the years/months/day-of-week/time-of-day.</li>
+</ul>
+</div>
 </div>
 <div id="nypd-arrest-data-year-to-date" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> NYPD Arrest Data (Year to Date)</h2>
 <p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc</a></em></p>
 <pre><code>## # A tibble: 6 x 19
-##   ARREST_KEY ARREST_DATE PD_CD PD_DESC KY_CD OFNS_DESC LAW_CODE LAW_CAT_CD
-##        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     
-## 1  222243929 12/25/2020    105 STRANG~   106 FELONY A~ PL 1211~ F         
-## 2  222115778 12/22/2020    397 ROBBER~   105 ROBBERY   PL 1601~ F         
-## 3  222090516 12/21/2020    105 STRANG~   106 FELONY A~ PL 1211~ F         
-## 4  221653577 12/10/2020    105 STRANG~   106 FELONY A~ PL 1211~ F         
-## 5  221599602 12/09/2020    729 FORGER~   113 FORGERY   PL 1702~ F         
-## 6  221442095 12/06/2020    153 RAPE 3    104 RAPE      PL 1302~ F         
+##   ARREST_KEY ARREST_DATE PD_CD PD_DESC      KY_CD OFNS_DESC  LAW_CODE LAW_CAT_CD
+##        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     
+## 1  222243929 12/25/2020    105 STRANGULATI~   106 FELONY AS~ PL 1211~ F         
+## 2  222115778 12/22/2020    397 ROBBERY,OPE~   105 ROBBERY    PL 1601~ F         
+## 3  222090516 12/21/2020    105 STRANGULATI~   106 FELONY AS~ PL 1211~ F         
+## 4  221653577 12/10/2020    105 STRANGULATI~   106 FELONY AS~ PL 1211~ F         
+## 5  221599602 12/09/2020    729 FORGERY,ETC~   113 FORGERY    PL 1702~ F         
+## 6  221442095 12/06/2020    153 RAPE 3         104 RAPE       PL 1302~ F         
 ## # ... with 11 more variables: ARREST_BORO &lt;chr&gt;, ARREST_PRECINCT &lt;dbl&gt;,
 ## #   JURISDICTION_CODE &lt;dbl&gt;, AGE_GROUP &lt;chr&gt;, PERP_SEX &lt;chr&gt;, PERP_RACE &lt;chr&gt;,
-## #   X_COORD_CD &lt;dbl&gt;, Y_COORD_CD &lt;dbl&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, `New
-## #   Georeferenced Column` &lt;chr&gt;</code></pre>
+## #   X_COORD_CD &lt;dbl&gt;, Y_COORD_CD &lt;dbl&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;,
+## #   New Georeferenced Column &lt;chr&gt;</code></pre>
 </div>
 <div id="fbi-human-trafficking-data" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> FBI Human Trafficking Data</h2>
 <p><em>Source: <a href="https://crime-data-explorer.fr.cloud.gov/downloads-and-docs" class="uri">https://crime-data-explorer.fr.cloud.gov/downloads-and-docs</a></em></p>
 <pre><code>## # A tibble: 6 x 19
-##   DATA_YEAR ORI   PUB_AGENCY_NAME PUB_AGENCY_UNIT AGENCY_TYPE_NAME STATE_ABBR
-##       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;     
-## 1      2014 TNMP~ Memphis         &lt;NA&gt;            City             TN        
-## 2      2014 TN00~ Caryville       &lt;NA&gt;            City             TN        
-## 3      2014 TXDP~ Dallas          &lt;NA&gt;            City             TX        
-## 4      2014 TXDP~ Dallas          &lt;NA&gt;            City             TX        
-## 5      2014 TXHP~ Houston         &lt;NA&gt;            City             TX        
-## 6      2014 TXSP~ San Antonio     &lt;NA&gt;            City             TX        
+##   DATA_YEAR ORI      PUB_AGENCY_NAME PUB_AGENCY_UNIT AGENCY_TYPE_NAME STATE_ABBR
+##       &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;     
+## 1      2014 TNMPD00~ Memphis         &lt;NA&gt;            City             TN        
+## 2      2014 TN00703~ Caryville       &lt;NA&gt;            City             TN        
+## 3      2014 TXDPD00~ Dallas          &lt;NA&gt;            City             TX        
+## 4      2014 TXDPD00~ Dallas          &lt;NA&gt;            City             TX        
+## 5      2014 TXHPD00~ Houston         &lt;NA&gt;            City             TX        
+## 6      2014 TXSPD00~ San Antonio     &lt;NA&gt;            City             TX        
 ## # ... with 13 more variables: STATE_NAME &lt;chr&gt;, DIVISION_NAME &lt;chr&gt;,
 ## #   COUNTY_NAME &lt;chr&gt;, REGION_NAME &lt;chr&gt;, POPULATION_GROUP_CODE &lt;chr&gt;,
 ## #   POPULATION_GROUP_DESC &lt;chr&gt;, OFFENSE_SUBCAT_ID &lt;dbl&gt;, OFFENSE_NAME &lt;chr&gt;,
@@ -189,19 +309,12 @@
 <div id="fbi-arrest-data---reported-number-of-drug-arrests" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> FBI Arrest Data - Reported Number of Drug Arrests</h2>
 <p><em>Source: <a href="https://crime-data-explorer.fr.cloud.gov/downloads-and-docs" class="uri">https://crime-data-explorer.fr.cloud.gov/downloads-and-docs</a></em></p>
-<pre><code>## # A tibble: 6 x 16
-##      id  year state_abbr agencies population total_arrests total_manufactu~
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;         &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
-## 1    37  2016 NA            13310  264534532       1285186           187557
-## 2    36  2015 NA            13404  260792111       1194910           188123
-## 3    35  2014 NA            12854  255852212       1252378           205505
-## 4    34  2013 NA            12397  257195726       1288009           220903
-## 5    33  2012 NA            12850  254953025       1247720           214002
-## 6    32  2011 NA            12628  250795788       1211285           212472
-## # ... with 9 more variables: opioid_manufacture &lt;dbl&gt;,
-## #   marijuana_manufacture &lt;dbl&gt;, synthetic_manufacture &lt;dbl&gt;,
-## #   other_manufacture &lt;dbl&gt;, total_possess &lt;dbl&gt;, opioid_possess &lt;dbl&gt;,
-## #   marijuana_possess &lt;dbl&gt;, synthetic_possess &lt;dbl&gt;, other_possess &lt;dbl&gt;</code></pre>
+<p>df_fbi_drug_arrests &lt;- readr::read_csv(“datasets/arrests_national_drug.csv”)</p>
+</div>
+<div id="nyc-citizen-census-data" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> NYC citizen CENSUS DATA</h2>
+<p>*Source: <a href="https://datausa.io/profile/geo/new-york-ny#economy" class="uri">https://datausa.io/profile/geo/new-york-ny#economy</a></p>
+<p>df_nyc_earnings&lt;- readr::read_csv(“<a href="https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&amp;Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar" class="uri">https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&amp;Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar</a>”)</p>
 
 </div>
 </div>
