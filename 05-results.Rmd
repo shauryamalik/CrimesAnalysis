@@ -1,1 +1,35 @@
 # Results
+
+## Hate Crimes 
+```{r}
+library(ggplot2)
+df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
+hate1 <- ggplot(data=df_hate, aes(y=Offense.Category, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+hate1
+```
+
+#### Insights 
+The largest proportion of hate crimes stem from religious reasons, followed by race and sexual orientation. 
+
+Kings County (Brooklyn) has a much larger proportion of these religious crimes. Interestingly, although the total number of hate crimes is greater in Kings County (Brooklyn) than New York County (Manhattan), the number of crimes stemming from Sexual Orientation and Race/Color is greater in New York County than Kings County. 
+
+```{r}
+theme_dotplot <- theme_bw(14) +
+    theme(axis.text.y = element_text(size = rel(.5)),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = rel(.75)),
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = 1),
+        panel.grid.minor.x = element_blank())
+
+df_temp <- as.data.frame(table(df_hate$Bias.Motive.Description))
+View(df_temp)
+g2 <- ggplot(df_temp, aes(x = Freq, 
+               y = reorder(Var1, Freq))) +
+    geom_point(color = "blue") +
+    theme_dotplot +
+    xlab("Incident Count") +
+    ylab("Motive Type") +
+    ggtitle("Motive Type Counts")
+```
+
