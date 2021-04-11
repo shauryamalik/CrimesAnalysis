@@ -27,3 +27,26 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_ht))
 ```
+
+
+## Hate Crime
+```{r}
+df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
+df_hate_crimes <- data.frame(df_hate_crimes)
+df_hate_crimes$Full.Complaint.ID <- as.character(df_hate_crimes$Full.Complaint.ID)
+summary(df_hate_crimes)
+```
+
+We find the number of NAs in this dataset, having found and adjusted the types.
+
+```{r}
+colSums(is.na(df_hate_crimes))
+```
+
+Alternative View:
+```{r}
+sapply(df_hate_crimes, function(x) sum(is.na(x)))
+```
+
+It can be seen that there are no missing values in the hate crime data. 
+
