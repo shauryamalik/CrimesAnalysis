@@ -24,7 +24,7 @@
 <meta name="author" content="Shaurya Malik, Rahul Agarwal, Keertan Krishnan" />
 
 
-<meta name="date" content="2021-04-10" />
+<meta name="date" content="2021-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -83,8 +83,14 @@
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#human-trafficking"><i class="fa fa-check"></i><b>4.1</b> Human Trafficking</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#fbi-drug-arrests-data"><i class="fa fa-check"></i><b>4.2</b> FBI Drug Arrests Data</a></li>
+<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#hate-crimes"><i class="fa fa-check"></i><b>4.3</b> Hate Crimes</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#human-trafficking-1"><i class="fa fa-check"></i><b>5.1</b> Human Trafficking</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#hate-crimes-1"><i class="fa fa-check"></i><b>5.2</b> Hate Crimes</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -112,7 +118,7 @@
 <h2><span class="header-section-number">4.1</span> Human Trafficking</h2>
 <p><em>For Human Trafficking data, we analyze missing values as following:</em></p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Alternatively, we can also view missing data as below:</p>
+<p>Alternatively, we can also view missing data as we can see below:</p>
 <pre><code>##              DATA_YEAR                    ORI        PUB_AGENCY_NAME 
 ##                      0                      0                      0 
 ##        PUB_AGENCY_UNIT       AGENCY_TYPE_NAME             STATE_ABBR 
@@ -127,6 +133,98 @@
 ##                      0                      0                      0 
 ## JUVENILE_CLEARED_COUNT 
 ##                      0</code></pre>
+</div>
+<div id="fbi-drug-arrests-data" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> FBI Drug Arrests Data</h2>
+<p><em>For FBI Drug Arrests data, we analyze missing values as following:</em></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Alternatively, we can also view missing data as we can see below:</p>
+<pre><code>##                    id                  year            state_abbr 
+##                     0                     0                    23 
+##              agencies            population         total_arrests 
+##                     0                     0                     0 
+##     total_manufacture    opioid_manufacture marijuana_manufacture 
+##                     0                     0                     0 
+## synthetic_manufacture     other_manufacture         total_possess 
+##                     0                     0                     0 
+##        opioid_possess     marijuana_possess     synthetic_possess 
+##                     0                     0                     0 
+##         other_possess 
+##                     0</code></pre>
+</div>
+<div id="hate-crimes" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Hate Crimes</h2>
+<p>We have converted complaint ID from int to character string now.</p>
+<pre><code>##  Full.Complaint.ID  Complaint.Year.Number  Month.Number    Record.Create.Date
+##  Length:728         Min.   :2019          Min.   : 1.000   Length:728        
+##  Class :character   1st Qu.:2019          1st Qu.: 3.000   Class :character  
+##  Mode  :character   Median :2019          Median : 7.000   Mode  :character  
+##                     Mean   :2019          Mean   : 6.434                     
+##                     3rd Qu.:2020          3rd Qu.:10.000                     
+##                     Max.   :2020          Max.   :12.000                     
+##  Complaint.Precinct.Code Patrol.Borough.Name    County         
+##  Min.   :  1.00          Length:728          Length:728        
+##  1st Qu.: 25.00          Class :character    Class :character  
+##  Median : 69.00          Mode  :character    Mode  :character  
+##  Mean   : 62.45                                                
+##  3rd Qu.: 90.00                                                
+##  Max.   :123.00                                                
+##  Law.Code.Category.Description Offense.Description PD.Code.Description
+##  Length:728                    Length:728          Length:728         
+##  Class :character              Class :character    Class :character   
+##  Mode  :character              Mode  :character    Mode  :character   
+##                                                                       
+##                                                                       
+##                                                                       
+##  Bias.Motive.Description Offense.Category   Other.Motive.Description
+##  Length:728              Length:728         Length:728              
+##  Class :character        Class :character   Class :character        
+##  Mode  :character        Mode  :character   Mode  :character        
+##                                                                     
+##                                                                     
+##                                                                     
+##  Arrest.Date         Arrest.Id        
+##  Length:728         Length:728        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## </code></pre>
+<p>We now explore if there are missing values in this dataset.</p>
+<pre><code>##             Full.Complaint.ID         Complaint.Year.Number 
+##                             0                             0 
+##                  Month.Number            Record.Create.Date 
+##                             0                             0 
+##       Complaint.Precinct.Code           Patrol.Borough.Name 
+##                             0                             0 
+##                        County Law.Code.Category.Description 
+##                             0                             0 
+##           Offense.Description           PD.Code.Description 
+##                             0                             0 
+##       Bias.Motive.Description              Offense.Category 
+##                             0                             0 
+##      Other.Motive.Description                   Arrest.Date 
+##                             0                             0 
+##                     Arrest.Id 
+##                             0</code></pre>
+<p>Alternate Method:</p>
+<pre><code>##             Full.Complaint.ID         Complaint.Year.Number 
+##                             0                             0 
+##                  Month.Number            Record.Create.Date 
+##                             0                             0 
+##       Complaint.Precinct.Code           Patrol.Borough.Name 
+##                             0                             0 
+##                        County Law.Code.Category.Description 
+##                             0                             0 
+##           Offense.Description           PD.Code.Description 
+##                             0                             0 
+##       Bias.Motive.Description              Offense.Category 
+##                             0                             0 
+##      Other.Motive.Description                   Arrest.Date 
+##                             0                             0 
+##                     Arrest.Id 
+##                             0</code></pre>
+<p>We see here that there is no missing data in this dataset.</p>
 
 </div>
 </div>

@@ -28,8 +28,6 @@ Alternatively, we can also view missing data as we can see below:
 colSums(is.na(df_fbi_ht))
 ```
 
-<<<<<<< HEAD
-
 ## FBI Drug Arrests Data
 
 *For FBI Drug Arrests data, we analyze missing values as following:*
@@ -46,7 +44,6 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_drug_arrests))
 ```
-
 
 ## Hate Crimes 
 
