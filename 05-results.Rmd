@@ -1,6 +1,20 @@
 # Results
 
 ## Hate Crimes 
+
+```{r}
+hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate)
+hate3
+```
+
+#### Insights
+Kings County (Brooklyn) had the highest total number of hate crimes over the years 2019 and 2020. This was followed by New York (Manhattan) and then Queens. 
+
+The only county/borough to have experienced an upturn in hate crimes in 2020  was the Richmond county (Staten Island Borough). 
+
+This is confirmed by articles such as (Source: silive.com https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html)
+
+
 ```{r}
 library(ggplot2)
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
@@ -23,13 +37,88 @@ theme_dotplot <- theme_bw(14) +
         panel.grid.minor.x = element_blank())
 
 df_temp <- as.data.frame(table(df_hate$Bias.Motive.Description))
-View(df_temp)
-g2 <- ggplot(df_temp, aes(x = Freq, 
+#View(df_temp)
+hate2 <- ggplot(df_temp, aes(x = Freq, 
                y = reorder(Var1, Freq))) +
     geom_point(color = "blue") +
     theme_dotplot +
     xlab("Incident Count") +
     ylab("Motive Type") +
     ggtitle("Motive Type Counts")
+hate2
 ```
 
+#### Insights
+
+Anti- Jewish hate crimes seem to be the largest in number (by a large amount, almost 350 crimes) during this time period, followed by anti-homosexual (gay) and anti-black crimes. 
+
+```{r}
+hate4 <- ggplot(data=df_hate, aes(y=Bias.Motive.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+hate4
+```
+
+#### Insights
+
+As expected from the previous 2 graphs, Kings County (Brooklyn) has the highest number of anti-jewish crimes. Kings County has a disproportionately large number of these crimes, whereas other motive types like anti-black or anti-homosexual seem to be equal in the boroughs of Kings and New York (Manhattan).
+
+These insights are confirmed by articles such as (https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/ Source: CBS News)
+
+
+```{r}
+df_hate$Complaint.Year.Number <- as.factor(df_hate$Complaint.Year.Number)
+hate5 <- ggplot(data=df_hate, aes(x=Complaint.Year.Number, fill=Offense.Category)) + geom_bar(data=df_hate)
+hate5
+```
+
+#### Insights
+Across the city of New York, the number of hate crimes went down in 2020 (by almost 40%). Sexual orientation crimes decreased, whereas crimes based on race/color unfortunately went up in number. 
+
+```{r}
+df_temp <- as.data.frame(table(df_hate$Month.Number, df_hate$Complaint.Year.Number))
+
+df_temp$new_col <- c(12:1)
+#View(df_temp)
+hate6 <- ggplot(df_temp, aes(x = Freq, 
+               y = reorder(Var1, new_col), color=Var2)) +
+    geom_point() +
+    theme_dotplot +
+    xlab("Incident Count") +
+    ylab("Month Number") +
+    ggtitle("Incident Counts by month")
+hate6
+```
+
+#### Insights
+Across both years, it is visible that there is a dependance on the month when it comes to the number of crimes. 
+
+However, for all months, 2020 had lower number of hate crimes than there were in 2019. The highest crime number for both years was in the month of March. 
+
+```{r}
+library(vcd)
+hate7 <- vcd::doubledecker(Bias.Motive.Description ~ Complaint.Year.Number + County, data=df_hate, main='Analysing Motive with year and county') 
+```
+
+#### Insights
+
+The insights from this mosaic plot corroborate our findings from the previous plots. 
+
+```{r}
+df_hate$date_diff <- as.Date(as.character(df_hate$Arrest.Date), format="%m/%d/%Y")-
+                  as.Date(as.character(df_hate$Record.Create.Date), format="%m/%d/%Y")
+hate8 <- ggplot(data=df_hate, mapping=aes(x=date_diff)) + geom_histogram( bins=20, color="#e9ecef", alpha=0.6, position = 'identity') + facet_wrap(~Complaint.Year.Number) #+ xlim(0,200)
+hate8
+```
+
+#### Insights
+The majority of arrests, if made, were made within 50 days since the report creation, for both the years 2019 and 2020. This indicates a heavy right-skew in the graphs. 
+
+Only very few arrests were made beyond the 50-day mark in both years.
+
+```{r}
+hate9 <- ggplot(data=df_hate, aes(y=PD.Code.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+hate9
+```
+
+
+#### Insights
+Criminal Mischief, Aggravated Assault and Aggravated Harrassment were the most code of hate crimes committed.
