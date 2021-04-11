@@ -17,6 +17,8 @@ feature-engineering
 missing-values
 human-trafficking
 shootings-in-nyc-1
+fbi-drug-arrests-data
+hate-crimes
 results
 shootings-in-nyc-2
 trend-in-number-of-shootings
@@ -27,5 +29,17 @@ weekly
 trend-in-number-of-deaths
 susciptible-groups
 hot-spot-neighbourhoodsareas
+human-trafficking-1
+hate-crimes-1
+insights
+insights-1
+insights-2
+insights-3
+insights-4
+insights-5
+insights-6
+insights-7
+insights-8
+insights-9
 interactive-component
 conclusion

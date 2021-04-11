@@ -159,6 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#human-trafficking"><i class="fa fa-check"></i><b>4.1</b> Human Trafficking</a></li>
 <li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#shootings-in-nyc-1"><i class="fa fa-check"></i><b>4.2</b> Shootings in NYC</a></li>
+<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#fbi-drug-arrests-data"><i class="fa fa-check"></i><b>4.3</b> FBI Drug Arrests Data</a></li>
+<li class="chapter" data-level="4.4" data-path="missing-values.html"><a href="missing-values.html#hate-crimes"><i class="fa fa-check"></i><b>4.4</b> Hate Crimes</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
@@ -169,6 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#susciptible-groups"><i class="fa fa-check"></i><b>5.1.3</b> Susciptible groups</a></li>
 <li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#hot-spot-neighbourhoodsareas"><i class="fa fa-check"></i><b>5.1.4</b> Hot-spot neighbourhoods/AREAS</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#human-trafficking-1"><i class="fa fa-check"></i><b>5.2</b> Human Trafficking</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#hate-crimes-1"><i class="fa fa-check"></i><b>5.3</b> Hate Crimes</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -204,18 +208,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">5.1.1.2</span> monthly or yearly (DISCUSS)</h4>
 <div id="whole-nyc" class="section level5" number="5.1.1.2.1">
 <h5><span class="header-section-number">5.1.1.2.1</span> Whole NYC</h5>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="results.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp_df, <span class="fu">aes</span>(<span class="at">x=</span> date)) <span class="sc">+</span> </span>
-<span id="cb9-2"><a href="results.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> monthly_change, <span class="at">fill =</span> <span class="fu">factor</span>(month)), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="results.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>( <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(monthly_change),</span>
-<span id="cb9-4"><a href="results.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y=</span> monthly_change ), <span class="at">stat=</span> <span class="st">&quot;identity&quot;</span>,<span class="at">angle =</span> <span class="dv">90</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="results.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="results.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Is it that time of the year?!&quot;</span>,</span>
-<span id="cb9-7"><a href="results.html#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;Percentage change in number of Shootings by month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="results.html#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Percentage Change&quot;</span>, <span class="at">x=</span><span class="st">&quot;Date&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Month&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: NYC-open-Data::Shooting Incident Data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="results.html#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="results.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="results.html#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey68&quot;</span>))</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="960" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="results.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp_df, <span class="fu">aes</span>(<span class="at">x=</span> date)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="results.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> monthly_change, <span class="at">fill =</span> <span class="fu">factor</span>(month)), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="results.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>( <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(monthly_change),</span>
+<span id="cb13-4"><a href="results.html#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y=</span> monthly_change ), <span class="at">stat=</span> <span class="st">&quot;identity&quot;</span>,<span class="at">angle =</span> <span class="dv">90</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="results.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="results.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Is it that time of the year?!&quot;</span>,</span>
+<span id="cb13-7"><a href="results.html#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;Percentage change in number of Shootings by month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="results.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Percentage Change&quot;</span>, <span class="at">x=</span><span class="st">&quot;Date&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Month&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: NYC-open-Data::Shooting Incident Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="results.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="results.html#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="results.html#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey68&quot;</span>))</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="960" /></p>
 <ul>
 <li>We see every year in the month of May and June the number of shootings rise.</li>
 <li>Last year, (possibly due to covid restrictions easing up) saw 92-95% increase in these months.</li>
@@ -224,16 +228,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="weekly" class="section level4" number="5.1.1.3">
 <h4><span class="header-section-number">5.1.1.3</span> weekly</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="results.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp_df, <span class="fu">aes</span>(<span class="at">x=</span> day, <span class="at">y =</span> total_shots, <span class="at">fill =</span> <span class="fu">factor</span>(day), <span class="at">label=</span><span class="fu">sprintf</span>(<span class="st">&quot;%0.2f&quot;</span>, <span class="fu">round</span>(total_shots, <span class="at">digits =</span> <span class="dv">2</span>)))) <span class="sc">+</span> </span>
-<span id="cb10-2"><a href="results.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="results.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>( <span class="at">vjust=</span><span class="sc">-</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="results.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Does the day of the week matter?!&quot;</span>,</span>
-<span id="cb10-5"><a href="results.html#cb10-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;Average number of shootings on the day of the week&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="results.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Average shooting count&quot;</span>, <span class="at">x=</span><span class="st">&quot;Day&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Weekday&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: NYC-open-Data::Shooting Incident Data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="results.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="results.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="results.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey68&quot;</span>))</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="results.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp_df, <span class="fu">aes</span>(<span class="at">x=</span> day, <span class="at">y =</span> total_shots, <span class="at">fill =</span> <span class="fu">factor</span>(day), <span class="at">label=</span><span class="fu">sprintf</span>(<span class="st">&quot;%0.2f&quot;</span>, <span class="fu">round</span>(total_shots, <span class="at">digits =</span> <span class="dv">2</span>)))) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="results.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="results.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>( <span class="at">vjust=</span><span class="sc">-</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="results.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Does the day of the week matter?!&quot;</span>,</span>
+<span id="cb14-5"><a href="results.html#cb14-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;Average number of shootings on the day of the week&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="results.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Average shooting count&quot;</span>, <span class="at">x=</span><span class="st">&quot;Day&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Weekday&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Source: NYC-open-Data::Shooting Incident Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="results.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="results.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="results.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey68&quot;</span>))</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 #### daily</p>
 </div>
 </div>
@@ -248,6 +252,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>(discuss!)</li>
 </ul>
+</div>
+</div>
+<div id="human-trafficking-1" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Human Trafficking</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="hate-crimes-1" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Hate Crimes</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div id="insights" class="section level4" number="5.3.0.1">
+<h4><span class="header-section-number">5.3.0.1</span> Insights</h4>
+<p>Kings County (Brooklyn) had the highest total number of hate crimes over the years 2019 and 2020. This was followed by New York (Manhattan) and then Queens.</p>
+<p>The only county/borough to have experienced an upturn in hate crimes in 2020 was the Richmond county (Staten Island Borough).</p>
+<p>This is confirmed by articles such as (Source: silive.com <a href="https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html" class="uri">https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html</a>)</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+<div id="insights-1" class="section level4" number="5.3.0.2">
+<h4><span class="header-section-number">5.3.0.2</span> Insights</h4>
+<p>The largest proportion of hate crimes stem from religious reasons, followed by race and sexual orientation.</p>
+<p>Kings County (Brooklyn) has a much larger proportion of these religious crimes. Interestingly, although the total number of hate crimes is greater in Kings County (Brooklyn) than New York County (Manhattan), the number of crimes stemming from Sexual Orientation and Race/Color is greater in New York County than Kings County.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+</div>
+<div id="insights-2" class="section level4" number="5.3.0.3">
+<h4><span class="header-section-number">5.3.0.3</span> Insights</h4>
+<p>Anti- Jewish hate crimes seem to be the largest in number (by a large amount, almost 350 crimes) during this time period, followed by anti-homosexual (gay) and anti-black crimes.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+<div id="insights-3" class="section level4" number="5.3.0.4">
+<h4><span class="header-section-number">5.3.0.4</span> Insights</h4>
+<p>As expected from the previous 2 graphs, Kings County (Brooklyn) has the highest number of anti-jewish crimes. Kings County has a disproportionately large number of these crimes, whereas other motive types like anti-black or anti-homosexual seem to be equal in the boroughs of Kings and New York (Manhattan).</p>
+<p>These insights are confirmed by articles such as (<a href="https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/" class="uri">https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/</a> Source: CBS News)</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="insights-4" class="section level4" number="5.3.0.5">
+<h4><span class="header-section-number">5.3.0.5</span> Insights</h4>
+<p>Across the city of New York, the number of hate crimes went down in 2020 (by almost 40%). Sexual orientation crimes decreased, whereas crimes based on race/color unfortunately went up in number.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="insights-5" class="section level4" number="5.3.0.6">
+<h4><span class="header-section-number">5.3.0.6</span> Insights</h4>
+<p>Across both years, it is visible that there is a dependance on the month when it comes to the number of crimes.</p>
+<p>However, for all months, 2020 had lower number of hate crimes than there were in 2019. The highest crime number for both years was in the month of March.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="insights-6" class="section level4" number="5.3.0.7">
+<h4><span class="header-section-number">5.3.0.7</span> Insights</h4>
+<p>The insights from this mosaic plot corroborate our findings from the previous plots.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="insights-7" class="section level4" number="5.3.0.8">
+<h4><span class="header-section-number">5.3.0.8</span> Insights</h4>
+<p>The majority of arrests, if made, were made within 50 days since the report creation, for both the years 2019 and 2020. This indicates a heavy right-skew in the graphs.</p>
+<p>Only very few arrests were made beyond the 50-day mark in both years.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+<div id="insights-8" class="section level4" number="5.3.0.9">
+<h4><span class="header-section-number">5.3.0.9</span> Insights</h4>
+<p>Criminal Mischief, Aggravated Assault and Aggravated Harrassment were the most code of hate crimes committed.</p>
+<pre><code>## [1] 149</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="insights-9" class="section level4" number="5.3.0.10">
+<h4><span class="header-section-number">5.3.0.10</span> Insights</h4>
+<p>Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 have not been arrested.</p>
+<p>506 offenders were not arrested, whereas 222 arrests were made.</p>
+<p>This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here.</p>
 
 </div>
 </div>
