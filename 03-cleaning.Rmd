@@ -1,8 +1,5 @@
 # Data transformation
 
-## Shootings in NYC
-
-
 ```{r}
 library("naniar")
 library("ggplot2")
@@ -12,6 +9,26 @@ library("lubridate")
 library("ggpubr")
 library("data.table")
 ```
+
+## NYPD Arrests
+
+In order to use arrest dates information, we are converting this feature to Date format.
+
+```{r, echo=TRUE}
+df_arrest_ytd$ARREST_DATE <-as.Date(df_arrest_ytd$ARREST_DATE, format = "%m/%d/%Y")
+```
+
+As per this mapping given by NYPD - B(Bronx), S(Staten Island), K(Brooklyn), M(Manhattan), Q(Queens) - we are updating the borough names for a clearer understanding.
+
+```{r, echo=TRUE}
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "B"] <- "Bronx"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "S"] <- "Staten Island"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "K"] <- "Brooklyn"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "M"] <- "Manhattan"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "Q"] <- "Queens"
+```
+
+## Shootings in NYC
 
 ### Pre-processing Data
 

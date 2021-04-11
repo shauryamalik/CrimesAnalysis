@@ -5,21 +5,16 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
-<!-- ```{r setup, include=FALSE} -->
-<!-- ## Rahul setup -->
-<!-- df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv") -->
-<!-- df_shooting_old <- readr::read_csv("https://data.cityofnewyork.us/resource/833y-fsy8.csv") -->
-<!-- ``` -->
-
-## Human Trafficking
-
-*For Human Trafficking data, we analyze missing values as following:*
-
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(mi)
+library(naniar)
 ```
+
+## Human Trafficking
+
+*For Human Trafficking data, we analyze missing values as following:*
 
 ```{r}
 #df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
@@ -33,6 +28,14 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_ht))
 ```
+
+## Arrests Data
+
+```{r}
+gg_miss_var(df_arrest_ytd)
+```
+
+The main feature of concern is LAW_CAT_CD which depicts level of offense (felony, misdemeanor, violation), but since there is no way to fill in this information of a categorical variable, we will ignore this feature for our analysis.
 
 ## Shootings in NYC
 

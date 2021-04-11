@@ -11,11 +11,13 @@ fbi-human-trafficking-data
 fbi-arrest-data---reported-number-of-drug-arrests
 nyc-citizen-census-data
 data-transformation
+nypd-arrests
 shootings-in-nyc
 pre-processing-data
 feature-engineering
 missing-values
 human-trafficking
+arrests-data
 shootings-in-nyc-1
 fbi-drug-arrests-data
 hate-crimes
@@ -30,6 +32,12 @@ trend-in-number-of-deaths
 susciptible-groups
 hot-spot-neighbourhoodsareas
 human-trafficking-1
+nypd-arrests-1
+most-common-arrest-offenses
+most-common-arrest-offenses-by-sex
+assault-offenses-by-borough
+offenses-by-borough-and-age-group
+identifying-race-of-perpetrators-by-borough
 hate-crimes-1
 insights
 insights-1
