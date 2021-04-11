@@ -258,3 +258,59 @@ Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 hav
 506 offenders were not arrested, whereas 222 arrests were made. 
 
 This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here. 
+
+## Drugs
+
+```{r}
+df_drugs <- readr::read_csv("datasets/arrests_national_drug.csv")
+df_drugs <- as.data.frame(df_drugs)
+View(df_drugs)
+```
+
+### Arrests related to all drugs throughout US 
+```{r}
+library(ggplot2)
+drug1 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = total_arrests, colour='blue')) +
+  ggtitle("Arrests related to drugs across US across year") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("total arrests"))
+drug1
+```
+### Arrests related to manufacture and possession
+```{r}
+drug2 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = total_manufacture, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = total_possess, colour='red'))+
+  ggtitle("Arrests related to drug manufacture & possessions- US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Manufacture", "Possession"))
+drug2
+```
+
+
+### Arrests related to Manufacturing 
+```{r}
+drug3 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = opioid_manufacture, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = marijuana_manufacture, colour='red'))+
+  geom_line(data=df_drugs, aes(x = year, y = synthetic_manufacture, colour='orange'))+
+  geom_line(data=df_drugs, aes(x = year, y = other_manufacture, colour='green'))+
+  ggtitle("Arrests related to drug manufacture -US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Manufacture", "Marijuana Manufacture", 'Synthetic Manufacture', 'Other Manufacture'))
+drug3
+```
+
+### Arrests related to Possession
+
+```{r}
+drug4 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = opioid_possess, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = marijuana_possess, colour='red'))+
+  geom_line(data=df_drugs, aes(x = year, y = synthetic_possess, colour='orange'))+
+  geom_line(data=df_drugs, aes(x = year, y = other_possess, colour='green'))+
+  ggtitle("Arrests related to drug manufacture -US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Possession", "Marijuana Possession", 'Synthetic Possession', 'Other Possession'))
+drug4
+```
+
+
+
