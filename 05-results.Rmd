@@ -1,6 +1,5 @@
 # Results
 
-<<<<<<< HEAD
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -35,7 +34,7 @@ ggplot(df_fbi_ht_temp, aes(x = Total, y = reorder(STATE_NAME, Total))) +
   ylab("State") +
   ggtitle("Registered Human Trafficking cases by State (2013-19)")
 ```
-=======
+
 ## Hate Crimes 
 
 ```{r}
@@ -177,4 +176,4 @@ Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 hav
 506 offenders were not arrested, whereas 222 arrests were made. 
 
 This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here. 
->>>>>>> bb3ce7da66f6e0f20a40fcfec564cb96e32e24c1
+
