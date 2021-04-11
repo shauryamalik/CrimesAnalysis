@@ -190,7 +190,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.4" data-path="results.html"><a href="results.html#identifying-race-of-perpetrators-by-borough"><i class="fa fa-check"></i><b>5.3.4</b> Identifying race of perpetrators by Borough</a></li>
 <li class="chapter" data-level="5.3.5" data-path="results.html"><a href="results.html#drugs-based-crimes-in-nyc"><i class="fa fa-check"></i><b>5.3.5</b> Drugs based crimes in NYC</a></li>
 <li class="chapter" data-level="5.3.6" data-path="results.html"><a href="results.html#sexual-crimes"><i class="fa fa-check"></i><b>5.3.6</b> Sexual Crimes</a></li>
-<li class="chapter" data-level="5.3.7" data-path="results.html"><a href="results.html#sexual-crimes-frequency-by-location"><i class="fa fa-check"></i><b>5.3.7</b> Sexual Crimes Frequency by Location</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#hate-crimes-1"><i class="fa fa-check"></i><b>5.4</b> Hate Crimes</a></li>
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#drugs"><i class="fa fa-check"></i><b>5.5</b> Drugs</a>
@@ -339,12 +338,138 @@ Each record represents a shooting incident in NYC and includes information about
 <div id="fbi-arrest-data---reported-number-of-drug-arrests" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> FBI Arrest Data - Reported Number of Drug Arrests</h2>
 <p><em>Source: <a href="https://crime-data-explorer.fr.cloud.gov/downloads-and-docs" class="uri">https://crime-data-explorer.fr.cloud.gov/downloads-and-docs</a></em></p>
-<p>df_fbi_drug_arrests &lt;- readr::read_csv(“datasets/arrests_national_drug.csv”)</p>
+<pre><code>## # A tibble: 6 x 16
+##      id  year state_abbr agencies population total_arrests total_manufactu~
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;         &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+## 1    37  2016 NA            13310  264534532       1285186           187557
+## 2    36  2015 NA            13404  260792111       1194910           188123
+## 3    35  2014 NA            12854  255852212       1252378           205505
+## 4    34  2013 NA            12397  257195726       1288009           220903
+## 5    33  2012 NA            12850  254953025       1247720           214002
+## 6    32  2011 NA            12628  250795788       1211285           212472
+## # ... with 9 more variables: opioid_manufacture &lt;dbl&gt;,
+## #   marijuana_manufacture &lt;dbl&gt;, synthetic_manufacture &lt;dbl&gt;,
+## #   other_manufacture &lt;dbl&gt;, total_possess &lt;dbl&gt;, opioid_possess &lt;dbl&gt;,
+## #   marijuana_possess &lt;dbl&gt;, synthetic_possess &lt;dbl&gt;, other_possess &lt;dbl&gt;</code></pre>
 </div>
 <div id="nyc-citizen-census-data" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> NYC citizen CENSUS DATA</h2>
 <p>*Source: <a href="https://datausa.io/profile/geo/new-york-ny#economy" class="uri">https://datausa.io/profile/geo/new-york-ny#economy</a></p>
-<p>df_nyc_earnings&lt;- readr::read_csv(“<a href="https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&amp;Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar" class="uri">https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&amp;Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar</a>”)</p>
+<pre><code>## # A tibble: 0 x 172
+## # ... with 172 variables: `{&quot;data&quot;:[{&quot;ID Year&quot;:2018` &lt;chr&gt;,
+## #   `Year&quot;:&quot;2018` &lt;chr&gt;, `Household Income by Race&quot;:61937,&quot;Household Income by
+## #   Race Moe&quot;:94,&quot;Geography&quot;:&quot;United States` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;01000US` &lt;chr&gt;, `Slug Geography&quot;:&quot;united-states&quot;},{&quot;ID
+## #   Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;, `Household Income by Race&quot;:67844,&quot;Household
+## #   Income by Race Moe&quot;:637,&quot;Geography&quot;:&quot;New York` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;04000US36` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york&quot;},{&quot;ID
+## #   Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;, `Household Income by Race&quot;:38467,&quot;Household
+## #   Income by Race Moe&quot;:1863.9999999999998,&quot;Geography&quot;:&quot;Bronx County,
+## #   NY` &lt;chr&gt;, `ID Geography&quot;:&quot;05000US36005` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;bronx-county-ny&quot;},{&quot;ID Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:61220,&quot;Household Income by Race
+## #   Moe&quot;:1083,&quot;Geography&quot;:&quot;Kings County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36047` &lt;chr&gt;, `Slug Geography&quot;:&quot;kings-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;, `Household Income by Race&quot;:69320,&quot;Household
+## #   Income by Race Moe&quot;:1781.0000000000002,&quot;Geography&quot;:&quot;Queens County,
+## #   NY` &lt;chr&gt;, `ID Geography&quot;:&quot;05000US36081` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;queens-county-ny&quot;},{&quot;ID Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:82166,&quot;Household Income by Race
+## #   Moe&quot;:5148,&quot;Geography&quot;:&quot;Richmond County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36085` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;richmond-county-ny&quot;},{&quot;ID Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:85066,&quot;Household Income by Race
+## #   Moe&quot;:3479.9999999999995,&quot;Geography&quot;:&quot;New York County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36061` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-county-ny&quot;},{&quot;ID Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:63799,&quot;Household Income by Race
+## #   Moe&quot;:1118,&quot;Geography&quot;:&quot;New York, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;16000US3651000` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york-ny&quot;},{&quot;ID
+## #   Year&quot;:2018,&quot;Year&quot;:&quot;2018` &lt;chr&gt;, `Household Income by Race&quot;:78478,&quot;Household
+## #   Income by Race Moe&quot;:729,&quot;Geography&quot;:&quot;New York-Newark-Jersey City,
+## #   NY-NJ-PA` &lt;chr&gt;, `ID Geography&quot;:&quot;31000US35620` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-newark-jersey-city-ny-nj-pa&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:60336,&quot;Household
+## #   Income by Race Moe&quot;:86,&quot;Geography&quot;:&quot;United States` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;01000US_1` &lt;chr&gt;, `Slug Geography&quot;:&quot;united-states&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:64894,&quot;Household
+## #   Income by Race Moe&quot;:507,&quot;Geography&quot;:&quot;New York` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;04000US36_1` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:37397,&quot;Household
+## #   Income by Race Moe&quot;:1444,&quot;Geography&quot;:&quot;Bronx County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36005_1` &lt;chr&gt;, `Slug Geography&quot;:&quot;bronx-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:56942,&quot;Household
+## #   Income by Race Moe&quot;:1151,&quot;Geography&quot;:&quot;Kings County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36047_1` &lt;chr&gt;, `Slug Geography&quot;:&quot;kings-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:64509,&quot;Household
+## #   Income by Race Moe&quot;:1327,&quot;Geography&quot;:&quot;Queens County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36081_1` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;queens-county-ny&quot;},{&quot;ID Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:79201,&quot;Household Income by Race
+## #   Moe&quot;:2788,&quot;Geography&quot;:&quot;Richmond County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36085_1` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;richmond-county-ny&quot;},{&quot;ID Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:85071,&quot;Household Income by Race
+## #   Moe&quot;:3519.9999999999995,&quot;Geography&quot;:&quot;New York County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36061_1` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-county-ny&quot;},{&quot;ID Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:60879,&quot;Household Income by Race
+## #   Moe&quot;:500,&quot;Geography&quot;:&quot;New York, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;16000US3651000_1` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york-ny&quot;},{&quot;ID
+## #   Year&quot;:2017,&quot;Year&quot;:&quot;2017` &lt;chr&gt;, `Household Income by Race&quot;:75368,&quot;Household
+## #   Income by Race Moe&quot;:538,&quot;Geography&quot;:&quot;New York-Newark-Jersey City,
+## #   NY-NJ-PA` &lt;chr&gt;, `ID Geography&quot;:&quot;31000US35620_1` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-newark-jersey-city-ny-nj-pa&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:57617,&quot;Household
+## #   Income by Race Moe&quot;:115,&quot;Geography&quot;:&quot;United States` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;01000US_2` &lt;chr&gt;, `Slug Geography&quot;:&quot;united-states&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:62909,&quot;Household
+## #   Income by Race Moe&quot;:631,&quot;Geography&quot;:&quot;New York` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;04000US36_2` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:37525,&quot;Household
+## #   Income by Race Moe&quot;:1266,&quot;Geography&quot;:&quot;Bronx County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36005_2` &lt;chr&gt;, `Slug Geography&quot;:&quot;bronx-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:55150,&quot;Household
+## #   Income by Race Moe&quot;:1015,&quot;Geography&quot;:&quot;Kings County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36047_2` &lt;chr&gt;, `Slug Geography&quot;:&quot;kings-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:62207,&quot;Household
+## #   Income by Race Moe&quot;:1151,&quot;Geography&quot;:&quot;Queens County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36081_2` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;queens-county-ny&quot;},{&quot;ID Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:77197,&quot;Household Income by Race
+## #   Moe&quot;:4465,&quot;Geography&quot;:&quot;Richmond County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36085_2` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;richmond-county-ny&quot;},{&quot;ID Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:77559,&quot;Household Income by Race
+## #   Moe&quot;:2469,&quot;Geography&quot;:&quot;New York County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36061_2` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-county-ny&quot;},{&quot;ID Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:58856,&quot;Household Income by Race
+## #   Moe&quot;:1105,&quot;Geography&quot;:&quot;New York, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;16000US3651000_2` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york-ny&quot;},{&quot;ID
+## #   Year&quot;:2016,&quot;Year&quot;:&quot;2016` &lt;chr&gt;, `Household Income by Race&quot;:71897,&quot;Household
+## #   Income by Race Moe&quot;:442.00000000000006,&quot;Geography&quot;:&quot;New York-Newark-Jersey
+## #   City, NY-NJ-PA` &lt;chr&gt;, `ID Geography&quot;:&quot;31000US35620_2` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;new-york-newark-jersey-city-ny-nj-pa&quot;},{&quot;ID
+## #   Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;, `Household Income by Race&quot;:55775,&quot;Household
+## #   Income by Race Moe&quot;:85,&quot;Geography&quot;:&quot;United States` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;01000US_3` &lt;chr&gt;, `Slug Geography&quot;:&quot;united-states&quot;},{&quot;ID
+## #   Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;, `Household Income by Race&quot;:60850,&quot;Household
+## #   Income by Race Moe&quot;:306,&quot;Geography&quot;:&quot;New York` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;04000US36_3` &lt;chr&gt;, `Slug Geography&quot;:&quot;new-york&quot;},{&quot;ID
+## #   Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;, `Household Income by Race&quot;:35176,&quot;Household
+## #   Income by Race Moe&quot;:1392,&quot;Geography&quot;:&quot;Bronx County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36005_3` &lt;chr&gt;, `Slug Geography&quot;:&quot;bronx-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;, `Household Income by Race&quot;:51141,&quot;Household
+## #   Income by Race Moe&quot;:566,&quot;Geography&quot;:&quot;Kings County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36047_3` &lt;chr&gt;, `Slug Geography&quot;:&quot;kings-county-ny&quot;},{&quot;ID
+## #   Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;, `Household Income by Race&quot;:60422,&quot;Household
+## #   Income by Race Moe&quot;:723,&quot;Geography&quot;:&quot;Queens County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36081_3` &lt;chr&gt;, `Slug
+## #   Geography&quot;:&quot;queens-county-ny&quot;},{&quot;ID Year&quot;:2015,&quot;Year&quot;:&quot;2015` &lt;chr&gt;,
+## #   `Household Income by Race&quot;:71622,&quot;Household Income by Race
+## #   Moe&quot;:2532,&quot;Geography&quot;:&quot;Richmond County, NY` &lt;chr&gt;, `ID
+## #   Geography&quot;:&quot;05000US36085_3` &lt;chr&gt;, ...</code></pre>
 
 </div>
 </div>

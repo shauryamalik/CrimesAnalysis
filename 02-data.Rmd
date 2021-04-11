@@ -66,10 +66,16 @@ head(df_fbi_ht)
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
+```{r}
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
+head(df_fbi_drug_arrests)
+```
 
 ## NYC citizen CENSUS DATA
 
 *Source: https://datausa.io/profile/geo/new-york-ny#economy
 
+```{r}
 df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
+head(df_nyc_earnings)
+```

@@ -142,7 +142,7 @@ Please note: The following regions were missing and are being set to NA: pennsyl
 
 The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD. 
 
-```{r}
+```{r fig.height=10, fig.width=10}
 df_arrest_by_offense_type <- df_arrest_ytd %>% 
                               filter(!is.na(OFNS_DESC))%>%
                               group_by(OFNS_DESC) %>%
@@ -163,7 +163,7 @@ From the above plot, Assault, Felony Assault, larceny, drugs among others are th
 
 We also wish to identify the sex of the perpetrators committing these common offenses.
 
-```{r}
+```{r fig.height=10, fig.width=10}
 df_arrest_by_offense_type_perpsex <- df_arrest_ytd %>% 
   filter(!is.na(OFNS_DESC))%>%
   group_by(OFNS_DESC, PERP_SEX) %>%
@@ -203,7 +203,7 @@ It is seen that Bronx and Brooklyn are most affected by Assault related offenses
 
 ### Offenses by Borough and Age Group
 
-We try to further drill down amongst the NYC boroughs to understand if perpetrator age plays a role in these statistics.
+We try to further drill down among the NYC boroughs to understand if perpetrator age plays a role in these statistics.
 
 ```{r}
 arrests_boro_age <- df_arrest_ytd %>% 
@@ -255,6 +255,20 @@ base_plot <- ggplot(df_arrest_ytd %>%
 base_plot + theme_minimal()
 ```
 
+#### Drug Based Crimes Density by Location
+
+```{r}
+arrests_drugs_boro <- df_arrest_ytd %>% 
+  filter(OFNS_DESC %in% "DANGEROUS DRUGS") %>% 
+  group_by(Latitude, Longitude, ARREST_BORO) %>%
+  summarise(Total = n())
+
+ggplot(arrests_drugs_boro, aes(Longitude, Latitude)) + 
+  geom_point(alpha=0.5, aes(color=ARREST_BORO)) + 
+  geom_density_2d(bins = 5, size=1) +
+  theme_minimal()
+```
+
 ### Sexual Crimes
 
 An important aspect of crime analysis is understanding trends in sexual crimes and what areas are they more frequent in.
@@ -272,7 +286,7 @@ sex_crimes + theme_minimal()
 
 The above location based scatter plot shows the spread in location where sexual crimes tend to occur. To get a clearer picture, we plot the below density curve.
 
-### Sexual Crimes Frequency by Location
+#### Sexual Crimes Frequency by Location
 
 ```{r}
 sex_crimes2 <- ggplot(df_arrest_ytd %>% 

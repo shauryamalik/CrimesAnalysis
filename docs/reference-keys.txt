@@ -44,6 +44,7 @@ assault-offenses-by-borough
 offenses-by-borough-and-age-group
 identifying-race-of-perpetrators-by-borough
 drugs-based-crimes-in-nyc
+drug-based-crimes-density-by-location
 sexual-crimes
 sexual-crimes-frequency-by-location
 hate-crimes-1

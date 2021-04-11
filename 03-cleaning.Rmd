@@ -28,6 +28,23 @@ df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "M"] <- "Manhattan"
 df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "Q"] <- "Queens"
 ```
 
+This data also contains certain duplicate offenses which are categorized separately.
+
+```{r}
+
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "KIDNAPPING AND RELATED OFFENSES")
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "KIDNAPPING")
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "ADMINISTRATIVE CODES")
+
+```
+
+```{r echo=TRUE}
+
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "KIDNAPPING AND RELATED OFFENSES"] <- "KIDNAPPING & RELATED OFFENSES"
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "KIDNAPPING"] <- "KIDNAPPING & RELATED OFFENSES"
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "ADMINISTRATIVE CODES"] <- "ADMINISTRATIVE CODE"
+```
+
 ## Shootings in NYC
 
 ### Pre-processing Data
