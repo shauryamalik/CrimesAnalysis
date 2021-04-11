@@ -27,3 +27,29 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_ht))
 ```
+
+## Hate Crimes 
+```{r}
+df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
+df_hate$Full.Complaint.ID <- as.character(df_hate$Full.Complaint.ID)
+```
+
+We have converted complaint ID from int to character string now. 
+
+```{r}
+summary(df_hate)
+```
+
+We now explore if there are missing values in this dataset. 
+
+```{r}
+colSums(is.na(df_hate))
+```
+
+Alternate Method: 
+
+```{r}
+sapply(df_hate, function(x) sum(is.na(x)))
+```
+
+We see here that there is no missing data in this dataset. 
