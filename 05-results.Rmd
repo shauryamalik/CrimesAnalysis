@@ -221,7 +221,7 @@ The majority of perpetrator race seen here is Black, followed by White Hispanic.
 ```{r}
 library(ggplot2)
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
-hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate) + ggtitle
+hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate)
 hate3
 ```
 

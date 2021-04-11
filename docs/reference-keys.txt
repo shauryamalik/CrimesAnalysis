@@ -49,5 +49,10 @@ insights-6
 insights-7
 insights-8
 insights-9
+drugs
+arrests-related-to-all-drugs-throughout-us
+arrests-related-to-manufacturing
+arrests-related-to-possession
+arrests-as-a-proportion-of-population
 interactive-component
 conclusion
