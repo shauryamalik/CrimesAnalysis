@@ -16,7 +16,7 @@ library(mi)
 ```
 
 ```{r}
-df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
+#df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 fbiHT_df <- as.data.frame(df_fbi_ht)
 x <- missing_data.frame(fbiHT_df)
 image(x)
@@ -27,3 +27,51 @@ Alternatively, we can also view missing data as we can see below:
 ```{r}
 colSums(is.na(df_fbi_ht))
 ```
+
+<<<<<<< HEAD
+
+## FBI Drug Arrests Data
+
+*For FBI Drug Arrests data, we analyze missing values as following:*
+
+```{r}
+df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
+drug_df <- as.data.frame(df_fbi_drug_arrests)
+y <- missing_data.frame(drug_df)
+image(y)
+```
+
+Alternatively, we can also view missing data as we can see below:
+
+```{r}
+colSums(is.na(df_fbi_drug_arrests))
+```
+
+
+## Hate Crimes 
+
+```{r}
+df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
+df_hate$Full.Complaint.ID <- as.character(df_hate$Full.Complaint.ID)
+```
+
+We have converted complaint ID from int to character string now. 
+
+```{r}
+summary(df_hate)
+```
+
+We now explore if there are missing values in this dataset. 
+
+```{r}
+colSums(is.na(df_hate))
+```
+
+Alternate Method: 
+
+```{r}
+sapply(df_hate, function(x) sum(is.na(x)))
+```
+
+We see here that there is no missing data in this dataset. 
+
