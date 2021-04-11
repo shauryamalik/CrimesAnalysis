@@ -122,3 +122,22 @@ hate9
 
 #### Insights
 Criminal Mischief, Aggravated Assault and Aggravated Harrassment were the most code of hate crimes committed.
+
+
+```{r}
+x <- data.frame(table(df_hate$Arrest.Date))
+length(x$Freq)
+arr <- sum(x$Freq[c(2:length(x$Freq))])
+narr <- x$Freq[1]
+arrvec <- c(arr, narr)
+labels1 <- c('Arrested', 'Not Arrested')
+df <- data.frame(labs = labels1, outcome = arrvec)
+ggplot() + geom_col(df, mapping = aes(labs, outcome))
+```
+
+#### Insights
+Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 have not been arrested. 
+
+506 offenders were not arrested, whereas 222 arrests were made. 
+
+This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here. 
