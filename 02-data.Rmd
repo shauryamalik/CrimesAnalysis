@@ -79,3 +79,12 @@ head(df_fbi_drug_arrests)
 df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
 head(df_nyc_earnings)
 ```
+
+## NYC park crime data
+
+*Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page
+
+```{r}
+df_parks<- readr::read_csv("")
+head(df_parks)
+```
