@@ -442,7 +442,7 @@ ggplot(arrests_race, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=PE
   geom_bar(stat = "identity") +
   ggtitle("Race of Perpetrators") +
   xlab("Race") +
-  ylab("Total arrests")
+  ylab("Total arrests")+labs(fill='Race')
 ```
 
 The majority of perpetrator race seen here is Black, followed by White Hispanic. However it is important to note some other points as well:
