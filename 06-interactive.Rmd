@@ -1,3 +1,9 @@
 # Interactive component
 
+Testing Interactive Setup
 
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<div id="plot"></div>
+
+<script src="scripts/interactive.js"></script>

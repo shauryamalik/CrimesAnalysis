@@ -133,7 +133,9 @@ state_choropleth(df_fbi_ht_by_states %>% as.data.frame() %>%
                  legend = "Number of Cases")
 ```
 
-Please note: The following regions were missing and are being set to NA: pennsylvania, california, alabama, iowa, new york, district of columbia.
+Please note: 
+
+ - The following regions were missing and are being set to NA: Pennsylvania, California, Alabama, Iowa, New York, District of Columbia.
 
 ## NYPD Arrests
 
@@ -156,7 +158,7 @@ ggplot(df_arrest_by_offense_type, aes(x = Total, y = reorder(OFNS_DESC, Total)))
 ```
 
 
-From the above plot, Assault, Felony Assault, larceny, drugs among others are the most common offenses seen in New York.
+From the above plot, Assault, Felony Assault, Larceny, Drugs among others are the most common offenses seen in New York.
 
 #### Most Common Arrest Offenses By Sex
 
@@ -237,6 +239,7 @@ ggplot(arrests_race, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=PE
 ```
 
 The majority of perpetrator race seen here is Black, followed by White Hispanic. However it is important to note some other points as well:
+
  - State Island sees a similar distribution of Black as well as White perpetrators
  - Queens has a larger share of perpetrators belonging to Asian community
  - The Bronx has a very small percentage of perpetrators who are White. On the contrary, Black Hispanic is a more common group.
