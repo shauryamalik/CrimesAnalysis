@@ -553,5 +553,32 @@ drug5
 
 It is seen that there is a downward trend in the proportion of the us population arrested in connection to drugs. This could be due to the fact that the population growth has outstripped the number of drug manufacturers/possesors over this time frame (since it was seen that arrests have been on the increase during this timeframe).
 
+## Park Crime Data
 
+```{r}
+df_parks <- read.csv('datasets/parks/finalpark.csv')
+View(df_parks)
+```
+
+```{r}
+parks_subset <- subset(df_parks, select=c('BOROUGH', 'TOTAL'))
+View(parks_subset)
+parks_subset2 <- parks_subset %>% group_by(BOROUGH)
+borough_total <- parks_subset2 %>% summarise(
+  TOTAL = sum(TOTAL)
+)
+ggplot() + geom_col(borough_total, mapping = aes(BOROUGH, TOTAL))
+```
+
+```{r}
+parks_subset3 <- subset(df_parks, select=c('BOROUGH', 'TOTAL', 'PARK'))
+ggplot(parks_subset3, aes(x = BOROUGH, y = TOTAL, label = PARK)) + 
+  geom_boxplot() + xlab("") + theme_grey(16) + stat_summary(
+    aes(label=round(stat(y), 1)),
+    geom = "text", 
+    fun.y = function(y) { o <- boxplot.stats(y)$out; if(length(o) == 0) NA else o },
+    hjust = -1
+  )
+
+```
 
