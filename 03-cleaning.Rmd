@@ -1,8 +1,5 @@
 # Data transformation
 
-## Shootings in NYC
-
-
 ```{r}
 library("naniar")
 library("ggplot2")
@@ -12,6 +9,25 @@ library("lubridate")
 library("ggpubr")
 library("data.table")
 ```
+
+## New York City Population
+
+Since we intend to use this data to calculate the percentage of people being shot in each borough based on the borough's population, we will filter only the years for which we have corresponding shooting data.
+
+```{r}
+
+class(df_population_yearly$Year)
+
+df_population_2010<-df_population_yearly %>%
+  filter(Year==2010) %>%
+  group_by(Borough) %>%
+  summarize(population=sum(Population))
+
+df_population_2020<-df_population_age %>%
+  select(Borough, Age, "2020")
+```
+
+## Shootings in NYC
 
 ### Pre-processing Data
 
@@ -47,7 +63,8 @@ df_shooting_total$OCCUR_DATE <-as.Date(df_shooting_total$OCCUR_DATE, format = "%
 ```{r, echo=TRUE}
 # extract year and month from date - #TODO: hour and dayofweek
 df_shooting_total<-df_shooting_total %>%
-  mutate(year = year(OCCUR_DATE), month = lubridate::month(OCCUR_DATE,label = TRUE), day = lubridate::wday(OCCUR_DATE,label = TRUE))
+  mutate(year = year(OCCUR_DATE), month = lubridate::month(OCCUR_DATE,label = TRUE), day = lubridate::wday(OCCUR_DATE,label = TRUE),
+         murder = ifelse(STATISTICAL_MURDER_FLAG==TRUE, 1, 0))
 ```
  
   - Extracted year, month, day of the week and hour of shooting

@@ -34,6 +34,10 @@ Alternatively, we can also view missing data as we can see below:
 colSums(is.na(df_fbi_ht))
 ```
 
+## New York City Population
+
+ - There are no missing values in this dataset.
+
 ## Shootings in NYC
 
 ```{r}
