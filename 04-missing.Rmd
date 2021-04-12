@@ -64,7 +64,7 @@ colSums(is.na(df_fbi_drug_arrests))
 
 
 ## Hate Crimes 
-
+*For Hate Crimes data, we analyze missing values as following:*
 ```{r}
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
 df_hate$Full.Complaint.ID <- as.character(df_hate$Full.Complaint.ID)
@@ -86,7 +86,25 @@ Alternate Method:
 
 ```{r}
 sapply(df_hate, function(x) sum(is.na(x)))
+mdhate <- missing_data.frame(df_hate)
+image(mdhate)
 ```
 
-We see here that there is no missing data in this dataset. 
+
+```{r}
+gg_miss_var(mdhate)
+```
+
+## Park Crime
+*For Park Crime data, we analyze missing values as following:*
+```{r}
+df_parks <- read.csv('datasets/parks/finalpark.csv')
+colSums(is.na(df_parks))
+```
+
+
+```{r}
+mdparks <- missing_data.frame(df_parks)
+gg_miss_var(mdparks)
+```
 
