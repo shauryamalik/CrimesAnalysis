@@ -1,5 +1,6 @@
 # install.packages("bookdown")
 # install.packages("mi")
+# install.packages("choroplethrMaps")
 
 library(naniar)
 library("ggplot2")
@@ -95,17 +96,53 @@ theme_heat <- theme_classic() +
   theme(axis.line = element_blank(),
         axis.ticks = element_blank())
 
+# shoot_whole_NYC<- df_shoot_grouped_BORO %>% 
+#   filter(year>=2019) %>%
+#   group_by(date,VIC_AGE_GROUP) %>%
+#   summarize(total_shots= sum(occurances), BORO="NYC")
+
 temp_df<- df_shoot_grouped_BORO %>% 
   filter(year>=2019) %>%
   group_by(date,BORO, VIC_AGE_GROUP) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
 
+# temp_df<-rbind(shoot_whole_NYC, temp_df)
+
+# library(gridExtra)
+# 
+# xs <- split(temp_df,f= temp_df$BORO)
+# i=1
+# p<-
+# for ( area in unique(temp_df$BORO)){
+#   if(i==1)
+#   {
+#     p1 <- ggplot(xs$area,aes(x = Date,y = VIC_AGE_GROUP)) + 
+#      geom_tile(aes(fill = total_shots), color = "black") +
+#      theme_heat + ggtitle("Does age matter?!",
+#                           subtitle = "Number of Shootings in each borough for each age group by month") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+#      facet_grid(BORO~.,scales = "free", ncol=1) +
+#      labs(y = "Borough", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+#      theme(plot.title = element_text(face = "bold")) +
+#      theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+#      theme(plot.caption = element_text(color = "grey68"))
+#     # facet_wrap(BORO~., ncol=1)
+#   }
+#   else{
+#     
+#   }
+#   p2 <- p1 %+% xs$B
+#   p3 <- p1 %+% xs$C
+#   
+#   grid.arrange(p1,p2,p3)  
+# }
+
+
 ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
   geom_tile(aes(fill = total_shots), color = "black") +
   theme_heat + ggtitle("Does age matter?!",
                        subtitle = "Number of Shootings in each borough for each age group by month") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
-  facet_grid(BORO~.) +
+  facet_grid(BORO~.,scales = "free") +
   labs(y = "Borough", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
@@ -159,8 +196,22 @@ ggplot(temp_df, aes(x = date, y = BORO)) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))
 
+# -----------------------------------------------
 
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
+  group_by(year,BORO, VIC_RACE) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
 
+temp_df$year <- as.factor(temp_df$year)
+
+ggplot(temp_df, aes(x = year, fill = BORO, y = total_shots)) +
+  geom_bar(stat="identity", position = "dodge") +
+  ggtitle("Are some areas bad for some race than others",
+          subtitle = "Number of Shooting victims by race in each borough over time") +scale_fill_brewer(palette="Dark2") +
+  labs(y = "Number of shootings", x="Year", fill="Borough", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  facet_grid(VIC_RACE~., scales = "free", space="free_x")
 
 ####################################### number of deaths trend  #########
 

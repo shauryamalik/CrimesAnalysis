@@ -4,8 +4,6 @@
 
 ### Monthly Trend in number of shootings
 
-#### Whole NYC
-
 ```{r}
 covid_date<- as.Date("2020-04-01", format = "%Y-%m-%d")
 
@@ -53,7 +51,7 @@ ggplot(temp_df, aes(x= date)) +
                   y= monthly_change ), stat= "identity",angle = 90) +
   scale_y_continuous(labels = scales::percent) +
   ggtitle("Is it that time of the year?!",
-          subtitle = "Percentage change in number of Shootings by month") +
+          subtitle = "Percentage change in number of Shootings over time") +
   labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
@@ -62,30 +60,6 @@ ggplot(temp_df, aes(x= date)) +
 
  - We see every year in the month of May and June the number of shootings rise.
  - Last year, (possibly due to covid restrictions easing up) saw 92-95% increase in these months.
-
-#### Borough wise
-
-```{r, fig.width=10,fig.height=11}
-temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019) %>%
-  group_by(date, month) %>%
-  summarize(total_shots= sum(occurances))#%>%
-  # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
-
-temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
-
-ggplot(temp_df, aes(x= date)) + 
-  geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
-  geom_text(aes( label = scales::percent(monthly_change),
-                  y= monthly_change ), stat= "identity",angle = 90) +
-  scale_y_continuous(labels = scales::percent) +
-  ggtitle("Is it that time of the year?!",
-          subtitle = "Percentage change in number of Shootings by month") +
-  labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
-  theme(plot.title = element_text(face = "bold")) +
-  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
-```
 
 ### Weekly Trend in number of shooting
 
@@ -119,7 +93,7 @@ ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("
 
 ### Susciptible groups
 
-#### Victim Age
+#### Victims by Age
 
 ```{r}
 temp_df<- df_shoot_grouped_BORO %>% 
@@ -139,9 +113,9 @@ theme_heat <- theme_classic() +
 ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
   geom_tile(aes(fill = total_shots), color = "black") +
   theme_heat + ggtitle("Does age matter?!",
-                       subtitle = "Number of Shootings in each borough for each age group by month") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+                       subtitle = "Number of Shootings in each borough for each age group over time") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
   facet_grid(BORO~.) +
-  labs(y = "Borough", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  labs(y = "Age Group", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))
@@ -151,7 +125,26 @@ ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
    - The most widely affected age group is the 25-44 age group.
    - Brooklyn and Bronx have the highest shootings.
 
-### Gender
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_AGE_GROUP!="UNKNOWN") %>%
+  group_by(date, VIC_AGE_GROUP) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
+  geom_tile(aes(fill = total_shots), color = "black") +
+  theme_heat + ggtitle("Working class of NYC in danger?!",
+                       subtitle = "Number of Shootings in NYC for each age group over time") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+  labs(y = "Age Group", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+
+ - As expected from the individual trean, even in the overall statistic the people from age group 25-44 are mostly victims in the shootings.
+
+### Victims by Gender
 
 ```{r}
 
@@ -172,6 +165,68 @@ ggplot(temp_df, aes(x = date, color = BORO, y = total_shots)) +
   
  - The data on number fo female victims in shootings is less but among them, brooklyn has the highest in the past 2 years.
  - In general, we see a clear increase in the number of shootings post covid (blue-line)
+
+
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_SEX!="U") %>%
+  group_by(date, VIC_SEX) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+ggplot(temp_df, aes(x = date, color = VIC_SEX, y = total_shots)) +
+  geom_line() +
+  ggtitle("Males and Females victims in whole NYC",
+                       subtitle = "Number of Shootings in NYC by gender over time") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+  labs(y = "Number of shootings", x="Date", color="Borough", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme_pubr(legend="right")+
+  geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
+```
+ - This visualization confirms that more men are involved in shootings than women.
+ - Also, that the number has significantly risen post COVID.
+
+#### Victims by Race
+
+```{r}
+
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
+  group_by(year,BORO, VIC_RACE) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+temp_df$year <- as.factor(temp_df$year)
+
+ggplot(temp_df, aes(x = year, fill = BORO, y = total_shots)) +
+  geom_bar(stat="identity", position = "dodge") +
+  ggtitle("Are some areas bad for some race than others",
+          subtitle = "Number of Shooting victims by race in each borough over time") +scale_fill_brewer(palette="Dark2") +
+  labs(y = "Number of shootings", x="Year", fill="Borough", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  facet_grid(VIC_RACE~., scales = "free", space="free_x")
+```
+ 
+ - We observe that different communities are effected more in some boroughs than others.
+   - White people do not show up almost everywhere except in the occasional shootings in the Staten island borough.
+   - Pacific Islanders are vicitimezd in queens the highest.
+   - White Hispanics and Black hispanica are targeted in Bronx.
+   - Black in Brooklyn
+
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
+  group_by(year, VIC_RACE) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+temp_df$year <- as.factor(temp_df$year)
+
+ggplot(temp_df, aes(x = year, fill = VIC_RACE, y = total_shots)) +
+  geom_bar(stat="identity", position = "dodge") +
+  ggtitle("Are any communities targetted?",
+          subtitle = "Number of Shooting victims by race in NYC over time") +scale_fill_brewer(palette="Dark2") +
+  labs(y = "Number of shootings", x="Year", fill="Victim Race", caption = "Source: NYC-open-Data::Shooting Incident Data") 
+```
+ - From just the numbers we see that the Black and White Hispanic people appear the most as victims across whole of New York.
 
 ### Hot-spot neighbourhoods/AREAS 
 
@@ -233,7 +288,6 @@ ggplot(temp_df, aes(x= date)) +
  - This faceted graph gives us a deeper dive in just the numbers to explain that even though total number of shootings has been at an all time high in Brooklyn and Bronx, The recent numbers have started to decrease. can be due to active action taken by authorities or better awareness.
  - Also, in case of Staten island, the behavior is very erratic, hinting at a more loose control than other boroughs.
 
-### geo map
 
 ```{r}
 library(tidyverse)
