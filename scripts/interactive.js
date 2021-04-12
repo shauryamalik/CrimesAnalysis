@@ -1,4 +1,6 @@
-var boroughs = ["Bronx", "Brooklyn", "Staten Island", "Manhattan", "Queens"];
+var boroughs = ["Bronx", "Brooklyn", "Staten_Island", "Manhattan", "Queens"];
+var colors = ["#F8766D", "#B79F00", "#00BA38", "#00BFC4", "#619CFF"]
+//["#03e611", "#fc76fd", "#ff8e29", "#1ddaef", "#f5b6c1"]
 
 datasrc = "https://raw.githubusercontent.com/shauryamalik/CrimesAnalysis/main/datasets/filtered/arrests_by_offenses_and_borough.csv";
 
@@ -8,10 +10,8 @@ d3.csv(datasrc)
 	var offenseMap = {};
 	data.forEach(function(d) {
 	    var offense = d.OFNS_DESC;
-	    offenseMap[offense] = [];//{};
+	    offenseMap[offense] = [];
 	    boroughs.forEach(function(field) {
-	    	var b_name = field;
-	    	offenseMap[offense][b_name]=[]
 	        offenseMap[offense].push( +d[field] );
 	    });
 	});
@@ -44,6 +44,10 @@ var makeVis = function(offenseMap) {
 	var xAxis = d3.axisBottom()
 					.scale(xScale);
 
+	var barColor = d3.scaleOrdinal()
+				    .domain(boroughs)
+				    .range(colors);
+
 	// // var svg = d3.select("div#plot")
 	// // 				.append("svg")
 	// // 				.attr("id", "demo")
@@ -71,18 +75,30 @@ var makeVis = function(offenseMap) {
         .attr("transform", `translate(0, ${height})`)
         .call(xAxis);
 
-    svg.append("g")
-    	.attr("class", "y axis")
-		.attr("transform", `translate(0, 0)`)
-		.call(yAxis);
+  //   svg.append("g")
+  //   	.attr("class", "y axis")
+		// .attr("transform", `translate(0, 0)`)
+		// .call(yAxis);
+
+	var yAxisHandleForUpdate = svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    yAxisHandleForUpdate.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Value");
 
 	var updateBars = function(data) {
         // First update the y-axis domain to match data
-        yScale.domain( d3.extent(data) );
-        svg.append("g")
-	    	.attr("class", "y axis")
-			.attr("transform", `translate(0, 0)`)
-			.call(yAxis);
+        yScale.domain( [0, d3.max(data)] );
+        yAxisHandleForUpdate.call(yAxis);
+        //      svg.append("g")
+	    //   	.attr("class", "y axis")
+			// .attr("transform", `translate(0, 0)`)
+			// .call(yAxis);
 
         var bars = svg.selectAll(".bar").data(data);
 
@@ -90,16 +106,17 @@ var makeVis = function(offenseMap) {
         bars.enter()
           .append("rect")
             .attr("class", "bar")
-            .attr("x", function(d,i) { return xScale( boroughs[i] )+55; })
-            .attr("width", 20)
-            .attr("y", function(d,i) { return yScale(d.Brooklyn); })
-            .attr("height", function(d,i) { return height; }); // - yScale(d.Brooklyn)
+            .attr("x", function(d,i) { return xScale( boroughs[i] ); })
+            .attr("width", xScale.bandwidth())
+            .attr("y", function(d,i) { return yScale(d); })
+            .attr("fill", function(d,i) { return colors[i]; })
+            .attr("height", function(d,i) { return height- yScale(d); }); // - yScale(d.Brooklyn)
 
         // Update old ones, already have x / width from before
         bars
             .transition().duration(250)
-            .attr("y", function(d,i) { return yScale(d.Brooklyn); })
-            .attr("height", function(d,i) { return height; }); // - yScale(d.Brooklyn)
+            .attr("y", function(d,i) { return yScale(d); })
+            .attr("height", function(d,i) { return height- yScale(d); }); // - yScale(d.Brooklyn)
 
         // Remove old ones
         bars.exit().remove();
