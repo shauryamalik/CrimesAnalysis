@@ -47,7 +47,6 @@ temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, f
 
 
 ```{r, fig.width=10,fig.height=11}
->>>>>>> main
 ggplot(temp_df, aes(x= date)) + 
   geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
   geom_text(aes( label = scales::percent(monthly_change),
