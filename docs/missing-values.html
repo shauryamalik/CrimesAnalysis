@@ -24,7 +24,7 @@
 <meta name="author" content="Shaurya Malik, Rahul Agarwal, Keertan Krishnan" />
 
 
-<meta name="date" content="2021-04-11" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#fbi-human-trafficking-data"><i class="fa fa-check"></i><b>2.4</b> FBI Human Trafficking Data</a></li>
 <li class="chapter" data-level="2.5" data-path="data-sources.html"><a href="data-sources.html#fbi-arrest-data---reported-number-of-drug-arrests"><i class="fa fa-check"></i><b>2.5</b> FBI Arrest Data - Reported Number of Drug Arrests</a></li>
 <li class="chapter" data-level="2.6" data-path="data-sources.html"><a href="data-sources.html#nyc-citizen-census-data"><i class="fa fa-check"></i><b>2.6</b> NYC citizen CENSUS DATA</a></li>
+<li class="chapter" data-level="2.7" data-path="data-sources.html"><a href="data-sources.html#nyc-park-crime-data"><i class="fa fa-check"></i><b>2.7</b> NYC park crime data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
 <ul>
@@ -160,6 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="data-transformation.html"><a href="data-transformation.html#pre-processing-data"><i class="fa fa-check"></i><b>3.2.1</b> Pre-processing Data</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-transformation.html"><a href="data-transformation.html#feature-engineering"><i class="fa fa-check"></i><b>3.2.2</b> Feature Engineering</a></li>
 </ul></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#park-crime-data"><i class="fa fa-check"></i><b>3.3</b> Park Crime Data</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
@@ -168,6 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#shootings-in-nyc-1"><i class="fa fa-check"></i><b>4.3</b> Shootings in NYC</a></li>
 <li class="chapter" data-level="4.4" data-path="missing-values.html"><a href="missing-values.html#fbi-drug-arrests-data"><i class="fa fa-check"></i><b>4.4</b> FBI Drug Arrests Data</a></li>
 <li class="chapter" data-level="4.5" data-path="missing-values.html"><a href="missing-values.html#hate-crimes"><i class="fa fa-check"></i><b>4.5</b> Hate Crimes</a></li>
+<li class="chapter" data-level="4.6" data-path="missing-values.html"><a href="missing-values.html#park-crime"><i class="fa fa-check"></i><b>4.6</b> Park Crime</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
@@ -200,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.4" data-path="results.html"><a href="results.html#arrests-related-to-possession"><i class="fa fa-check"></i><b>5.5.4</b> Arrests related to Possession</a></li>
 <li class="chapter" data-level="5.5.5" data-path="results.html"><a href="results.html#arrests-as-a-proportion-of-population"><i class="fa fa-check"></i><b>5.5.5</b> Arrests as a proportion of population</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#park-crime-data-1"><i class="fa fa-check"></i><b>5.6</b> Park Crime Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -227,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="human-trafficking" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Human Trafficking</h2>
 <p><em>For Human Trafficking data, we analyze missing values as following:</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Alternatively, we can also view missing data as we can see below:</p>
 <pre><code>##              DATA_YEAR                    ORI        PUB_AGENCY_NAME 
 ##                      0                      0                      0 
@@ -246,12 +250,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="arrests-data" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Arrests Data</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>The main feature of concern is LAW_CAT_CD which depicts level of offense (felony, misdemeanor, violation), but since there is no way to fill in this information of a categorical variable, we will ignore this feature for our analysis.</p>
 </div>
 <div id="shootings-in-nyc-1" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Shootings in NYC</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <ul>
 <li>dropping the missing columns, as they cannot be imputed in anyway. We intend to focus on the victim trend in this analysis. Hence, it is fine to not consider the above columns in the current analysis.</li>
 </ul>
@@ -259,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fbi-drug-arrests-data" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> FBI Drug Arrests Data</h2>
 <p><em>For FBI Drug Arrests data, we analyze missing values as following:</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Alternatively, we can also view missing data as we can see below:</p>
 <pre><code>##                    id                  year            state_abbr 
 ##                     0                     0                    23 
@@ -276,6 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="hate-crimes" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Hate Crimes</h2>
+<p><em>For Hate Crimes data, we analyze missing values as following:</em></p>
 <p>We have converted complaint ID from int to character string now.</p>
 <pre><code>##  Full.Complaint.ID  Complaint.Year.Number  Month.Number    Record.Create.Date
 ##  Length:728         Min.   :2019          Min.   : 1.000   Length:728        
@@ -346,7 +351,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                             0                             0 
 ##                     Arrest.Id 
 ##                             0</code></pre>
-<p>We see here that there is no missing data in this dataset.</p>
+<pre><code>## NOTE: The following pairs of variables appear to have the same missingness pattern.
+##  Please verify whether they are in fact logically distinct variables.
+##      [,1]          [,2]       
+## [1,] &quot;Arrest.Date&quot; &quot;Arrest.Id&quot;</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="park-crime" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Park Crime</h2>
+<p><em>For Park Crime data, we analyze missing values as following:</em></p>
+<pre><code>##                           PARK                        BOROUGH 
+##                              0                              0 
+##                   SIZE..ACRES.                       CATEGORY 
+##                              0                              0 
+##                         MURDER                           RAPE 
+##                              0                              0 
+##                        ROBBERY                 FELONY.ASSAULT 
+##                              0                              0 
+##                       BURGLARY                  GRAND.LARCENY 
+##                              0                              0 
+## GRAND.LARCENY.OF.MOTOR.VEHICLE                          TOTAL 
+##                              0                              0 
+##                           YEAR                        QUARTER 
+##                              0                              0</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 
 </div>
 </div>

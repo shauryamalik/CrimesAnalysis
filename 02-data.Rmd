@@ -82,9 +82,9 @@ head(df_nyc_earnings)
 
 ## NYC park crime data
 
-*Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page
+*Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page*
 
 ```{r}
-df_parks<- readr::read_csv("")
-head(df_parks)
+#df_parks<- readr::read_csv("")
+#head(df_parks)
 ```

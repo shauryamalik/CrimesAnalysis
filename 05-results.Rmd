@@ -459,7 +459,7 @@ This picture might be offset in the case of one person commited multiple hate cr
 ```{r}
 df_drugs <- readr::read_csv("datasets/arrests_national_drug.csv")
 df_drugs <- as.data.frame(df_drugs)
-View(df_drugs)
+#View(df_drugs)
 ```
 
 ### Arrests related to all drugs throughout US 
@@ -557,12 +557,12 @@ It is seen that there is a downward trend in the proportion of the us population
 
 ```{r}
 df_parks <- read.csv('datasets/parks/finalpark.csv')
-View(df_parks)
+#View(df_parks)
 ```
 
 ```{r}
 parks_subset <- subset(df_parks, select=c('BOROUGH', 'TOTAL'))
-View(parks_subset)
+#View(parks_subset)
 parks_subset2 <- parks_subset %>% group_by(BOROUGH)
 borough_total <- parks_subset2 %>% summarise(
   TOTAL = sum(TOTAL)
