@@ -1,5 +1,7 @@
 # Interactive component
 
+## Distribution of crime across Boroughs
+
 We are using this interactive bar graph to understand the trends of different kinds of offenses and crimes in each borough. To view the results for a particular offense, select the offense type from the drop down. 
 
 The X Axis depicts different boroughs and the Y Axis depicts number of arrests for that offense.
@@ -9,3 +11,5 @@ The X Axis depicts different boroughs and the Y Axis depicts number of arrests f
 <div id="vis-container"></div>
 
 <script src="scripts/interactive.js"></script>
+
+*Reference: http://bl.ocks.org/williaster/10ef968ccfdc71c30ef8*

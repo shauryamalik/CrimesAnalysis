@@ -1,4 +1,4 @@
-## CRIMES ANALYSIS
+## CRIME ANALYSIS
 
 *Shaurya Malik, Rahul Agarwal, Keertan Krishnan*
 
