@@ -165,3 +165,16 @@ df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "ADMINISTRATIVE CODES"] <- "A
 
 df_arrest_ytd %>% 
   filter(OFNS_DESC %in% "ADMINISTRATIVE CODES")
+
+
+arrests_loc_boro <- df_arrest_ytd %>% 
+  filter(!OFNS_DESC %in% "") %>%
+  group_by(OFNS_DESC, ARREST_BORO, Latitude, Longitude) %>%
+  summarise(Total = n())
+
+arrests_boro <- df_arrest_ytd %>% 
+  filter(!OFNS_DESC %in% "") %>%
+  group_by(OFNS_DESC, ARREST_BORO) %>%
+  summarise(Total = n())
+
+write.csv(arrests_boro, './datasets/filtered/arrests_by_offenses_and_borough.csv', row.names = FALSE)
