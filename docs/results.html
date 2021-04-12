@@ -195,9 +195,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#drugs"><i class="fa fa-check"></i><b>5.5</b> Drugs</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#arrests-related-to-all-drugs-throughout-us"><i class="fa fa-check"></i><b>5.5.1</b> Arrests related to all drugs throughout US</a></li>
-<li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#arrests-related-to-manufacturing"><i class="fa fa-check"></i><b>5.5.2</b> Arrests related to Manufacturing</a></li>
-<li class="chapter" data-level="5.5.3" data-path="results.html"><a href="results.html#arrests-related-to-possession"><i class="fa fa-check"></i><b>5.5.3</b> Arrests related to Possession</a></li>
-<li class="chapter" data-level="5.5.4" data-path="results.html"><a href="results.html#arrests-as-a-proportion-of-population"><i class="fa fa-check"></i><b>5.5.4</b> Arrests as a proportion of population</a></li>
+<li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#arrests-related-to-manufacture-and-possession"><i class="fa fa-check"></i><b>5.5.2</b> Arrests related to manufacture and possession</a></li>
+<li class="chapter" data-level="5.5.3" data-path="results.html"><a href="results.html#arrests-related-to-manufacturing"><i class="fa fa-check"></i><b>5.5.3</b> Arrests related to Manufacturing</a></li>
+<li class="chapter" data-level="5.5.4" data-path="results.html"><a href="results.html#arrests-related-to-possession"><i class="fa fa-check"></i><b>5.5.4</b> Arrests related to Possession</a></li>
+<li class="chapter" data-level="5.5.5" data-path="results.html"><a href="results.html#arrests-as-a-proportion-of-population"><i class="fa fa-check"></i><b>5.5.5</b> Arrests as a proportion of population</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
@@ -277,31 +278,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="most-common-arrest-offenses" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Most Common Arrest Offenses</h3>
 <p>The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-40-1.png" width="960" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="960" /></p>
 <p>From the above plot, Assault, Felony Assault, larceny, drugs among others are the most common offenses seen in New York.</p>
 <div id="most-common-arrest-offenses-by-sex" class="section level4" number="5.3.1.1">
 <h4><span class="header-section-number">5.3.1.1</span> Most Common Arrest Offenses By Sex</h4>
 <p>We also wish to identify the sex of the perpetrators committing these common offenses.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="960" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-42-1.png" width="960" /></p>
 <p>The above plot follows a similar trend when it comes to the perpetrator’s sex. However some offenses see an increase in the ratio of Female offenders to Men. These crimes include Criminal Mischief, Grand Larceny and offenses against public administration, among others.</p>
 </div>
 </div>
 <div id="assault-offenses-by-borough" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Assault Offenses by Borough</h3>
 <p>It is also important to identify crime rates by Borough to see which regions of New York are most affected by these crimes. Here we are focusing on assault related crimes since these are most prevalent in NYC.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>It is seen that Bronx and Brooklyn are most affected by Assault related offenses, whereas Staten Island is least affected. A basic cause for this could be assumed to be population of these boroughs but it is important to note here that while population decreases in the following order: Brooklyn, Queens, Manhattan, Bronx, Staten Island, this is not the trend of assault crimes.</p>
 </div>
 <div id="offenses-by-borough-and-age-group" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Offenses by Borough and Age Group</h3>
 <p>We try to further drill down among the NYC boroughs to understand if perpetrator age plays a role in these statistics.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>The above plots show a similar trend across Boroughs with a majority of perpetrators belonging to the 25-44 age group. However it is important to note here that except for Manhattan, the number of perpetrators belonging to the 18-24 category are more than those belonging to 45-64 age group.</p>
 </div>
 <div id="identifying-race-of-perpetrators-by-borough" class="section level3" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> Identifying race of perpetrators by Borough</h3>
 <p>It can also be valuable to know if there is a trend in perpetrator race for each borough.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p>The majority of perpetrator race seen here is Black, followed by White Hispanic. However it is important to note some other points as well:
 - State Island sees a similar distribution of Black as well as White perpetrators
 - Queens has a larger share of perpetrators belonging to Asian community
@@ -309,78 +310,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="drugs-based-crimes-in-nyc" class="section level3" number="5.3.5">
 <h3><span class="header-section-number">5.3.5</span> Drugs based crimes in NYC</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <div id="drug-based-crimes-density-by-location" class="section level4" number="5.3.5.1">
 <h4><span class="header-section-number">5.3.5.1</span> Drug Based Crimes Density by Location</h4>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 </div>
 <div id="sexual-crimes" class="section level3" number="5.3.6">
 <h3><span class="header-section-number">5.3.6</span> Sexual Crimes</h3>
 <p>An important aspect of crime analysis is understanding trends in sexual crimes and what areas are they more frequent in.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>The above location based scatter plot shows the spread in location where sexual crimes tend to occur. To get a clearer picture, we plot the below density curve.</p>
 <div id="sexual-crimes-frequency-by-location" class="section level4" number="5.3.6.1">
 <h4><span class="header-section-number">5.3.6.1</span> Sexual Crimes Frequency by Location</h4>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>This plot identifies certain locations which tend to have a higher frequency of sexual crimes in NYC.</p>
 </div>
 </div>
 </div>
 <div id="hate-crimes-1" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Hate Crimes</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <div id="insights" class="section level4" number="5.4.0.1">
 <h4><span class="header-section-number">5.4.0.1</span> Insights</h4>
 <p>Kings County (Brooklyn) had the highest total number of hate crimes over the years 2019 and 2020. This was followed by New York (Manhattan) and then Queens.</p>
 <p>The only county/borough to have experienced an upturn in hate crimes in 2020 was the Richmond county (Staten Island Borough).</p>
 <p>This is confirmed by articles such as (Source: silive.com <a href="https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html" class="uri">https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html</a>)</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="insights-1" class="section level4" number="5.4.0.2">
 <h4><span class="header-section-number">5.4.0.2</span> Insights</h4>
 <p>The largest proportion of hate crimes stem from religious reasons, followed by race and sexual orientation.</p>
 <p>Kings County (Brooklyn) has a much larger proportion of these religious crimes. Interestingly, although the total number of hate crimes is greater in Kings County (Brooklyn) than New York County (Manhattan), the number of crimes stemming from Sexual Orientation and Race/Color is greater in New York County than Kings County.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 </div>
 <div id="insights-2" class="section level4" number="5.4.0.3">
 <h4><span class="header-section-number">5.4.0.3</span> Insights</h4>
 <p>Anti- Jewish hate crimes seem to be the largest in number (by a large amount, almost 350 crimes) during this time period, followed by anti-homosexual (gay) and anti-black crimes.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 </div>
 <div id="insights-3" class="section level4" number="5.4.0.4">
 <h4><span class="header-section-number">5.4.0.4</span> Insights</h4>
 <p>As expected from the previous 2 graphs, Kings County (Brooklyn) has the highest number of anti-jewish crimes. Kings County has a disproportionately large number of these crimes, whereas other motive types like anti-black or anti-homosexual seem to be equal in the boroughs of Kings and New York (Manhattan).</p>
 <p>These insights are confirmed by articles such as (<a href="https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/" class="uri">https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/</a> Source: CBS News)</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 </div>
 <div id="insights-4" class="section level4" number="5.4.0.5">
 <h4><span class="header-section-number">5.4.0.5</span> Insights</h4>
 <p>Across the city of New York, the number of hate crimes went down in 2020 (by almost 40%). Sexual orientation crimes decreased, whereas crimes based on race/color unfortunately went up in number.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 </div>
 <div id="insights-5" class="section level4" number="5.4.0.6">
 <h4><span class="header-section-number">5.4.0.6</span> Insights</h4>
 <p>Across both years, it is visible that there is a dependance on the month when it comes to the number of crimes.</p>
 <p>However, for all months, 2020 had lower number of hate crimes than there were in 2019. The highest crime number for both years was in the month of March.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 </div>
 <div id="insights-6" class="section level4" number="5.4.0.7">
 <h4><span class="header-section-number">5.4.0.7</span> Insights</h4>
 <p>The insights from this mosaic plot corroborate our findings from the previous plots.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 </div>
 <div id="insights-7" class="section level4" number="5.4.0.8">
 <h4><span class="header-section-number">5.4.0.8</span> Insights</h4>
 <p>The majority of arrests, if made, were made within 50 days since the report creation, for both the years 2019 and 2020. This indicates a heavy right-skew in the graphs.</p>
 <p>Only very few arrests were made beyond the 50-day mark in both years.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 </div>
 <div id="insights-8" class="section level4" number="5.4.0.9">
 <h4><span class="header-section-number">5.4.0.9</span> Insights</h4>
 <p>Criminal Mischief, Aggravated Assault and Aggravated Harrassment were the most code of hate crimes committed.</p>
 <pre><code>## [1] 149</code></pre>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 <div id="insights-9" class="section level4" number="5.4.0.10">
 <h4><span class="header-section-number">5.4.0.10</span> Insights</h4>
@@ -393,22 +394,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.5</span> Drugs</h2>
 <div id="arrests-related-to-all-drugs-throughout-us" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Arrests related to all drugs throughout US</h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-60-1.png" width="672" />
-### Arrests related to manufacture and possession
-<img src="finalproj_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div id="insights-all-drugs" class="section level4" number="5.5.1.1">
+<h4><span class="header-section-number">5.5.1.1</span> Insights: all drugs</h4>
+<p>The number of drug related arrests across the United States peaked around the years 2005-2007 over the entire course of 1994 - 2016.</p>
+<p>The lowest number of drug-related arrests were during 1994. The high number of drug related arrests coincides with the</p>
+<p>A large portion of the arrests related to upturn in drug-related arrests could be due to the raids detailed in articles such as: <a href="https://www.justice.gov/archive/usao/nye/pr/2005/2005dec7.html" class="uri">https://www.justice.gov/archive/usao/nye/pr/2005/2005dec7.html</a>.
+In addition, this could also be because of the setting up of the Digital Evidence Laboratory by the Drug Enforcement Administration. (Source: <a href="https://en.wikipedia.org/wiki/Drug_Enforcement_Administration" class="uri">https://en.wikipedia.org/wiki/Drug_Enforcement_Administration</a>)</p>
 </div>
-<div id="arrests-related-to-manufacturing" class="section level3" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Arrests related to Manufacturing</h3>
+</div>
+<div id="arrests-related-to-manufacture-and-possession" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Arrests related to manufacture and possession</h3>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<div id="insights-manufacturing-vs-possession" class="section level4" number="5.5.2.1">
+<h4><span class="header-section-number">5.5.2.1</span> Insights: Manufacturing vs Possession</h4>
+<p>As seen in the graph, the number of arrests in relation to manufacturing of drugs has seen a downward trend, where the number of arrests in relation to possession of drugs has seen an upward trend.</p>
+<p>It is unclear whether the trends are due to a decrease in the manufacturing or due to other factors such as ineffectual police techniques.</p>
+<p>Similarly, the upward trend in the possession arrests of drugs could be due to either in increase in drug consumption or better police techniques to find such people to arrest, or both.</p>
 </div>
-<div id="arrests-related-to-possession" class="section level3" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Arrests related to Possession</h3>
+</div>
+<div id="arrests-related-to-manufacturing" class="section level3" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Arrests related to Manufacturing</h3>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<div id="insights-manufacturing-insights" class="section level4" number="5.5.3.1">
+<h4><span class="header-section-number">5.5.3.1</span> Insights: Manufacturing Insights</h4>
+<p>The trends seen in the manufacture of these drugs is highly interesting. It is seen that the arrests related to opioid manufacture have seen a sharp downturn in the 1994-2016 period.</p>
+<p>In contrast, other drug-related arrests have been on the upturn, including marijuana, synthetic drugs and other drugs.</p>
 </div>
-<div id="arrests-as-a-proportion-of-population" class="section level3" number="5.5.4">
-<h3><span class="header-section-number">5.5.4</span> Arrests as a proportion of population</h3>
+</div>
+<div id="arrests-related-to-possession" class="section level3" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> Arrests related to Possession</h3>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<div id="insights-drug-possession-arrests" class="section level4" number="5.5.4.1">
+<h4><span class="header-section-number">5.5.4.1</span> Insights: Drug Possession Arrests</h4>
+<p>As can be seen from the scale of the graph, it is evident that the number of arrests due to drug possession are higher than the number of arrests in connection with drug manufacturing.</p>
+<p>In correlation with the manufacturing downtrend of opioid, the number of arrests for possession of opioid has also seen a downtrend.</p>
+<p>Again, similar to the manufacturing uptrend for other drugs such as marijuana or synthetic, the number of arrests have also been increasing during the 1993-2016 timeframe.</p>
+</div>
+</div>
+<div id="arrests-as-a-proportion-of-population" class="section level3" number="5.5.5">
+<h3><span class="header-section-number">5.5.5</span> Arrests as a proportion of population</h3>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div id="insights-population-proportion" class="section level4" number="5.5.5.1">
+<h4><span class="header-section-number">5.5.5.1</span> Insights: Population Proportion</h4>
+<p>It is seen that there is a downward trend in the proportion of the us population arrested in connection to drugs. This could be due to the fact that the population growth has outstripped the number of drug manufacturers/possesors over this time frame (since it was seen that arrests have been on the increase during this timeframe).</p>
 
+</div>
 </div>
 </div>
 </div>

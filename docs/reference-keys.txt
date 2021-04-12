@@ -60,8 +60,14 @@ insights-8
 insights-9
 drugs
 arrests-related-to-all-drugs-throughout-us
+insights-all-drugs
+arrests-related-to-manufacture-and-possession
+insights-manufacturing-vs-possession
 arrests-related-to-manufacturing
+insights-manufacturing-insights
 arrests-related-to-possession
+insights-drug-possession-arrests
 arrests-as-a-proportion-of-population
+insights-population-proportion
 interactive-component
 conclusion
