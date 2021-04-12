@@ -14,7 +14,7 @@ library("data.table")
 
 Since we intend to use this data to calculate the percentage of people being shot in each borough based on the borough's population, we will filter only the years for which we have corresponding shooting data.
 
-```{r}
+```{r echo=TRUE}
 
 class(df_population_yearly$Year)
 
