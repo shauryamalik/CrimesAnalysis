@@ -142,6 +142,11 @@ Please note: The following regions were missing and are being set to NA: pennsyl
 
 The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD. 
 
+```{r}
+df_arrest_ytd <- read.csv('datasets/NYPD_Arrest_Data__Year_to_Date_.csv')
+```
+
+
 ```{r fig.height=10, fig.width=10}
 df_arrest_by_offense_type <- df_arrest_ytd %>% 
                               filter(!is.na(OFNS_DESC))%>%
@@ -466,6 +471,16 @@ drug1 <- ggplot()+
   labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("total arrests"))
 drug1
 ```
+
+#### Insights: all drugs
+
+The number of drug related arrests across the United States peaked around the years 2005-2007 over the entire course of 1994 - 2016.
+
+The lowest number of drug-related arrests were during 1994. The high number of drug related arrests coincides with the 
+
+A large portion of the arrests related to upturn in drug-related arrests could be due to the raids detailed in articles such as:  https://www.justice.gov/archive/usao/nye/pr/2005/2005dec7.html. 
+In addition, this could also be because of the setting up of the Digital Evidence Laboratory by the Drug Enforcement Administration. (Source: https://en.wikipedia.org/wiki/Drug_Enforcement_Administration)
+
 ### Arrests related to manufacture and possession
 ```{r}
 drug2 <- ggplot()+
@@ -476,6 +491,12 @@ drug2 <- ggplot()+
 drug2
 ```
 
+#### Insights: Manufacturing vs Possession
+As seen in the graph, the number of arrests in relation to manufacturing of drugs has seen a downward trend, where the number of arrests in relation to possession of drugs has seen an upward trend. 
+
+It is unclear whether the trends are due to a decrease in the manufacturing or due to other factors such as ineffectual police techniques. 
+
+Similarly, the upward trend in the possession arrests of drugs could be due to either in increase in drug consumption or better police techniques to find such people to arrest, or both. 
 
 ### Arrests related to Manufacturing 
 ```{r}
@@ -488,6 +509,12 @@ drug3 <- ggplot()+
   labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Manufacture", "Marijuana Manufacture", 'Synthetic Manufacture', 'Other Manufacture'))
 drug3
 ```
+
+#### Insights: Manufacturing Insights
+
+The trends seen in the manufacture of these drugs is highly interesting. It is seen that the arrests related to opioid manufacture have seen a sharp downturn in the 1994-2016 period. 
+
+In contrast, other drug-related arrests have been on the upturn, including marijuana, synthetic drugs and other drugs. 
 
 ### Arrests related to Possession
 
@@ -502,6 +529,13 @@ drug4 <- ggplot()+
 drug4
 ```
 
+#### Insights: Drug Possession Arrests
+
+As can be seen from the scale of the graph, it is evident that the number of arrests due to drug possession are higher than the number of arrests in connection with drug manufacturing. 
+
+In correlation with the manufacturing downtrend of opioid, the number of arrests for possession of opioid has also seen a downtrend. 
+
+Again, similar to the manufacturing uptrend for other drugs such as marijuana or synthetic, the number of arrests have also been increasing during the 1993-2016 timeframe. 
 
 ### Arrests as a proportion of population
 
@@ -514,4 +548,10 @@ drug5 <- ggplot()+
   labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Population Proportion"))
 drug5
 ```
+
+#### Insights: Population Proportion
+
+It is seen that there is a downward trend in the proportion of the us population arrested in connection to drugs. This could be due to the fact that the population growth has outstripped the number of drug manufacturers/possesors over this time frame (since it was seen that arrests have been on the increase during this timeframe).
+
+
 
