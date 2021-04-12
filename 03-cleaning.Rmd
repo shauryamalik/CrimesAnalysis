@@ -27,6 +27,42 @@ df_population_2020<-df_population_age %>%
   select(Borough, Age, "2020")
 ```
 
+
+## NYPD Arrests
+
+In order to use arrest dates information, we are converting this feature to Date format.
+
+```{r, echo=TRUE}
+df_arrest_ytd$ARREST_DATE <-as.Date(df_arrest_ytd$ARREST_DATE, format = "%m/%d/%Y")
+```
+
+As per this mapping given by NYPD - B(Bronx), S(Staten Island), K(Brooklyn), M(Manhattan), Q(Queens) - we are updating the borough names for a clearer understanding.
+
+```{r, echo=TRUE}
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "B"] <- "Bronx"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "S"] <- "Staten Island"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "K"] <- "Brooklyn"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "M"] <- "Manhattan"
+df_arrest_ytd$ARREST_BORO[df_arrest_ytd$ARREST_BORO == "Q"] <- "Queens"
+```
+
+This data also contains certain duplicate offenses which are categorized separately.
+
+```{r}
+
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "KIDNAPPING AND RELATED OFFENSES")
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "KIDNAPPING")
+# df_arrest_ytd %>% filter(OFNS_DESC %in% "ADMINISTRATIVE CODES")
+
+```
+
+```{r echo=TRUE}
+
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "KIDNAPPING AND RELATED OFFENSES"] <- "KIDNAPPING & RELATED OFFENSES"
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "KIDNAPPING"] <- "KIDNAPPING & RELATED OFFENSES"
+df_arrest_ytd$OFNS_DESC[df_arrest_ytd$OFNS_DESC == "ADMINISTRATIVE CODES"] <- "ADMINISTRATIVE CODE"
+```
+
 ## Shootings in NYC
 
 ### Pre-processing Data
@@ -46,7 +82,7 @@ colnames(df_shooting_ytd)<- toupper(colnames(df_shooting_ytd))
 
  - Column names in the old and new data have different case, converting to a common format for merging the 2 later.
 
-```{r}
+```{r, echo=TRUE}
 df_shooting_ytd$OCCUR_DATE <-as.Date(df_shooting_ytd$OCCUR_DATE, format = "%m/%d/%Y")
 df_shooting_old$OCCUR_DATE <-as.Date(df_shooting_old$OCCUR_DATE, format = "%m/%d/%Y")
 
@@ -70,4 +106,167 @@ df_shooting_total<-df_shooting_total %>%
   - Extracted year, month, day of the week and hour of shooting
   - #TODO!!!!!!!!!!!!!!!!!!!
   - Calculated Percentage change in number of shootings every month.
+
+## Park Crime Data
+
+The raw data we obtained was in the form of quarterly data from the year 2015 to 2020. In order to carry out effective analysis, we put together the individual datasets into one large .csv file. 
+
+```{r eval=FALSE, echo=TRUE}
+library(readxl)
+library(httr)
+q1_2015_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2015.xlsx', skip=4)
+q2_2015_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2015.xlsx', skip=4)
+q3_2015_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2015.xlsx', skip=4)
+q4_2015_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2015.xlsx', skip=3)
+
+q1_2016_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2016.xlsx', skip=3)
+q2_2016_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2016.xlsx', skip=3)
+q3_2016_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2016.xlsx', skip=3)
+q4_2016_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2016.xlsx', skip=3)
+
+q1_2017_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2017.xlsx', skip=3)
+q2_2017_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2017.xlsx', skip=3)
+q3_2017_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2017.xlsx', skip=3)
+q4_2017_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2017.xlsx', skip=3)
+
+q1_2018_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2018.xlsx', skip=3)
+q2_2018_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2018.xlsx', skip=4)
+q3_2018_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2018.xlsx', skip=3)
+q4_2018_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2018.xlsx', skip=3)
+
+q1_2019_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2019.xlsx', skip=3)
+q2_2019_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2019.xlsx', skip=3)
+q3_2019_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2019.xlsx', skip=3)
+q4_2019_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2019.xlsx', skip=3)
+
+q1_2020_park <-read_excel('datasets/parks/nyc-park-crime-stats-q1-2019.xlsx', skip=3)
+q2_2020_park <-read_excel('datasets/parks/nyc-park-crime-stats-q2-2019.xlsx', skip=3)
+q3_2020_park <-read_excel('datasets/parks/nyc-park-crime-stats-q3-2019.xlsx', skip=3)
+q4_2020_park <-read_excel('datasets/parks/nyc-park-crime-stats-q4-2019.xlsx', skip=3)
+names(q1_2020_park)
+names(q2_2020_park)
+names(q3_2020_park)
+names(q4_2020_park)
+```
+
+
+Data has been read in and has to be converted to a large dataset, as a concatenation of the rows along with a quarter and year column.
+
+```{r eval=FALSE, echo=TRUE}
+
+q1_2015_park$year <- c(rep(2015, nrow(q1_2015_park)))
+q1_2016_park$year <- c(rep(2016, nrow(q1_2016_park)))
+q1_2017_park$year <- c(rep(2017, nrow(q1_2017_park)))
+q1_2018_park$year <- c(rep(2018, nrow(q1_2018_park)))
+q1_2019_park$year <- c(rep(2019, nrow(q1_2019_park)))
+q1_2020_park$year <- c(rep(2020, nrow(q1_2020_park)))
+
+q2_2015_park$year <- c(rep(2015, nrow(q2_2015_park)))
+q2_2016_park$year <- c(rep(2016, nrow(q2_2016_park)))
+q2_2017_park$year <- c(rep(2017, nrow(q2_2017_park)))
+q2_2018_park$year <- c(rep(2018, nrow(q2_2018_park)))
+q2_2019_park$year <- c(rep(2019, nrow(q2_2019_park)))
+q2_2020_park$year <- c(rep(2020, nrow(q2_2020_park)))
+
+q3_2015_park$year <- c(rep(2015, nrow(q3_2015_park)))
+q3_2016_park$year <- c(rep(2016, nrow(q3_2016_park)))
+q3_2017_park$year <- c(rep(2017, nrow(q3_2017_park)))
+q3_2018_park$year <- c(rep(2018, nrow(q3_2018_park)))
+q3_2019_park$year <- c(rep(2019, nrow(q3_2019_park)))
+q3_2020_park$year <- c(rep(2020, nrow(q3_2020_park)))
+
+q4_2015_park$year <- c(rep(2015, nrow(q4_2015_park)))
+q4_2016_park$year <- c(rep(2016, nrow(q4_2016_park)))
+q4_2017_park$year <- c(rep(2017, nrow(q4_2017_park)))
+q4_2018_park$year <- c(rep(2018, nrow(q4_2018_park)))
+q4_2019_park$year <- c(rep(2019, nrow(q4_2019_park)))
+q4_2020_park$year <- c(rep(2020, nrow(q4_2020_park)))
+```
+
+
+```{r eval=FALSE, echo=TRUE}
+q1_2015_park$quarter <- c(rep('q1', nrow(q1_2015_park)))
+q1_2016_park$quarter <- c(rep('q1', nrow(q1_2016_park)))
+q1_2017_park$quarter <- c(rep('q1', nrow(q1_2017_park)))
+q1_2018_park$quarter <- c(rep('q1', nrow(q1_2018_park)))
+q1_2019_park$quarter <- c(rep('q1', nrow(q1_2019_park)))
+q1_2020_park$quarter <- c(rep('q1', nrow(q1_2020_park)))
+
+q2_2015_park$quarter <- c(rep('q2', nrow(q2_2015_park)))
+q2_2016_park$quarter <- c(rep('q2', nrow(q2_2016_park)))
+q2_2017_park$quarter <- c(rep('q2', nrow(q2_2017_park)))
+q2_2018_park$quarter <- c(rep('q2', nrow(q2_2018_park)))
+q2_2019_park$quarter <- c(rep('q2', nrow(q2_2019_park)))
+q2_2020_park$quarter <- c(rep('q2', nrow(q2_2020_park)))
+
+q3_2015_park$quarter <- c(rep('q3', nrow(q3_2015_park)))
+q3_2016_park$quarter <- c(rep('q3', nrow(q3_2016_park)))
+q3_2017_park$quarter <- c(rep('q3', nrow(q3_2017_park)))
+q3_2018_park$quarter <- c(rep('q3', nrow(q3_2018_park)))
+q3_2019_park$quarter <- c(rep('q3', nrow(q3_2019_park)))
+q3_2020_park$quarter <- c(rep('q3', nrow(q3_2020_park)))
+
+q4_2015_park$quarter <- c(rep('q4', nrow(q4_2015_park)))
+q4_2016_park$quarter <- c(rep('q4', nrow(q4_2016_park)))
+q4_2017_park$quarter <- c(rep('q4', nrow(q4_2017_park)))
+q4_2018_park$quarter <- c(rep('q4', nrow(q4_2018_park)))
+q4_2019_park$quarter <- c(rep('q4', nrow(q4_2019_park)))
+q4_2020_park$quarter <- c(rep('q4', nrow(q4_2020_park)))
+```
+
+```{r eval=FALSE, echo=TRUE}
+colnames(q1_2015_park)<- toupper(colnames(q1_2015_park))
+colnames(q2_2015_park)<- toupper(colnames(q2_2015_park))
+colnames(q3_2015_park)<- toupper(colnames(q3_2015_park))
+colnames(q4_2015_park)<- toupper(colnames(q4_2015_park))
+
+colnames(q1_2016_park)<- toupper(colnames(q1_2016_park))
+colnames(q2_2016_park)<- toupper(colnames(q2_2016_park))
+colnames(q3_2016_park)<- toupper(colnames(q3_2016_park))
+colnames(q4_2016_park)<- toupper(colnames(q4_2016_park))
+
+colnames(q1_2017_park)<- toupper(colnames(q1_2017_park))
+colnames(q2_2017_park)<- toupper(colnames(q2_2017_park))
+colnames(q3_2017_park)<- toupper(colnames(q3_2017_park))
+colnames(q4_2017_park)<- toupper(colnames(q4_2017_park))
+
+colnames(q1_2018_park)<- toupper(colnames(q1_2018_park))
+colnames(q2_2018_park)<- toupper(colnames(q2_2018_park))
+colnames(q3_2018_park)<- toupper(colnames(q3_2018_park))
+colnames(q4_2018_park)<- toupper(colnames(q4_2018_park))
+
+colnames(q1_2019_park)<- toupper(colnames(q1_2019_park))
+colnames(q2_2019_park)<- toupper(colnames(q2_2019_park))
+colnames(q3_2019_park)<- toupper(colnames(q3_2019_park))
+colnames(q4_2019_park)<- toupper(colnames(q4_2019_park))
+
+colnames(q1_2020_park)<- toupper(colnames(q1_2020_park))
+colnames(q2_2020_park)<- toupper(colnames(q2_2020_park))
+colnames(q3_2020_park)<- toupper(colnames(q3_2020_park))
+colnames(q4_2020_park)<- toupper(colnames(q4_2020_park))
+```
+
+
+Putting the dataframes together
+```{r eval=FALSE, echo=TRUE}
+
+park_data <- do.call("rbind", list(q1_2015_park, q2_2015_park ,q3_2015_park, q4_2015_park, q1_2016_park,q2_2016_park, q3_2016_park, q4_2016_park, q1_2017_park, q2_2017_park, q3_2017_park, q4_2017_park, q1_2018_park, q2_2018_park, q3_2018_park, q4_2018_park, q1_2019_park, q2_2019_park, q3_2019_park, q4_2019_park, q1_2020_park, q2_2020_park, q3_2020_park, q4_2020_park))
+
+```
+
+```{r eval=FALSE, echo=TRUE}
+library(dplyr)
+park_data <- park_data %>% filter(PARK != 'TOTAL')
+```
+
+Creating new csv file for output.
+
+```{r eval=FALSE, echo=TRUE}
+write.csv(park_data, './datasets/parks/finalpark.csv', row.names = FALSE)
+```
+
+Testing Dataset - Sanity Checks 
+```{r eval=FALSE, echo=TRUE}
+nrow(park_data)
+```
 

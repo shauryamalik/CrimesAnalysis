@@ -43,7 +43,11 @@ temp_df<- df_shoot_grouped_NYC %>%
   # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
 
 temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+```
 
+
+```{r, fig.width=10,fig.height=11}
+>>>>>>> main
 ggplot(temp_df, aes(x= date)) + 
   geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
   geom_text(aes( label = scales::percent(monthly_change),
@@ -93,7 +97,10 @@ temp_df<- df_shoot_grouped_week %>%
   # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
 
 temp_df$weekly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+```
 
+
+```{r}
 ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("%0.2f", round(total_shots, digits = 2)))) + 
   geom_bar(stat="identity") +
   geom_text( vjust=-.5) +
@@ -232,7 +239,6 @@ ggplot(temp_df, aes(x= date)) +
 ```{r}
 library(tidyverse)
 library(ggplot2)
-library(mi)
 
 #df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 
@@ -251,6 +257,8 @@ theme_dotplot <- theme_bw(14) +
 
 ## Human Trafficking
 
+### Data By State
+
 ```{r}
 df_fbi_ht_temp <- df_fbi_ht %>%
   group_by(STATE_NAME) %>%
@@ -264,9 +272,201 @@ ggplot(df_fbi_ht_temp, aes(x = Total, y = reorder(STATE_NAME, Total))) +
   ggtitle("Registered Human Trafficking cases by State (2013-19)")
 ```
 
+#### Alternative visualization 
+
+```{r}
+library(choroplethr)
+
+df_fbi_ht_by_states <- df_fbi_ht %>%
+  group_by(STATE_NAME) %>%
+  summarise(Total = n())
+
+state_choropleth(df_fbi_ht_by_states %>% as.data.frame() %>% 
+                   transmute(region = tolower(`STATE_NAME`), value = Total),
+                 title = "Human Trafficking Cases By State",
+                 legend = "Number of Cases")
+```
+
+Please note: 
+
+ - The following regions were missing and are being set to NA: Pennsylvania, California, Alabama, Iowa, New York, District of Columbia.
+
+## NYPD Arrests
+
+### Most Common Arrest Offenses
+
+The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD. 
+
+```{r fig.height=10, fig.width=10}
+df_arrest_by_offense_type <- df_arrest_ytd %>% 
+                              filter(!is.na(OFNS_DESC))%>%
+                              group_by(OFNS_DESC) %>%
+                              summarise(Total = n())
+
+ggplot(df_arrest_by_offense_type, aes(x = Total, y = reorder(OFNS_DESC, Total))) +
+  geom_point(color = "blue") +
+  theme_dotplot +
+  xlab("Total arrests") +
+  ylab("Type of crime") +
+  ggtitle("Most common crimes (as per NYPD Arrests Data)")
+```
+
+
+From the above plot, Assault, Felony Assault, Larceny, Drugs among others are the most common offenses seen in New York.
+
+#### Most Common Arrest Offenses By Sex
+
+We also wish to identify the sex of the perpetrators committing these common offenses.
+
+```{r fig.height=10, fig.width=10}
+df_arrest_by_offense_type_perpsex <- df_arrest_ytd %>% 
+  filter(!is.na(OFNS_DESC))%>%
+  group_by(OFNS_DESC, PERP_SEX) %>%
+  summarise(Total = n())
+
+ggplot(df_arrest_by_offense_type_perpsex, aes(x = Total, y = reorder(OFNS_DESC, Total), color=PERP_SEX)) +
+  geom_point() +
+  theme_dotplot +
+  xlab("Total arrests") +
+  ylab("Type of crime") +
+  ggtitle("Most common crimes by sex (as per NYPD Arrests Data)")
+```
+
+
+The above plot follows a similar trend when it comes to the perpetrator's sex. However some offenses see an increase in the ratio of Female offenders to Men. These crimes include Criminal Mischief, Grand Larceny and offenses against public administration, among others.
+
+### Assault Offenses by Borough
+
+It is also important to identify crime rates by Borough to see which regions of New York are most affected by these crimes. Here we are focusing on assault related crimes since these are most prevalent in NYC.
+
+```{r}
+arrests_boro <- df_arrest_ytd %>% 
+  filter(OFNS_DESC %in% "ASSAULT 3 & RELATED OFFENSES") %>%
+  group_by(ARREST_BORO) %>%
+  summarise(Total = n())
+
+ggplot(arrests_boro, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=ARREST_BORO)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Assault related offenses by Borough") +
+  xlab("Boroughs") +
+  ylab("Total arrests") +
+  coord_flip()
+```
+
+
+It is seen that Bronx and Brooklyn are most affected by Assault related offenses, whereas Staten Island is least affected. A basic cause for this could be assumed to be population of these boroughs but it is important to note here that while population decreases in the following order: Brooklyn, Queens, Manhattan, Bronx, Staten Island, this is not the trend of assault crimes.
+
+### Offenses by Borough and Age Group
+
+We try to further drill down among the NYC boroughs to understand if perpetrator age plays a role in these statistics.
+
+```{r}
+arrests_boro_age <- df_arrest_ytd %>% 
+  group_by(ARREST_BORO, AGE_GROUP) %>%
+  summarise(Total = n())
+
+ggplot(arrests_boro_age, aes(x = AGE_GROUP, y = Total, fill=AGE_GROUP)) +
+  geom_bar(stat = "identity", position="dodge") +
+  ggtitle("Assault related offenses by Borough") +
+  xlab("Boroughs") +
+  ylab("Total arrests") +
+  facet_wrap(~ARREST_BORO)
+```
+
+
+The above plots show a similar trend across Boroughs with a majority of perpetrators belonging to the 25-44 age group. However it is important to note here that except for Manhattan, the number of perpetrators belonging to the 18-24 category are more than those belonging to 45-64 age group.
+
+### Identifying race of perpetrators by Borough
+
+It can also be valuable to know if there is a trend in perpetrator race for each borough.
+
+```{r}
+arrests_race <- df_arrest_ytd %>% 
+  group_by(PERP_RACE, ARREST_BORO) %>%
+  summarise(Total = n())
+
+ggplot(arrests_race, aes(x = fct_reorder(ARREST_BORO, Total), y = Total, fill=PERP_RACE)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Race of Perpetrators") +
+  xlab("Race") +
+  ylab("Total arrests")
+```
+
+The majority of perpetrator race seen here is Black, followed by White Hispanic. However it is important to note some other points as well:
+
+ - State Island sees a similar distribution of Black as well as White perpetrators
+ - Queens has a larger share of perpetrators belonging to Asian community
+ - The Bronx has a very small percentage of perpetrators who are White. On the contrary, Black Hispanic is a more common group.
+
+### Drugs based crimes in NYC
+
+```{r}
+base_plot <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% "DANGEROUS DRUGS"), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Drugs Based Crimes, by Borough")
+
+base_plot + theme_minimal()
+```
+
+#### Drug Based Crimes Density by Location
+
+```{r}
+arrests_drugs_boro <- df_arrest_ytd %>% 
+  filter(OFNS_DESC %in% "DANGEROUS DRUGS") %>% 
+  group_by(Latitude, Longitude, ARREST_BORO) %>%
+  summarise(Total = n())
+
+ggplot(arrests_drugs_boro, aes(Longitude, Latitude)) + 
+  geom_point(alpha=0.5, aes(color=ARREST_BORO)) + 
+  geom_density_2d(bins = 5, size=1) +
+  theme_minimal()
+```
+
+### Sexual Crimes
+
+An important aspect of crime analysis is understanding trends in sexual crimes and what areas are they more frequent in.
+
+```{r}
+sex_crimes <- ggplot(df_arrest_ytd %>% 
+                      filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape")
+
+sex_crimes + theme_minimal()
+```
+
+The above location based scatter plot shows the spread in location where sexual crimes tend to occur. To get a clearer picture, we plot the below density curve.
+
+#### Sexual Crimes Frequency by Location
+
+```{r}
+sex_crimes2 <- ggplot(df_arrest_ytd %>% 
+                       filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")), aes(x = Longitude, y = Latitude)) + 
+  #geom_point(aes(color = ARREST_BORO), size = 3, alpha = 0.5, position = "jitter") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  ggtitle("Sexual Crimes and Rape") + 
+  stat_density2d(aes(fill = ..level..), alpha = .5,
+                 geom = "polygon", data = df_arrest_ytd %>% 
+                   filter(OFNS_DESC %in% c("RAPE", "SEX CRIMES")))+ 
+  scale_fill_viridis_c() + 
+  theme(legend.position = 'none')
+
+sex_crimes2 + theme_minimal()
+```
+
+This plot identifies certain locations which tend to have a higher frequency of sexual crimes in NYC. 
+
 ## Hate Crimes 
 
 ```{r}
+library(ggplot2)
+df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
 hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate)
 hate3
 ```
@@ -280,8 +480,7 @@ This is confirmed by articles such as (Source: silive.com https://www.silive.com
 
 
 ```{r}
-library(ggplot2)
-df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
+
 hate1 <- ggplot(data=df_hate, aes(y=Offense.Category, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
 hate1
 ```
@@ -405,3 +604,132 @@ Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 hav
 506 offenders were not arrested, whereas 222 arrests were made. 
 
 This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here. 
+
+## Drugs
+
+```{r}
+df_drugs <- readr::read_csv("datasets/arrests_national_drug.csv")
+df_drugs <- as.data.frame(df_drugs)
+#View(df_drugs)
+```
+
+### Arrests related to all drugs throughout US 
+```{r}
+library(ggplot2)
+drug1 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = total_arrests, colour='blue')) +
+  ggtitle("Arrests related to drugs across US across year") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("total arrests"))
+drug1
+```
+
+#### Insights: all drugs
+
+The number of drug related arrests across the United States peaked around the years 2005-2007 over the entire course of 1994 - 2016.
+
+The lowest number of drug-related arrests were during 1994. The high number of drug related arrests coincides with the 
+
+A large portion of the arrests related to upturn in drug-related arrests could be due to the raids detailed in articles such as:  https://www.justice.gov/archive/usao/nye/pr/2005/2005dec7.html. 
+In addition, this could also be because of the setting up of the Digital Evidence Laboratory by the Drug Enforcement Administration. (Source: https://en.wikipedia.org/wiki/Drug_Enforcement_Administration)
+
+### Arrests related to manufacture and possession
+```{r}
+drug2 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = total_manufacture, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = total_possess, colour='red'))+
+  ggtitle("Arrests related to drug manufacture & possessions- US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Manufacture", "Possession"))
+drug2
+```
+
+#### Insights: Manufacturing vs Possession
+As seen in the graph, the number of arrests in relation to manufacturing of drugs has seen a downward trend, where the number of arrests in relation to possession of drugs has seen an upward trend. 
+
+It is unclear whether the trends are due to a decrease in the manufacturing or due to other factors such as ineffectual police techniques. 
+
+Similarly, the upward trend in the possession arrests of drugs could be due to either in increase in drug consumption or better police techniques to find such people to arrest, or both. 
+
+### Arrests related to Manufacturing 
+```{r}
+drug3 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = opioid_manufacture, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = marijuana_manufacture, colour='red'))+
+  geom_line(data=df_drugs, aes(x = year, y = synthetic_manufacture, colour='orange'))+
+  geom_line(data=df_drugs, aes(x = year, y = other_manufacture, colour='green'))+
+  ggtitle("Arrests related to drug manufacture -US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Manufacture", "Marijuana Manufacture", 'Synthetic Manufacture', 'Other Manufacture'))
+drug3
+```
+
+#### Insights: Manufacturing Insights
+
+The trends seen in the manufacture of these drugs is highly interesting. It is seen that the arrests related to opioid manufacture have seen a sharp downturn in the 1994-2016 period. 
+
+In contrast, other drug-related arrests have been on the upturn, including marijuana, synthetic drugs and other drugs. 
+
+### Arrests related to Possession
+
+```{r}
+drug4 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = opioid_possess, colour='blue')) +
+  geom_line(data=df_drugs, aes(x = year, y = marijuana_possess, colour='red'))+
+  geom_line(data=df_drugs, aes(x = year, y = synthetic_possess, colour='orange'))+
+  geom_line(data=df_drugs, aes(x = year, y = other_possess, colour='green'))+
+  ggtitle("Arrests related to drug possesion-US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Possession", "Marijuana Possession", 'Synthetic Possession', 'Other Possession'))
+drug4
+```
+
+#### Insights: Drug Possession Arrests
+
+As can be seen from the scale of the graph, it is evident that the number of arrests due to drug possession are higher than the number of arrests in connection with drug manufacturing. 
+
+In correlation with the manufacturing downtrend of opioid, the number of arrests for possession of opioid has also seen a downtrend. 
+
+Again, similar to the manufacturing uptrend for other drugs such as marijuana or synthetic, the number of arrests have also been increasing during the 1993-2016 timeframe. 
+
+### Arrests as a proportion of population
+
+```{r}
+#df_drugs <- subset(df_drugs, select=-c(prop))
+df_drugs$prop <- df_drugs$total_arrests/df_drugs$population
+drug5 <- ggplot()+
+  geom_line(data=df_drugs, aes(x = year, y = prop, colour='blue')) +
+  ggtitle("Proportion of drug arrests compared to population -US YoY") +
+  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Population Proportion"))
+drug5
+```
+
+#### Insights: Population Proportion
+
+It is seen that there is a downward trend in the proportion of the us population arrested in connection to drugs. This could be due to the fact that the population growth has outstripped the number of drug manufacturers/possesors over this time frame (since it was seen that arrests have been on the increase during this timeframe).
+
+## Park Crime Data
+
+```{r}
+df_parks <- read.csv('datasets/parks/finalpark.csv')
+#View(df_parks)
+```
+
+```{r}
+parks_subset <- subset(df_parks, select=c('BOROUGH', 'TOTAL'))
+#View(parks_subset)
+parks_subset2 <- parks_subset %>% group_by(BOROUGH)
+borough_total <- parks_subset2 %>% summarise(
+  TOTAL = sum(TOTAL)
+)
+ggplot() + geom_col(borough_total, mapping = aes(BOROUGH, TOTAL))
+```
+
+```{r}
+parks_subset3 <- subset(df_parks, select=c('BOROUGH', 'TOTAL', 'PARK'))
+ggplot(parks_subset3, aes(x = BOROUGH, y = TOTAL, label = PARK)) + 
+  geom_boxplot() + xlab("") + theme_grey(16) + stat_summary(
+    aes(label=round(stat(y), 1)),
+    geom = "text", 
+    fun.y = function(y) { o <- boxplot.stats(y)$out; if(length(o) == 0) NA else o },
+    hjust = -1
+  )
+
+```
+
