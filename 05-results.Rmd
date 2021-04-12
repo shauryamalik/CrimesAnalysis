@@ -85,7 +85,6 @@ ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("
 ```{r}
 library(tidyverse)
 library(ggplot2)
-library(mi)
 
 #df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 
@@ -141,11 +140,6 @@ Please note: The following regions were missing and are being set to NA: pennsyl
 ### Most Common Arrest Offenses
 
 The first question we are looking to answer here is what are the most commons type of offenses as seen by NYPD. 
-
-```{r}
-df_arrest_ytd <- read.csv('datasets/NYPD_Arrest_Data__Year_to_Date_.csv')
-```
-
 
 ```{r fig.height=10, fig.width=10}
 df_arrest_by_offense_type <- df_arrest_ytd %>% 
