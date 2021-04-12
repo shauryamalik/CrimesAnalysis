@@ -2,22 +2,41 @@
 
 ## Shootings in NYC
 
-### Trend in number of shootings
+### Monthly Trend in number of shootings
 
-#### yearly 
-#### monthly or yearly (DISCUSS)
-
-##### Whole NYC
+#### Whole NYC
 
 ```{r}
-df_shoot_grouped2 <- df_shooting_total %>%
+covid_date<- as.Date("2020-04-01", format = "%Y-%m-%d")
+
+df_shoot_grouped_NYC <- df_shooting_total %>%
   select(year, month, STATISTICAL_MURDER_FLAG, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
   group_by(year, month, STATISTICAL_MURDER_FLAG, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
   summarize(occurances = n())
 
-df_shoot_grouped2$date<-as.Date(paste(df_shoot_grouped2$year, df_shoot_grouped2$month,"1",sep="-"), format = "%Y-%b-%d")
+df_shoot_grouped_NYC$date<-as.Date(paste(df_shoot_grouped_NYC$year, df_shoot_grouped_NYC$month,"1",sep="-"), format = "%Y-%b-%d")
 
-temp_df<- df_shoot_grouped2 %>% 
+df_shoot_grouped_BORO <- df_shooting_total %>%
+  select(year, month, BORO, murder, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
+  group_by(year, month, murder, BORO, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
+  summarize(occurances = n())
+
+df_shoot_grouped_BORO$BORO <- as.factor(df_shoot_grouped_BORO$BORO)
+
+df_shoot_grouped_BORO$date<-as.Date(paste(df_shoot_grouped_BORO$year, df_shoot_grouped_BORO$month,"1",sep="-"), format = "%Y-%b-%d")
+
+df_shoot_grouped_week <- df_shooting_total %>%
+  select(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
+  group_by(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
+  summarize(occurances = n())
+
+# df_shoot_grouped_week$date<-as.Date(paste(df_shoot_grouped_Week$year, df_shoot_grouped_Week$month,"1",sep="-"), format = "%Y-%b-%d")
+
+
+```
+
+```{r, fig.width=10,fig.height=11}
+temp_df<- df_shoot_grouped_NYC %>% 
   filter(year>=2019) %>%
   group_by(date, month) %>%
   summarize(total_shots= sum(occurances))#%>%
@@ -26,7 +45,9 @@ temp_df<- df_shoot_grouped2 %>%
 temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
 ```
 
+
 ```{r, fig.width=10,fig.height=11}
+>>>>>>> main
 ggplot(temp_df, aes(x= date)) + 
   geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
   geom_text(aes( label = scales::percent(monthly_change),
@@ -37,22 +58,39 @@ ggplot(temp_df, aes(x= date)) +
   labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68"))
+  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
 ```
 
  - We see every year in the month of May and June the number of shootings rise.
  - Last year, (possibly due to covid restrictions easing up) saw 92-95% increase in these months.
 
-#### weekly
+#### Borough wise
+
+```{r, fig.width=10,fig.height=11}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019) %>%
+  group_by(date, month) %>%
+  summarize(total_shots= sum(occurances))#%>%
+  # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
+
+temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+
+ggplot(temp_df, aes(x= date)) + 
+  geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
+  geom_text(aes( label = scales::percent(monthly_change),
+                  y= monthly_change ), stat= "identity",angle = 90) +
+  scale_y_continuous(labels = scales::percent) +
+  ggtitle("Is it that time of the year?!",
+          subtitle = "Percentage change in number of Shootings by month") +
+  labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
+```
+
+### Weekly Trend in number of shooting
 
 ```{r}
-df_shoot_grouped_week <- df_shooting_total %>%
-  select(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_AGE_GROUP, VIC_SEX, VIC_RACE) %>%
-  group_by(OCCUR_DATE, day, STATISTICAL_MURDER_FLAG, VIC_SEX, VIC_AGE_GROUP, VIC_RACE) %>%
-  summarize(occurances = n())
-
-# df_shoot_grouped_week$date<-as.Date(paste(df_shoot_grouped_Week$year, df_shoot_grouped_Week$month,"1",sep="-"), format = "%Y-%b-%d")
-
 temp_df<- df_shoot_grouped_week %>% 
   group_by(day) %>%
   summarize(total_shots= mean(occurances))#%>%
@@ -60,6 +98,7 @@ temp_df<- df_shoot_grouped_week %>%
 
 temp_df$weekly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
 ```
+
 
 ```{r}
 ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("%0.2f", round(total_shots, digits = 2)))) + 
@@ -72,15 +111,130 @@ ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
-#### daily
+
+ - This graph shows that irrespective of the day of the week it is almost equally like for a shooting to be there.
 
 ### Trend in number of deaths
 
+  - Plotted monthly change and daily change graphs to identify the number of shootings leading to deaths are mainly erratic and do not follow a said pattern.
+
 ### Susciptible groups
+
+#### Victim Age
+
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_AGE_GROUP!="UNKNOWN") %>%
+  group_by(date,BORO, VIC_AGE_GROUP) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+temp_df$BORO <- as.factor(temp_df$BORO)
+
+theme_heat <- theme_classic() +
+  theme(axis.line = element_blank(),
+        axis.ticks = element_blank())
+```
+
+```{r, fig.width=10,fig.height=11}
+ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
+  geom_tile(aes(fill = total_shots), color = "black") +
+  theme_heat + ggtitle("Does age matter?!",
+                       subtitle = "Number of Shootings in each borough for each age group by month") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+  facet_grid(BORO~.) +
+  labs(y = "Borough", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+
+ - There are multiple deductions from the above graph:
+   - The most widely affected age group is the 25-44 age group.
+   - Brooklyn and Bronx have the highest shootings.
+
+### Gender
+
+```{r}
+
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019, VIC_SEX!="U") %>%
+  group_by(date,BORO, VIC_SEX) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+ggplot(temp_df, aes(x = date, color = BORO, y = total_shots)) +
+  geom_line() +
+  ggtitle("Males and Females across NYC",
+                       subtitle = "Number of Shootings in each borough by gender over time") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+  labs(y = "Number of shootings", x="Date", color="Borough", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme_pubr(legend="right") + facet_grid(VIC_SEX~., scales = "free", space="free_x") + 
+  geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
+```
+  
+ - The data on number fo female victims in shootings is less but among them, brooklyn has the highest in the past 2 years.
+ - In general, we see a clear increase in the number of shootings post covid (blue-line)
 
 ### Hot-spot neighbourhoods/AREAS 
 
- - (discuss!)
+#### Number of shootings in different borough every month
+
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019) %>%
+  group_by(date,BORO) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  ungroup()
+
+temp_df$BORO <- as.factor(temp_df$BORO)
+
+theme_heat <- theme_classic() +
+  theme(axis.line = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(temp_df, aes(x = date, y = BORO)) +
+  geom_tile(aes(fill = total_shots), color = "black") +
+  theme_heat + ggtitle("Where to stay?!",
+                       subtitle = "Number of Shootings in each borough by month") + scale_fill_gradient(low = "#cccccc", high = "#880808") +
+  labs(y = "Borough", x="Date", fill="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+
+ - This graph tells us, staten island is at an all time low in the number of shootings, relatively.
+ - Also, Brooklyn and Bronx have the most number of shootings which peaked duing the month of july in 2020.
+
+#### Percentage Change in the off shootings in different boroughs
+
+```{r}
+temp_df<- df_shoot_grouped_BORO %>% 
+  filter(year>=2019) %>%
+  group_by(BORO,date) %>%
+  summarize(total_shots= sum(occurances)) %>%
+  mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)/10)
+
+temp_df$month<- lubridate::month(temp_df$date,label = TRUE)
+```
+
+```{r}
+ggplot(temp_df, aes(x= date)) + 
+  geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
+  # geom_text(aes( label = scales::percent(monthly_change),
+                 # y= monthly_change ), stat= "identity",angle = 90) +
+  facet_grid(BORO~.) +
+  scale_y_continuous(labels = scales::percent)+
+  ggtitle("Where to visit and When?!",
+          subtitle = "Percentage change in number of Shootings in borough by month") +
+  labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+
+```
+ - This faceted graph gives us a deeper dive in just the numbers to explain that even though total number of shootings has been at an all time high in Brooklyn and Bronx, The recent numbers have started to decrease. can be due to active action taken by authorities or better awareness.
+ - Also, in case of Staten island, the behavior is very erratic, hinting at a more loose control than other boroughs.
+
+### geo map
 
 ```{r}
 library(tidyverse)

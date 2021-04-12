@@ -9,6 +9,41 @@ df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
 head(df_hate_crimes)
 ```
 
+## NYC Population Data
+
+### About the Dataset
+
+#### New York City Population By Neighborhood
+
+*Source: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp*
+
+The data was collected from Census Bureaus' Decennial data dissemination (SF1).
+Neighborhood Tabulation Areas (NTAs), are aggregations of census tracts that are subsets of New York City's 55 Public Use Microdata Areas (PUMAs). Primarily due to these constraints, NTA boundaries and their associated names may not definitively represent neighborhoods.
+This report shows change in population from 2000 to 2010 for each NTA.
+Compiled by the Population Division – New York City Department of City Planning.
+
+Column description:
+- Standard Code Census Bureau uses to process data. The code is unique to all geographical units.
+   - 005-Bronx, 047-Brooklyn, 061-Manhattan, 081-Queens, 085-Staten Island."
+- Each NTA within NYC's 5 boroughs is given a unique value. 
+- Neighborhood Tabulation Areas, or NTAs, are aggregations of census tracts that are subsets of New York City's 55 Public Use Microdata Areas (PUMAs).
+
+```{r}
+df_population_yearly <- readr::read_csv("datasets/New_York_City_Population_By_Neighborhood_Tabulation_Areas.csv")
+head(df_population_yearly)
+```
+#### Projected population per age group
+
+*Source: https://data.cityofnewyork.us/City-Government/Projected-Population-2010-2040-Total-By-Age-Groups/97pn-acdf*
+
+```{r}
+df_population_age <- readr::read_csv("datasets/Projected_Population_2010-2040_-_Total_By_Age_Groups.csv")
+head(df_population_age)
+```
+
+### Initial Questions
+ - This census data can help identify the areas with higher crimes based on percentage of its own Population
+
 ## NYC Shooting Data 
 
 ### About Dataset
