@@ -14,8 +14,6 @@ library(naniar)
 
 ## Human Trafficking
 
-*For Human Trafficking data, we analyze missing values as following:*
-
 ```{r}
 #df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 fbiHT_df <- as.data.frame(df_fbi_ht)
@@ -29,17 +27,25 @@ Alternatively, we can also view missing data as we can see below:
 colSums(is.na(df_fbi_ht))
 ```
 
-## New York City Population
+PUB_AGENCY_UNIT and COUNTY_NAME contain most missing values, and since there is no way to impute this information, we will ignore it for our analysis.
 
- - There are no missing values in this dataset.
+It is also useful to identify if this dataset contains information about all fifty states:
 
-## Arrests Data
+```{r echo=TRUE}
+length(unique(df_fbi_ht$STATE_NAME))
+```
+
+As seen above this dataset contains information about only 45 states. We handle this problem when cleaning the dataset.
+
+## NYPD Arrests Data
 
 ```{r}
 gg_miss_var(df_arrest_ytd)
 ```
 
-The main feature of concern is LAW_CAT_CD which depicts level of offense (felony, misdemeanor, violation), but since there is no way to fill in this information of a categorical variable, we will ignore this feature for our analysis.
+The main feature of concern here is LAW_CAT_CD which depicts level of offense (felony, misdemeanor, violation), but since there is no way to impute this information of a categorical variable, we will ignore this feature for our analysis.
+
+There are some missing values for feature OFNS_DESC. Since this is an important feature for our arrests analysis, and since the percentage of missing values is very low, we filter out these missing values.
 
 ## Shootings in NYC
 

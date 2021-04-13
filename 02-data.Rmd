@@ -1,19 +1,24 @@
 # Data Sources
 
-## NYPD Arrest Data 
+## NYPD Arrests Data 
 
 *(Year to Date)*
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc*
 
+**Description**: This is a breakdown of every arrest effected in NYC by the NYPD during the current year. This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning. Each record represents an arrest effected in NYC by the NYPD and includes information about the type of crime, the location and time of enforcement. In addition, information related to suspect demographics is also included. 
+
 **Data Provided By**: New York Police Department
 
 **Total records**: 140,413
 
-**Type of variables**: 
+**Issues with the data**: 
 
-**Issues with the data**:
+ - This data only contains information for 2020. Having more historic data would help in carrying out a more successful time-wise analysis. 
+ - It would also be useful to have information about victims associated with these arrests.
+ - Another useful feature could be county names, adding another level of location information. Drilling down to county level might result in interesting insights as well.
 
+**Type of variables**: This can be seen below. There are 19 columns and their data types are noted below.
 
 ```{r}
 df_arrest_ytd <- readr::read_csv("datasets/NYPD_Arrest_Data__Year_to_Date_.csv")
@@ -39,44 +44,11 @@ df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
 str(df_hate_crimes)
 ```
 
-## NYC Population Data
-
-### New York City Population By Neighborhood
-
-*Source: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp*
-
-The data was collected from Census Bureaus' Decennial data dissemination (SF1).
-Neighborhood Tabulation Areas (NTAs), are aggregations of census tracts that are subsets of New York City's 55 Public Use Microdata Areas (PUMAs). Primarily due to these constraints, NTA boundaries and their associated names may not definitively represent neighborhoods.
-This report shows change in population from 2000 to 2010 for each NTA.
-Compiled by the Population Division – New York City Department of City Planning.
-
-Column description:
-- Standard Code Census Bureau uses to process data. The code is unique to all geographical units.
-   - 005-Bronx, 047-Brooklyn, 061-Manhattan, 081-Queens, 085-Staten Island."
-- Each NTA within NYC's 5 boroughs is given a unique value. 
-- Neighborhood Tabulation Areas, or NTAs, are aggregations of census tracts that are subsets of New York City's 55 Public Use Microdata Areas (PUMAs).
-
-```{r}
-df_population_yearly <- readr::read_csv("datasets/New_York_City_Population_By_Neighborhood_Tabulation_Areas.csv")
-str(df_population_yearly)
-```
-
-### Projected population per age group
-
-*Source: https://data.cityofnewyork.us/City-Government/Projected-Population-2010-2040-Total-By-Age-Groups/97pn-acdf*
-
-```{r}
-df_population_age <- readr::read_csv("datasets/Projected_Population_2010-2040_-_Total_By_Age_Groups.csv")
-str(df_population_age)
-```
-
-### Initial Questions
-
- - This census data can help identify the areas with higher crimes based on percentage of its own Population
-
 ## NYC Shooting Data 
 
-### NYPD Shooting Incident Data (Year To Date)
+### NYPD Shooting Incident Data 
+
+*(Year To Date)*
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
 
@@ -111,6 +83,19 @@ str(df_shooting_old)
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
+**Description**: The FBI began accepting data on human trafficking from states in January 2013. Human trafficking includes offenses related to commercial sex acts and involuntary servitude. Human Trafficking data available through the Crime Data Explorer include offenses and arrests recorded by state and local agencies that currently have the ability to report this crime to the national UCR Program. The UCR Program began collecting Human Trafficking data in 2013. The initial Human Trafficking publication was in 2013. 
+
+**Data Provided By**: Federal Bureau Of Investigation
+
+**Total records**: 3,335
+
+**Issues with the data**: 
+
+ - It would be useful to obtain more detailed information about perpetrators and involved criminal groups.
+ - More specific time related information such as date and time may also be useful.
+
+**Type of variables**: This can be seen below. There are 19 columns and their data types are noted below.
+
 ```{r}
 df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
 str(df_fbi_ht)
@@ -140,7 +125,7 @@ df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
 str(df_fbi_drug_arrests)
 ```
 
-## NYC citizen Census Data
+## NYC Citizen Census Data
 
 *Source: https://datausa.io/profile/geo/new-york-ny#economy*
 
@@ -149,7 +134,7 @@ df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household
 str(df_nyc_earnings)
 ```
 
-## NYC park crime data
+## NYC Park Crime Data
 
 *Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page*
 **Description**: This is a dataset containing crimes in the parks of New York City. This dataset is gleaned from quarterly reports from the NYPD. The data transformation is detailed in the cleaning file. 
