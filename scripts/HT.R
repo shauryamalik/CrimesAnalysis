@@ -83,3 +83,4 @@ state_choropleth(df_fbi_ht_temp %>%
                  title = "Human Trafficking Cases (2013-19)",
                  legend = "Total Cases")
        
+length(unique(df_fbi_ht$STATE_NAME))
