@@ -1,6 +1,6 @@
-## CRIMES ANALYSIS
+## CRIME ANALYSIS
 
-*Shaurya Malik, Rahul Agarwal, Keertan Krishnan*
+*Shaurya Malik (sm4969), Rahul Agarwal (ra3097), Keertan Krishnan (kk3446)*
 
 ### About
 
