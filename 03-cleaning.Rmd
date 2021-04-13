@@ -282,6 +282,9 @@ nrow(park_data)
 ```
 
 ## Hate Crime Data
+
+County names are historical in this dataset, and hence have to be changed. 
+
 ```{r}
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
 #View(df_hate)

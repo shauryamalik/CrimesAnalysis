@@ -1,2 +1,22 @@
 # Conclusion
 
+## Hate Crime
+
+Hate Crimes were found to be more prevalent in 2019 than in 2020, with anti-jewish and anti-black motives the most common. The highest hate crimes occurrences were in the months of March, during both years. 
+
+The highest number of hate-related crimes took place in the boroughs of Brooklyn, followed by Manhattan. 
+
+Interestingly, this is in contrast to the findings from the shooting analysis, where shootings were least in the month of March. 
+
+## Drug Arrests
+
+Drug Arrests related to possession were at a peak during 2005-2007 whereas from 1994-2016, manufacturing arrests have been on a steady decline. In comparison to the population proportion, there has been a decline in the arrests/population ratio. 
+
+This component will make for interesting analysis in the future, since New York has changed it's laws surrounding marijuana use.
+
+## Park Crimes Data
+
+
+Sexual Crimes (including rape) is highest in Queens, followed by Brooklyn. Drug related arrests are highest in Bronx, followed by Brooklyn and Manhattan. On the whole, arrests are highest in the Bronx and Brooklyn. This is interesting in the light of the fact that crimes in parks are highest in Manhattan, followed by Brooklyn and particularly dangerous parks in Queens. 
+
+This shows the variety in the types of crimes/arrests and the dependence across boroughs for their likelihood. 
