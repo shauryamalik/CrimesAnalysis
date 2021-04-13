@@ -36,6 +36,8 @@
 
 Some insights we wish to identify in our future work include:
 
+ - The count of crimes independently does not do give the full picture due to difference in population density in different regions. Normalizing the data based on this information can reveal additional insights.
+ 
  - Policy changes and their effect on crime trends: We believe that stricter gun laws, drug legalization bills, and recent policy discussions about police brutality, political polarization etc. can have a huge influence on the way crime trends persist.
  
  - Hate crimes usually stem from certain incidents involving a particular community. For example, COVID-19 saw a huge increase in Asian hate crime. Similar analysis to pinpoint such events may be useful. This is confirmed by the following source: *https://www.nbcnewyork.com/news/local/crime-and-courts/study-shows-rise-of-hate-crimes-violence-against-asian-americans-in-nyc-during-covid/2883215/*

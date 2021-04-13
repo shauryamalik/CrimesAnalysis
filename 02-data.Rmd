@@ -51,20 +51,17 @@ str(df_hate_crimes)
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
 
-*Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
-
- **Description**: 
+**Description**: 
  
  - This is a breakdown of every shooting incident that occurred in NYC during the current calendar year. (2020) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website.
 Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. 
  - In addition, information related to suspect and victim demographics is also included. For example, has information about the sex, Age, Race of the victim.
  
- 
 **Data Provided By**: New York Police Department
 
-**Total records**: 1942
+**Total records**: 1,942
 
-**Issues with the data**: Contains only last year's data. Searched for alternatives for more historical information.
+**Issues with the data**: Contains only data for 2020. Searched for alternatives for more historical information.
 
 **Type of variables**: 
 
@@ -74,19 +71,19 @@ covid_date<- as.Date("2020-04-01", format = "%Y-%m-%d")
 str(df_shooting_ytd)
 ```
 
-
 ### NYPD Shooting Incident Historic Data
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8*
 
- **Description**:
+**Description**:
+
  - This is a breakdown of every shooting incident that occurred in NYC going back to 2006 through the end of the previous calendar year.(2019) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website. Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. In addition, information related to suspect and victim demographics is also included.
  
 **Data Provided By**: New York Police Department
 
-**Total records**: 21626
+**Total records**: 21,626
 
-**Issues with the data**: Contains shootings starting from 2006 but the information of other years is very less 
+**Issues with the data**: Contains shootings starting from 2006 but the information of other years is too much to display together.
 
 **Type of variables**: 
 
@@ -131,7 +128,7 @@ This dataset contains monthly number of arrests for drug abuse violations report
 
 **Total records**: 23
 
-**Issues with the data**: None although there is no state-wise information.
+**Issues with the data**: The biggest issue with this dataset is it's limited size. There is no state-wise information, or month-wise information, which would helped deepen our analysis scope.
 
 ```{r}
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")

@@ -18,9 +18,8 @@ Some questions which we expect to address include:
 - What roles do location, demographics, literacy and other external factors play on the frequency and type/severity of crimes?
 - What are the factors leading to a certain type of crime? This includes a wide group of crimes such as social, financial, cyber, hate influenced, those influenced by political opinions, intellectual property, drug abuse, human trafficking, sexual crimes, domestic abuse and assault, insider trading etc.
   - Further analyzing events that may have caused an increase of such crimes
-- Were complaints filed for these crimes and how did the authorities deal with said crimes? Were accusations wrong?
-- How policy change has affected crime rates?
-  - Does increasing punishment type, degree and duration reduce crime?
+- Were complaints filed for these crimes and how did the authorities deal with said crimes?
+- How policy change has affected crime rates? Does increasing punishment type, degree and duration reduce crime?
 - Has COVID-19 affected the crime rates/types/frequency and how so?
 
 ## Other references
@@ -36,3 +35,5 @@ These datasets span a large class of crimes which include information about demo
 For instance, the answers to question 2 and 5 will require a more nuanced understanding of certain events (political, financial, COVID) and understanding of the influencing factors behind these crimes. This would require correlation of the type of the crime and the point/interval of time when these events (political/financial etc) took place.
 
 Answers to question 3 can be found through matching the crime records data and the crime complaint data. Often, policy changes are influential in affecting the crimes. Using data of policy changes through the years, and the types/counts of crimes that took place over the years, we wish to find insights on crime trends.	
+--
+**Group 36**
