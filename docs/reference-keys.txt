@@ -2,7 +2,6 @@ introduction
 about
 other-references
 link-between-data-and-questions
-answers-to-question-3-can-be-found-through-matching-the-crime-records-data-and-the-crime-complaint-data.-often-policy-changes-are-influential-in-affecting-the-crimes.-using-data-of-policy-changes-through-the-years-and-the-typescounts-of-crimes-that-took-place-over-the-years-we-wish-to-find-insights-on-crime-trends.
 data-sources
 nypd-arrests-data
 nypd-hate-crimes
