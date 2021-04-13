@@ -197,6 +197,26 @@ ggplot(temp_df, aes(x = date, y = BORO)) +
   theme(plot.caption = element_text(color = "grey68"))
 
 # -----------------------------------------------
+temp_df<- df_shoot_grouped_NYC %>% 
+  filter(year>=2019) %>%
+  group_by(date, month) %>%
+  summarize(total_shots= sum(occurances))#%>%
+# mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
+
+temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+
+ggplot(temp_df, aes(x= date)) + 
+  geom_bar(aes(y = total_shots, fill = factor(month)), stat="identity") +
+  geom_text(aes( label = total_shots,
+                 y= total_shots, vjust=-.5), stat= "identity") +
+  ggtitle("Shootings over time",
+          subtitle = "Number of Shootings over time in NYC") +
+  labs(y = "Number of Shootings", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue") +
+  theme(axis.text.y = element_text(size = rel(1.75)),axis.title.x = element_text(size = rel(1.75)))#, axis.ticks = element_text(size=rel(.75)))
+
 
 temp_df<- df_shoot_grouped_BORO %>% 
   filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
