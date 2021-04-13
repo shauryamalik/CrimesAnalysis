@@ -73,23 +73,6 @@ new_info <- data.frame( c("New York", "District of Columbia", "Pennsylvania", "C
 names(new_info) <- c("STATE_NAME", "Total")
 df_fbi_ht_by_states <- rbind(df_fbi_ht_by_states, new_info)
 ```
- 
-## New York City Population
-
-Since we intend to use this data to calculate the percentage of people being shot in each borough based on the borough's population, we will filter only the years for which we have corresponding shooting data.
-
-```{r echo=TRUE}
-
-class(df_population_yearly$Year)
-
-df_population_2010<-df_population_yearly %>%
-  filter(Year==2010) %>%
-  group_by(Borough) %>%
-  summarize(population=sum(Population))
-
-df_population_2020<-df_population_age %>%
-  select(Borough, Age, "2020")
-```
 
 ## Shootings in NYC
 
@@ -299,6 +282,9 @@ nrow(park_data)
 ```
 
 ## Hate Crime Data
+
+County names are historical in this dataset, and hence have to be changed. 
+
 ```{r}
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
 #View(df_hate)
