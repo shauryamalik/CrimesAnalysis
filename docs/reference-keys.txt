@@ -84,3 +84,6 @@ further-analysis-of-crime-type-borough-and-park-type
 interactive-component
 distribution-of-crime-across-boroughs
 conclusion
+hate-crime
+drug-arrests
+park-crimes-data
