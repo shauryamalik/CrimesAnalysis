@@ -1,2 +1,45 @@
 # Conclusion
 
+## Detailed Insights
+
+### Hate Crimes
+
+ - Hate Crimes were found to be more prevalent in 2019 than in 2020, with Anti-Jewish and Anti-Black motives the most common. The highest hate crimes occurrences were in the months of March, during both years. 
+
+ - The highest number of hate-related crimes took place in the boroughs of Brooklyn, followed by Manhattan. 
+
+ - Interestingly, this is in contrast to the findings from the shooting analysis, where shootings were least in the month of March. 
+
+### Drug Related Crimes
+
+ - Drug Arrests related to possession were at a peak during 2005-2007 whereas from 1994-2016, manufacturing arrests have been on a steady decline. In comparison to the population proportion, there has been a decline in the arrests/population ratio. 
+
+ - Drug related arrests are highest in Bronx, followed by Brooklyn and Manhattan. 
+
+ - This component will make for interesting analysis in the future, since New York has changed it's laws surrounding marijuana use.
+
+### Sexual Crimes and Rape
+
+ - Sexual Crimes (including rape) is highest in Queens, followed by Brooklyn.
+
+### Park Crimes Data
+
+ - This is interesting in the light of the fact that crimes in parks are highest in Manhattan, followed by Brooklyn and particularly dangerous parks in Queens. 
+
+ - This shows the variety in the types of crimes/arrests and the dependence across boroughs for their likelihood. 
+
+### Human Trafficking Analysis
+
+ - Texas has been identified as the major state involving labor, sex and drug related trafficking. This trend is attributed to the state's proximity to Mexico.
+
+## Future Scope
+
+Some insights we wish to identify in our future work include:
+
+ - Policy changes and their effect on crime trends: We believe that stricter gun laws, drug legalization bills, and recent policy discussions about police brutality, political polarization etc. can have a huge influence on the way crime trends persist.
+ 
+ - Hate crimes usually stem from certain incidents involving a particular community. For example, COVID-19 saw a huge increase in Asian hate crime. Similar analysis to pinpoint such events may be useful. This is confirmed by the following source: *https://www.nbcnewyork.com/news/local/crime-and-courts/study-shows-rise-of-hate-crimes-violence-against-asian-americans-in-nyc-during-covid/2883215/*
+ 
+ - Financial depression and unemployment rates are common driving factors for crimes in most areas. Combining arrests and crime statistics with important features such as median income, expenses, ease of conveyance, real estate trends, can result in useful correlation.
+ 
+ - Another area of crime we wish to focus on is cyber crime include social media hate, cyber bullying, internet-based financial crimes etc.

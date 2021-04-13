@@ -73,6 +73,11 @@ Alternatively, we can also view missing data as we can see below:
 colSums(is.na(df_fbi_drug_arrests))
 ```
 
+```{r}
+gg_miss_var(df_fbi_drug_arrests)
+```
+
+State_abbr has been found to be completely missing. 
 
 ## Hate Crimes 
 *For Hate Crimes data, we analyze missing values as following:*
@@ -106,6 +111,8 @@ image(mdhate)
 gg_miss_var(mdhate)
 ```
 
+Arrest.Id and Arrest.Date have the same missing pattern. Other.Motive.Description has been found to have more than 700 missing values.
+
 ## Park Crime
 
 *For Park Crime data, we analyze missing values as following:*
@@ -121,3 +128,4 @@ mdparks <- missing_data.frame(df_parks)
 gg_miss_var(mdparks)
 ```
 
+None of the variables in this dataset are missing. 

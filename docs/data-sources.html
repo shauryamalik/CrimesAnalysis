@@ -232,7 +232,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#distribution-of-crime-across-boroughs"><i class="fa fa-check"></i><b>6.1</b> Distribution of crime across Boroughs</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#hate-crime"><i class="fa fa-check"></i><b>7.1</b> Hate Crime</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#drug-arrests"><i class="fa fa-check"></i><b>7.2</b> Drug Arrests</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusion.html"><a href="conclusion.html#park-crimes-data"><i class="fa fa-check"></i><b>7.3</b> Park Crimes Data</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -313,7 +318,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="nypd-hate-crimes" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> NYPD Hate Crimes</h2>
-<p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78</a></em></p>
+<p><em>Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78" class="uri">https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78</a></em>
+<strong>Description</strong>: Dataset containing confirmed hate crime incidents in New York City. A hate crime is a traditional offense like murder, arson, or vandalism with an added element of bias. For the purposes of collecting statistics, the FBI has defined a hate crime as a “criminal offense against a person or property motivated in whole or in part by an offender’s bias against a race, religion, disability, sexual orientation, ethnicity, gender, or gender identity.”</p>
+<p><strong>Data Provided By</strong>: New York Police Department</p>
+<p><strong>Total records</strong>: 728</p>
+<p><strong>Issues with the data</strong>: County names are historical.</p>
+<p><strong>Type of variables</strong>:</p>
 <pre><code>## tibble [728 x 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Full Complaint ID            : num [1:728] 2.02e+14 2.02e+14 2.02e+14 2.02e+14 2.02e+14 ...
 ##  $ Complaint Year Number        : num [1:728] 2019 2019 2019 2019 2019 ...
@@ -521,8 +531,13 @@ Each record represents a shooting incident in NYC and includes information about
 </div>
 <div id="fbi-drug-arrests-data" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> FBI Drug Arrests Data</h2>
+<p>This dataset contains monthly number of arrests for drug abuse violations reported by participating law enforcement agencies from 1995–2016. The arrests are by offense and broken down by age and sex or age and race.</p>
 <p><em>(Reported Number of Drug Arrests)</em></p>
 <p><em>Source: <a href="https://crime-data-explorer.fr.cloud.gov/downloads-and-docs" class="uri">https://crime-data-explorer.fr.cloud.gov/downloads-and-docs</a></em></p>
+<p><strong>Data Provided By</strong>: FBI</p>
+<p><strong>Total records</strong>: 23</p>
+<p><strong>Issues with the data</strong>: None although there is no state-wise information.</p>
+<p><strong>Type of variables</strong>:</p>
 <pre><code>## tibble [23 x 16] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ id                   : num [1:23] 37 36 35 34 33 32 31 30 29 28 ...
 ##  $ year                 : num [1:23] 2016 2015 2014 2013 2012 ...
@@ -842,7 +857,12 @@ Each record represents a shooting incident in NYC and includes information about
 </div>
 <div id="nyc-park-crime-data" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> NYC Park Crime Data</h2>
-<p><em>Source: <a href="https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page" class="uri">https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page</a></em></p>
+<p><em>Source: <a href="https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page" class="uri">https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page</a></em>
+<strong>Description</strong>: This is a dataset containing crimes in the parks of New York City. This dataset is gleaned from quarterly reports from the NYPD. The data transformation is detailed in the cleaning file.</p>
+<p><strong>Data Provided By</strong>: New York Police Department</p>
+<p><strong>Total records</strong>: 27696</p>
+<p><strong>Issues with the data</strong>: None</p>
+<p><strong>Type of variables</strong>:</p>
 <pre><code>## tibble [27,696 x 14] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ PARK                          : chr [1:27696] &quot;PELHAM BAY PARK&quot; &quot;VAN CORTLANDT PARK&quot; &quot;ROCKAWAY BEACH AND BOARDWALK&quot; &quot;FRESHKILLS PARK&quot; ...
 ##  $ BOROUGH                       : chr [1:27696] &quot;BRONX&quot; &quot;BRONX&quot; &quot;QUEENS&quot; &quot;STATEN ISLAND&quot; ...
