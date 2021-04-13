@@ -1,4 +1,4 @@
-# Data transformation
+# Data Transformation
 
 ```{r}
 library("naniar")
@@ -9,24 +9,6 @@ library("lubridate")
 library("ggpubr")
 library("data.table")
 ```
-
-## New York City Population
-
-Since we intend to use this data to calculate the percentage of people being shot in each borough based on the borough's population, we will filter only the years for which we have corresponding shooting data.
-
-```{r echo=TRUE}
-
-class(df_population_yearly$Year)
-
-df_population_2010<-df_population_yearly %>%
-  filter(Year==2010) %>%
-  group_by(Borough) %>%
-  summarize(population=sum(Population))
-
-df_population_2020<-df_population_age %>%
-  select(Borough, Age, "2020")
-```
-
 
 ## NYPD Arrests
 
@@ -75,6 +57,38 @@ arrests_boro <- df_arrest_ytd %>%
   summarise(Total = n())
 
 write.csv(arrests_boro, './datasets/filtered/arrests_by_offenses_and_borough.csv', row.names = FALSE)
+```
+
+Here to create a filtered dataset for interactive component we have identified summary information for offenses committed in each Borough. This data was also unstacked to achieve the current version of data.
+ 
+## Human Trafficking
+
+```{r echo=TRUE}
+df_fbi_ht_by_states <- df_fbi_ht %>%
+  group_by(STATE_NAME) %>%
+  summarise(Total = n())
+
+new_info <- data.frame( c("New York", "District of Columbia", "Pennsylvania", "California", "Alabama","Iowa"),  
+                        c(0, 0, 0, 0, 0, 0))  
+names(new_info) <- c("STATE_NAME", "Total")
+df_fbi_ht_by_states <- rbind(df_fbi_ht_by_states, new_info)
+```
+ 
+## New York City Population
+
+Since we intend to use this data to calculate the percentage of people being shot in each borough based on the borough's population, we will filter only the years for which we have corresponding shooting data.
+
+```{r echo=TRUE}
+
+class(df_population_yearly$Year)
+
+df_population_2010<-df_population_yearly %>%
+  filter(Year==2010) %>%
+  group_by(Borough) %>%
+  summarize(population=sum(Population))
+
+df_population_2020<-df_population_age %>%
+  select(Borough, Age, "2020")
 ```
 
 ## Shootings in NYC
@@ -162,7 +176,6 @@ names(q2_2020_park)
 names(q3_2020_park)
 names(q4_2020_park)
 ```
-
 
 Data has been read in and has to be converted to a large dataset, as a concatenation of the rows along with a quarter and year column.
 
@@ -260,8 +273,8 @@ colnames(q3_2020_park)<- toupper(colnames(q3_2020_park))
 colnames(q4_2020_park)<- toupper(colnames(q4_2020_park))
 ```
 
-
 Putting the dataframes together
+
 ```{r eval=FALSE, echo=TRUE}
 
 park_data <- do.call("rbind", list(q1_2015_park, q2_2015_park ,q3_2015_park, q4_2015_park, q1_2016_park,q2_2016_park, q3_2016_park, q4_2016_park, q1_2017_park, q2_2017_park, q3_2017_park, q4_2017_park, q1_2018_park, q2_2018_park, q3_2018_park, q4_2018_park, q1_2019_park, q2_2019_park, q3_2019_park, q4_2019_park, q1_2020_park, q2_2020_park, q3_2020_park, q4_2020_park))
@@ -280,7 +293,17 @@ write.csv(park_data, './datasets/parks/finalpark.csv', row.names = FALSE)
 ```
 
 Testing Dataset - Sanity Checks 
+
 ```{r eval=FALSE, echo=TRUE}
 nrow(park_data)
+```
+
+## Hate Crime Data
+```{r}
+df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
+#View(df_hate)
+df_hate$County[df_hate$County == "KINGS"] <- "BROOKLYN"
+df_hate$County[df_hate$County == "NEW YORK"] <- "MANHATTAN"
+df_hate$County[df_hate$County == "RICHMOND"] <- "STATEN ISLAND"
 ```
 

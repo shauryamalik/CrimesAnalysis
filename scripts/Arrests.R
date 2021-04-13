@@ -177,4 +177,6 @@ arrests_boro <- df_arrest_ytd %>%
   group_by(OFNS_DESC, ARREST_BORO) %>%
   summarise(Total = n())
 
+# unstacked_arrests_boro <- unstack(as.data.frame(arrests_boro$ARREST_BORO))
+
 write.csv(arrests_boro, './datasets/filtered/arrests_by_offenses_and_borough.csv', row.names = FALSE)

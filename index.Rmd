@@ -1,6 +1,6 @@
 --- 
-title: "Crimes Analysis"
-author: "Shaurya Malik, Rahul Agarwal, Keertan Krishnan"
+title: "Crime Analysis"
+author: "Shaurya Malik (sm4969), Rahul Agarwal (ra3097), Keertan Krishnan (kk3446)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
