@@ -529,14 +529,15 @@ This plot identifies certain locations which tend to have a higher frequency of 
 
 ## Hate Crimes 
 
+### Is there a certain county that is particularly bad when it comes to hate crimes? 
+
 ```{r}
 library(ggplot2)
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
-hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate)
+hate3 <- ggplot(data=df_hate, aes(x=County, fill=factor(Complaint.Year.Number))) + geom_bar(data=df_hate) + labs(fill='Year') + ggtitle('Hate Crime Count per Borough - 2019/2020') + xlab('County/Borough') + ylab('Crime Conut')
 hate3
 ```
 
-#### Insights
 Kings County (Brooklyn) had the highest total number of hate crimes over the years 2019 and 2020. This was followed by New York (Manhattan) and then Queens. 
 
 The only county/borough to have experienced an upturn in hate crimes in 2020  was the Richmond county (Staten Island Borough). 
@@ -544,16 +545,19 @@ The only county/borough to have experienced an upturn in hate crimes in 2020  wa
 This is confirmed by articles such as (Source: silive.com https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html)
 
 
-```{r}
+### What kinds of offense are particularly prevalent in different counties?
 
-hate1 <- ggplot(data=df_hate, aes(y=Offense.Category, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+```{r}
+hate1 <- ggplot(data=df_hate, aes(y=Offense.Category, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE)) + xlab('Count') + ylab('Offense Category') + ggtitle('Offense type per Borough') + labs(fill='Borough')
 hate1
 ```
 
-#### Insights 
 The largest proportion of hate crimes stem from religious reasons, followed by race and sexual orientation. 
 
 Kings County (Brooklyn) has a much larger proportion of these religious crimes. Interestingly, although the total number of hate crimes is greater in Kings County (Brooklyn) than New York County (Manhattan), the number of crimes stemming from Sexual Orientation and Race/Color is greater in New York County than Kings County. 
+
+
+### Motives Count
 
 ```{r}
 theme_dotplot <- theme_bw(14) +
@@ -572,34 +576,37 @@ hate2 <- ggplot(df_temp, aes(x = Freq,
     theme_dotplot +
     xlab("Incident Count") +
     ylab("Motive Type") +
-    ggtitle("Motive Type Counts")
+    ggtitle("Motive Type Counts") + xlim(0,400)
 hate2
 ```
 
-#### Insights
 
 Anti- Jewish hate crimes seem to be the largest in number (by a large amount, almost 350 crimes) during this time period, followed by anti-homosexual (gay) and anti-black crimes. 
 
-```{r}
-hate4 <- ggplot(data=df_hate, aes(y=Bias.Motive.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+
+### What are the bias motives?
+
+```{r fig.width=7}
+hate4 <- ggplot(data=df_hate, aes(y=Bias.Motive.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE)) + xlab('Count') + ylab('Bias Motives') + ggtitle('Bias Motives split by Borough') + labs(fill='Borough')
 hate4
 ```
 
-#### Insights
 
 As expected from the previous 2 graphs, Kings County (Brooklyn) has the highest number of anti-jewish crimes. Kings County has a disproportionately large number of these crimes, whereas other motive types like anti-black or anti-homosexual seem to be equal in the boroughs of Kings and New York (Manhattan).
 
 These insights are confirmed by articles such as (https://www.cbsnews.com/news/nypd-to-increase-presence-in-brooklyn-after-string-of-anti-semitic-hate-crimes/ Source: CBS News)
 
+### Has the distribution of crimes changed over the years?
 
 ```{r}
 df_hate$Complaint.Year.Number <- as.factor(df_hate$Complaint.Year.Number)
-hate5 <- ggplot(data=df_hate, aes(x=Complaint.Year.Number, fill=Offense.Category)) + geom_bar(data=df_hate)
+hate5 <- ggplot(data=df_hate, aes(x=Complaint.Year.Number, fill=Offense.Category)) + geom_bar(data=df_hate) + ylab('Crime Count') + xlab('Complaint Year') + ggtitle('Distribution of Offense Categories per year') + labs(fill='Offense Category')
 hate5
 ```
 
-#### Insights
 Across the city of New York, the number of hate crimes went down in 2020 (by almost 40%). Sexual orientation crimes decreased, whereas crimes based on race/color unfortunately went up in number. 
+
+### Does the month have an influence on the number of crimes?
 
 ```{r}
 df_temp <- as.data.frame(table(df_hate$Month.Number, df_hate$Complaint.Year.Number))
@@ -612,63 +619,45 @@ hate6 <- ggplot(df_temp, aes(x = Freq,
     theme_dotplot +
     xlab("Incident Count") +
     ylab("Month Number") +
-    ggtitle("Incident Counts by month")
+    ggtitle("Incident Counts by month") + labs(color='Year')
 hate6
 ```
 
-#### Insights
 Across both years, it is visible that there is a dependance on the month when it comes to the number of crimes. 
 
 However, for all months, 2020 had lower number of hate crimes than there were in 2019. The highest crime number for both years was in the month of March. 
 
-```{r}
+
+### Year vs Bias Motive vs County
+
+```{r fig.height=15, fig.width=10}
 library(vcd)
-hate7 <- vcd::doubledecker(Bias.Motive.Description ~ Complaint.Year.Number + County, data=df_hate, main='Analysing Motive with year and county') 
+hate7 <- vcd::doubledecker(Bias.Motive.Description ~ Complaint.Year.Number + County, data=df_hate, main='Analysing Motive with year and Borough') 
 ```
 
-#### Insights
-
 The insights from this mosaic plot corroborate our findings from the previous plots. 
+
+### When do suspects get arrested? (If at all?)
 
 ```{r}
 df_hate$date_diff <- as.Date(as.character(df_hate$Arrest.Date), format="%m/%d/%Y")-
                   as.Date(as.character(df_hate$Record.Create.Date), format="%m/%d/%Y")
-hate8 <- ggplot(data=df_hate, mapping=aes(x=date_diff)) + geom_histogram( bins=20, color="#e9ecef", alpha=0.6, position = 'identity') + facet_wrap(~Complaint.Year.Number) #+ xlim(0,200)
+hate8 <- ggplot(data=df_hate, mapping=aes(x=date_diff)) + geom_histogram( bins=20, color="#e9ecef", alpha=0.6, position = 'identity') + facet_wrap(~Complaint.Year.Number) + xlab('Difference - Days') + ylab('Frequency') + ggtitle('How many days till the suspect is arrested?')
 hate8
 ```
 
-#### Insights
 The majority of arrests, if made, were made within 50 days since the report creation, for both the years 2019 and 2020. This indicates a heavy right-skew in the graphs. 
 
 Only very few arrests were made beyond the 50-day mark in both years.
 
-```{r}
-hate9 <- ggplot(data=df_hate, aes(y=PD.Code.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE))
+### How do the police view these?
+
+```{r fig.height=15, fig.width=12}
+hate9 <- ggplot(data=df_hate, aes(y=PD.Code.Description, fill=County)) + geom_bar(data=df_hate, alpha=0.9, position = position_stack(reverse = TRUE)) + xlab('PD - Code Description') + ylab('Crime Count') + ggtitle('How do the police classify these crimes and where are they most common? ')
 hate9
 ```
 
-
-#### Insights
 Criminal Mischief, Aggravated Assault and Aggravated Harrassment were the most code of hate crimes committed.
-
-
-```{r}
-x <- data.frame(table(df_hate$Arrest.Date))
-length(x$Freq)
-arr <- sum(x$Freq[c(2:length(x$Freq))])
-narr <- x$Freq[1]
-arrvec <- c(arr, narr)
-labels1 <- c('Arrested', 'Not Arrested')
-df <- data.frame(labs = labels1, outcome = arrvec)
-ggplot() + geom_col(df, mapping = aes(labs, outcome))
-```
-
-#### Insights
-Unfortunately, the majority of offenders in hate crimes during 2019 and 2020 have not been arrested. 
-
-506 offenders were not arrested, whereas 222 arrests were made. 
-
-This picture might be offset in the case of one person commited multiple hate crimes and then being arrested. As we do not have information regarding arrest details, such analysis is omitted here. 
 
 ## Drugs
 
@@ -681,10 +670,11 @@ df_drugs <- as.data.frame(df_drugs)
 ### Arrests related to all drugs throughout US 
 ```{r}
 library(ggplot2)
+df_drugs$total_arrests <- df_drugs$total_arrests / 1000000
 drug1 <- ggplot()+
   geom_line(data=df_drugs, aes(x = year, y = total_arrests, colour='blue')) +
   ggtitle("Arrests related to drugs across US across year") +
-  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("total arrests"))
+  labs(x = "year", y = "Number of Arrests (in millions)") + scale_color_discrete(name = "Arrest Count", labels = c("total arrests"))
 drug1
 ```
 
@@ -699,11 +689,13 @@ In addition, this could also be because of the setting up of the Digital Evidenc
 
 ### Arrests related to manufacture and possession
 ```{r}
+df_drugs$total_manufacture <- df_drugs$total_manufacture/100000
+df_drugs$total_possess <- df_drugs$total_possess/100000
 drug2 <- ggplot()+
   geom_line(data=df_drugs, aes(x = year, y = total_manufacture, colour='blue')) +
   geom_line(data=df_drugs, aes(x = year, y = total_possess, colour='red'))+
   ggtitle("Arrests related to drug manufacture & possessions- US YoY") +
-  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Manufacture", "Possession"))
+  labs(x = "year", y = "number of arrests (in 100k)") + scale_color_discrete(name = "Arrest Count", labels = c("Manufacture", "Possession"))
 drug2
 ```
 
@@ -716,13 +708,17 @@ Similarly, the upward trend in the possession arrests of drugs could be due to e
 
 ### Arrests related to Manufacturing 
 ```{r}
+df_drugs$opioid_manufacture <- df_drugs$opioid_manufacture/10000
+df_drugs$marijuana_manufacture <- df_drugs$marijuana_manufacture/10000
+df_drugs$synthetic_manufacture <- df_drugs$synthetic_manufacture/10000
+df_drugs$other_manufacture <- df_drugs$other_manufacture/10000
 drug3 <- ggplot()+
   geom_line(data=df_drugs, aes(x = year, y = opioid_manufacture, colour='blue')) +
   geom_line(data=df_drugs, aes(x = year, y = marijuana_manufacture, colour='red'))+
   geom_line(data=df_drugs, aes(x = year, y = synthetic_manufacture, colour='orange'))+
   geom_line(data=df_drugs, aes(x = year, y = other_manufacture, colour='green'))+
   ggtitle("Arrests related to drug manufacture -US YoY") +
-  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Manufacture", "Marijuana Manufacture", 'Synthetic Manufacture', 'Other Manufacture'))
+  labs(x = "year", y = "Number of arrests (in 10^4)") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Manufacture", "Marijuana Manufacture", 'Synthetic Manufacture', 'Other Manufacture'))
 drug3
 ```
 
@@ -735,13 +731,17 @@ In contrast, other drug-related arrests have been on the upturn, including marij
 ### Arrests related to Possession
 
 ```{r}
+df_drugs$opioid_possess <- df_drugs$opioid_possess/100000 
+df_drugs$marijuana_possess <- df_drugs$marijuana_possess/100000
+df_drugs$synthetic_possess <- df_drugs$synthetic_possess/100000
+df_drugs$other_possess <- df_drugs$other_possess/100000
 drug4 <- ggplot()+
   geom_line(data=df_drugs, aes(x = year, y = opioid_possess, colour='blue')) +
   geom_line(data=df_drugs, aes(x = year, y = marijuana_possess, colour='red'))+
   geom_line(data=df_drugs, aes(x = year, y = synthetic_possess, colour='orange'))+
   geom_line(data=df_drugs, aes(x = year, y = other_possess, colour='green'))+
   ggtitle("Arrests related to drug possesion-US YoY") +
-  labs(x = "year", y = "number of arrests") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Possession", "Marijuana Possession", 'Synthetic Possession', 'Other Possession'))
+  labs(x = "year", y = "number of arrests (in 100k)") + scale_color_discrete(name = "Arrest Count", labels = c("Opioid Possession", "Marijuana Possession", 'Synthetic Possession', 'Other Possession'))
 drug4
 ```
 
@@ -757,6 +757,7 @@ Again, similar to the manufacturing uptrend for other drugs such as marijuana or
 
 ```{r}
 #df_drugs <- subset(df_drugs, select=-c(prop))
+df_drugs$population <- df_drugs$population/1000000
 df_drugs$prop <- df_drugs$total_arrests/df_drugs$population
 drug5 <- ggplot()+
   geom_line(data=df_drugs, aes(x = year, y = prop, colour='blue')) +
@@ -776,25 +777,119 @@ df_parks <- read.csv('datasets/parks/finalpark.csv')
 #View(df_parks)
 ```
 
+### Crimes in Park by borough
 ```{r}
-parks_subset <- subset(df_parks, select=c('BOROUGH', 'TOTAL'))
-#View(parks_subset)
+parks_subset <- subset(df_parks, select=c('BOROUGH', 'TOTAL', "YEAR"))
+parks_subset <- filter(parks_subset, BOROUGH!='BROOKLYN/QUEENS')
+
 parks_subset2 <- parks_subset %>% group_by(BOROUGH)
 borough_total <- parks_subset2 %>% summarise(
   TOTAL = sum(TOTAL)
 )
-ggplot() + geom_col(borough_total, mapping = aes(BOROUGH, TOTAL))
+#View(parks_subset2)
+ggplot() + geom_col(borough_total, mapping = aes(x=BOROUGH, y=TOTAL), fill='light blue', color='black') + labs(x='Borough', y='Total Crime Count') + ggtitle('Park Crime Count per Borough for 2015-2020')
 ```
+Manhattan and Brooklyn parks have a particularly high count of total crimes over the 6 years. Staten Island parks have the lowest incidence of total crimes. 
 
-```{r}
+### Any parks causing particularly large amounts of trouble (amongst parks with non-zero crime occurence)?
+```{r fig.height=4}
 parks_subset3 <- subset(df_parks, select=c('BOROUGH', 'TOTAL', 'PARK'))
+#View(parks_subset3)
+parks_subset3 <- filter(parks_subset3, TOTAL!=0)
+parks_subset3 <- filter(parks_subset3, BOROUGH!='BROOKLYN/QUEENS')
 ggplot(parks_subset3, aes(x = BOROUGH, y = TOTAL, label = PARK)) + 
   geom_boxplot() + xlab("") + theme_grey(16) + stat_summary(
     aes(label=round(stat(y), 1)),
     geom = "text", 
     fun.y = function(y) { o <- boxplot.stats(y)$out; if(length(o) == 0) NA else o },
     hjust = -1
-  )
+  ) + labs(x='Borough', y='Total Crime Count per park') + ggtitle('Park Crime Count per Borough and Park ')
 
 ```
 
+Thankfully, up to the 3rd quantile of parks ie 75% of parks in all boroughs have had 0 crimes over 6 years. Some parks in Manhattan and Brooklyn are particularly unsafe, however, and have particularly high incidence of crime in the years from 2015-2020. 
+
+Three parks in Manhattan have caused problem in particular, with incidences of 71, 52, and 34 crimes each. While the highest number of crimes in a Brooklyn or Queens park is lower than the corresponding Manhattan number, the number of parks with greater than 20 crimes in total over the past 6 years in Brooklyn and Queens is greater than the number of Manhattan parks with greater than 20 crimes. 
+
+### What effect does park size have on the occurrence of crime
+
+```{r fig.width=7, fig.height=4}
+park_grouped <- as.data.frame(df_parks) %>%
+  group_by(YEAR, CATEGORY, BOROUGH) %>%
+  summarise(Total = sum(TOTAL))
+#View(park_grouped)
+park_grouped <- filter(park_grouped, BOROUGH!='BROOKLYN/QUEENS')
+ggplot(park_grouped, aes(x = Total, y = CATEGORY, fill=BOROUGH)) +
+  geom_bar(position='dodge', stat = "identity") + ggtitle('Does park type have an effect on crime incidence?') + xlab('Crime Count') + ylab('Park Type')
+```
+
+We see here a very distinct dependance of crime on the park size. We see that crime occurs almost exclusively in the large parks.
+
+Hence, clearly, parks that have larger sizes have higher incidence of crime. Large Manhattan and Brooklyn parks have the highest incidence of crime. Large Bronx and the Queens have identical incidence of crime. 
+
+As parks get smaller, the incidence of crime drastically reduces across all boroughs. Playgrounds less than one acre have a few occurrences of crime, but interestingly, we see that the dependance on borough drastically reduces with crime occurences being low and almost equal across boroughs. 
+
+This could suggest that criminals specifically target certain parks for organized or planned crime, something that does not occur in the smaller parks.
+
+### Trends of different kinds of crime over the years
+
+```{r fig.height=5, fig.width=8}
+colnames(df_parks)[8] <- "FELONY_ASSAULT"
+colnames(df_parks)[10] <- "GRAND_LARCENY"
+colnames(df_parks)[11] <- "GRAND_LARCENY_MV"
+park_grouped2 <- as.data.frame(df_parks) %>%
+  group_by(YEAR,BOROUGH) %>%
+  summarise(Total_murder = sum(MURDER), 
+            Total_rape = sum(RAPE), 
+            Total_robbery = sum(ROBBERY), 
+            Total_fa = sum(FELONY_ASSAULT), 
+            Total_burglary = sum(BURGLARY), 
+            Total_grand = sum(GRAND_LARCENY), 
+            Total_grandmv = sum(GRAND_LARCENY_MV), 
+            total_total = sum(TOTAL))
+park_grouped2 <- filter(park_grouped2, BOROUGH!='BROOKLYN/QUEENS')
+ggplot() +
+  geom_line(data=park_grouped2, mapping = aes(x=YEAR, y=Total_murder, color='murder')) + geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_rape, color='rape')) + geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_robbery, color='Robbery'))+geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_fa, color='Felony Assault'))+geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_burglary, color='Burglary'))+ geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_grand, color='Grand Larceny'))+ geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=Total_grandmv, color='Grand Larceny -Motor Vehicle'))+ facet_wrap(~BOROUGH) + ggtitle('Trends of crime types over the years') + xlab(' Borough') + ylab('Crime Count') + labs(color='Crime Type')
+```
+We see interesting patterns emerge in the type of park crimes occurring in different boroughs. 
+
+In the Bronx, Robbery is the most common crime type, followed by Felony Assault and Grand Larceny. Brooklyn and Manhattan follow similar distributions to each other, with Felony Assault being the most frequent, followed by Robbery and Grand Larceny. In Queens, felony assault and robbery happen to be roughly equivalent in their occurrence. 
+
+Interestingly, a lot of parks in the boroughs of Manhattan, Brooklyn and Queens saw an uptick in felony assault in 2016. Manhattan, however, had an extremely high occurrence of felony assault in 2017. 
+Most boroughs have had either decreasing/stable park crime rates since 2017. 
+
+Staten Island, even though it has the fewest parks, also has the smallest number of crimes by a large margin. 
+
+### Are the total number of park crimes in each borough increasing or decreasing over the years?
+```{r}
+ggplot() + geom_line(data= park_grouped2, mapping=aes(x=YEAR, y=total_total, linetype=BOROUGH)) + ggtitle('Total Crime Trend over the years') + labs(linetype='Borough')  + xlab('year') + ylab('Total Park Crimes')
+```
+Following upturns in the park crime rate in the year 2016, there has been a slight drop in the crime rates in Queens and the Bronx. 
+
+However, Manhattan and Brooklyn saw an increase in park crime rates till 2017, followed by a slkight increase in Manhattan and slight decrease in Brooklyn. Following this, the park crime occurrence has remained stable. 
+
+
+### Further Analysis of Crime Type, Borough and Park Type
+```{r fig.height=15, fig.width=10}
+park_grouped4 <- as.data.frame(df_parks) %>%
+  group_by(CATEGORY, BOROUGH) %>%
+  summarise(Total_murder = sum(MURDER), 
+            Total_rape = sum(RAPE), 
+            Total_robbery = sum(ROBBERY), 
+            Total_fa = sum(FELONY_ASSAULT), 
+            Total_burglary = sum(BURGLARY), 
+            Total_grand = sum(GRAND_LARCENY), 
+            Total_grandmv = sum(GRAND_LARCENY_MV))
+park_grouped4 <- filter(park_grouped4, BOROUGH!='BROOKLYN/QUEENS')
+library(tidyr)
+library(ggalluvial)
+park_long <- gather(park_grouped4, type, count, Total_murder:Total_grandmv, factor_key=TRUE)
+#View(park_long)
+ggplot(park_long,
+       aes(y = count, axis1 = BOROUGH, axis2 = CATEGORY)) +
+  geom_alluvium(aes(fill = type), width = 1/12) +
+  geom_stratum(width = 1/12, fill = "black", color = "grey") +
+  geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("BOROUGH", "PARK CATEGORY"), expand = c(.05, .05)) + ggtitle('Alluvial Plot showing the type of crime in connection to Borough and Park Type') + ylab('Park Crime Count')
+```
+The insights from this alluvial diagram corroborate the findings from the previous plots. Manhattan and Brooklyn account for the most park crimes while large parks make up a very large percentage of the crime occurrence. 
