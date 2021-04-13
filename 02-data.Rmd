@@ -23,9 +23,19 @@ str(df_arrest_ytd)
 ## NYPD Hate Crimes
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Hate-Crimes/bqiq-cu78*
+**Description**: Dataset containing confirmed hate crime incidents in New York City. A hate crime is a traditional offense like murder, arson, or vandalism with an added element of bias. For the purposes of collecting statistics, the FBI has defined a hate crime as a “criminal offense against a person or property motivated in whole or in part by an offender’s bias against a race, religion, disability, sexual orientation, ethnicity, gender, or gender identity.”  
 
+**Data Provided By**: New York Police Department
+
+**Total records**: 728
+
+**Issues with the data**: County names are historical.
 ```{r}
 df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
+```
+
+**Type of variables**: 
+```{r}
 str(df_hate_crimes)
 ```
 
@@ -110,12 +120,23 @@ str(df_fbi_ht)
 
 ## FBI Drug Arrests Data
 
+This dataset contains monthly number of arrests for drug abuse violations reported by participating law enforcement agencies from 1995–2016. The arrests are by offense and broken down by age and sex or age and race.
+
 *(Reported Number of Drug Arrests)*
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
+**Data Provided By**: FBI
+
+**Total records**: 23
+
+**Issues with the data**: None although there is no state-wise information.
+
 ```{r}
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
+```
+**Type of variables**: 
+```{r}
 str(df_fbi_drug_arrests)
 ```
 
@@ -131,8 +152,18 @@ str(df_nyc_earnings)
 ## NYC park crime data
 
 *Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page*
+**Description**: This is a dataset containing crimes in the parks of New York City. This dataset is gleaned from quarterly reports from the NYPD. The data transformation is detailed in the cleaning file. 
+
+**Data Provided By**: New York Police Department
+
+**Total records**: 27696
+
+**Issues with the data**: None
 
 ```{r}
 df_parks<- readr::read_csv("datasets/parks/finalpark.csv")
+```
+**Type of variables**: 
+```{r}
 str(df_parks)
 ```

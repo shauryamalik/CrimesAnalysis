@@ -630,7 +630,7 @@ However, for all months, 2020 had lower number of hate crimes than there were in
 
 ### Year vs Bias Motive vs County
 
-```{r fig.height=15, fig.width=10}
+```{r fig.height=15, fig.width=15}
 library(vcd)
 hate7 <- vcd::doubledecker(Bias.Motive.Description ~ Complaint.Year.Number + County, data=df_hate, main='Analysing Motive with year and Borough') 
 ```
