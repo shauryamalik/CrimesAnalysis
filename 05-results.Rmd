@@ -91,7 +91,7 @@ ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("
 
   - Plotted monthly change and daily change graphs to identify the number of shootings leading to deaths are mainly erratic and do not follow a said pattern.
 
-### Susciptible groups
+### Susceptible groups
 
 #### Victims by Age
 
@@ -388,7 +388,7 @@ ggplot(df_arrest_by_offense_type_perpsex, aes(x = Total, y = reorder(OFNS_DESC, 
   xlab("Total arrests") +
   ylab("Type of crime") +
   ggtitle("Most common crimes by sex (as per NYPD Arrests Data)") +
-  labs(fill='Perp Sex')
+  labs(color='Perp Sex')
 ```
 
 
