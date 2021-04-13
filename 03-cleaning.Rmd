@@ -78,7 +78,6 @@ df_fbi_ht_by_states <- rbind(df_fbi_ht_by_states, new_info)
 
 ### Pre-processing Data
 
-
 ```{r, echo=FALSE}
 
 # df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv")
@@ -285,7 +284,7 @@ nrow(park_data)
 
 County names are historical in this dataset, and hence have to be changed. 
 
-```{r}
+```{r echo=TRUE}
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
 #View(df_hate)
 df_hate$County[df_hate$County == "KINGS"] <- "BROOKLYN"

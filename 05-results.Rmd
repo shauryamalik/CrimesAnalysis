@@ -336,7 +336,7 @@ theme_dotplot <- theme_bw(14) +
 
 ## Human Trafficking
 
-### Data By State
+Note: The following regions were missing and their values are set to 0: Pennsylvania, California, Alabama, Iowa, New York, District of Columbia.
 
 ```{r}
 df_fbi_ht_temp <- df_fbi_ht %>%
@@ -350,8 +350,6 @@ ggplot(df_fbi_ht_temp, aes(x = Total, y = reorder(STATE_NAME, Total))) +
   ylab("State") +
   ggtitle("Registered Human Trafficking cases by State (2013-19)")
 ```
-
-#### Alternative visualization 
 
 ```{r}
 library(choroplethr)
@@ -371,9 +369,7 @@ state_choropleth(df_fbi_ht_by_states %>% as.data.frame() %>%
                  legend = "Number of Cases")
 ```
 
-Please note: 
-
- - The following regions were missing and their values are set to 0: Pennsylvania, California, Alabama, Iowa, New York, District of Columbia.
+From the above plots, we see that Texas and Minnesota record the highest number of human trafficking related arrests. A major reason for Texas to be one of the largest rings of labor and sex trafficking is due to its proximity to Mexico. This results in very high illegal immigrants being trafficked for sex, labor, drugs etc. -related purposes.
 
 ## NYPD Arrests
 
@@ -396,7 +392,7 @@ ggplot(df_arrest_by_offense_type, aes(x = Total, y = reorder(OFNS_DESC, Total)))
 ```
 
 
-From the above plot, Assault, Felony Assault, Larceny, Drugs among others are the most common offenses seen in New York.
+From the above plot, Assault, Felony Assault, Larceny, Drugs among others are the most common offenses seen in New York. These trends are consistent across all 5 boroughs.
 
 #### Most Common Arrest Offenses By Sex
 
@@ -488,6 +484,8 @@ The majority of perpetrator race seen here is Black, followed by White Hispanic.
 
 ### Drugs based crimes in NYC
 
+The following plots are used to understand density of drug-based crimes by location. 
+
 ```{r}
 base_plot <- ggplot(df_arrest_ytd %>% 
                       filter(OFNS_DESC %in% "DANGEROUS DRUGS"), aes(x = Longitude, y = Latitude)) + 
@@ -499,8 +497,6 @@ base_plot <- ggplot(df_arrest_ytd %>%
 
 base_plot + theme_minimal()
 ```
-
-#### Drug Based Crimes Density by Location
 
 ```{r}
 arrests_drugs_boro <- df_arrest_ytd %>% 
@@ -514,6 +510,8 @@ ggplot(arrests_drugs_boro, aes(Longitude, Latitude)) +
   theme_minimal() +
   labs(color='Borough')
 ```
+
+It is clear to us that Brooklyn and Bronx have more drug-related arrests, but most importantly Manhattan is where the trend is increasing and has high density.
 
 ### Sexual Crimes
 
@@ -551,7 +549,7 @@ sex_crimes2 <- ggplot(df_arrest_ytd %>%
 sex_crimes2 + theme_minimal()
 ```
 
-This plot identifies certain locations which tend to have a higher frequency of sexual crimes in NYC. 
+This plot identifies certain locations which tend to have a higher frequency of sexual crimes in NYC. Once again Brooklyn has the larger majority of sex crimes and rape related arrests, but now, we must note that Queens has a very high trend for the same. This can especially be noted for sexual crimes.
 
 ## Hate Crimes 
 
@@ -568,8 +566,7 @@ Kings County (Brooklyn) had the highest total number of hate crimes over the yea
 
 The only county/borough to have experienced an upturn in hate crimes in 2020  was the Richmond county (Staten Island Borough). 
 
-This is confirmed by articles such as (Source: silive.com https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html)
-
+This is confirmed by articles such as *(Source: silive.com https://www.silive.com/crime-safety/2021/04/staten-island-was-the-only-borough-in-nyc-with-an-increase-in-hate-crimes-in-2020-why-where-were-they-crime-analysis.html)*
 
 ### What kinds of offense are particularly prevalent in different counties?
 

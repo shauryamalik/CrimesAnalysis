@@ -87,3 +87,10 @@ conclusion
 hate-crime
 drug-arrests
 park-crimes-data
+crime-type-based-insights
+hate-crimes-2
+drug-related-crimes
+sexual-crimes-and-rape
+location-analysis
+overall-borough-trends
+future-scope
