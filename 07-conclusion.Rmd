@@ -2,6 +2,14 @@
 
 ## Detailed Insights
 
+### Shooting in NYC
+
+ - Major events have shown a deep impact on the shooting incidents, in march 2014 the rise in protests against the police killings had shown a steep increase, and recently, COVID-19 has shown the huge escalation much more than any past year.
+ 
+ - Shooting incidents in NYC follow a general seasonality of increasing after Spring season and decreasing after the Fall.
+ 
+ - The exact cause of this seasonality can be many, and is beyond the scope of this analysis.
+
 ### Hate Crimes
 
  - Hate Crimes were found to be more prevalent in 2019 than in 2020, with Anti-Jewish and Anti-Black motives the most common. The highest hate crimes occurrences were in the months of March, during both years. 

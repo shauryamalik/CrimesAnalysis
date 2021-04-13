@@ -11,7 +11,6 @@ nypd-shooting-incident-data
 nypd-shooting-incident-historic-data
 fbi-human-trafficking-data
 fbi-drug-arrests-data
-nyc-citizen-census-data
 nyc-park-crime-data
 data-transformation
 nypd-arrests
@@ -82,6 +81,7 @@ interactive-component
 distribution-of-crime-across-boroughs
 conclusion
 detailed-insights
+shooting-in-nyc
 hate-crimes-2
 drug-related-crimes
 sexual-crimes-and-rape

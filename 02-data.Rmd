@@ -138,18 +138,10 @@ df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
 str(df_fbi_drug_arrests)
 ```
 
-## NYC Citizen Census Data
-
-*Source: https://datausa.io/profile/geo/new-york-ny#economy*
-
-```{r}
-df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
-str(df_nyc_earnings)
-```
-
 ## NYC Park Crime Data
 
 *Source: https://www1.nyc.gov/site/nypd/stats/crime-statistics/park-crime-stats.page*
+
 **Description**: This is a dataset containing crimes in the parks of New York City. This dataset is gleaned from quarterly reports from the NYPD. The data transformation is detailed in the cleaning file. 
 
 **Data Provided By**: New York Police Department
