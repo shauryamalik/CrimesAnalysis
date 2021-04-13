@@ -100,7 +100,9 @@ gg_miss_var(mdhate)
 ```
 
 ## Park Crime
+
 *For Park Crime data, we analyze missing values as following:*
+
 ```{r}
 df_parks <- read.csv('datasets/parks/finalpark.csv')
 colSums(is.na(df_parks))

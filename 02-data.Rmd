@@ -1,4 +1,15 @@
-# Data sources
+# Data Sources
+
+## NYPD Arrest Data 
+
+*(Year to Date)*
+
+*Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc*
+
+```{r}
+df_arrest_ytd <- readr::read_csv("datasets/NYPD_Arrest_Data__Year_to_Date_.csv")
+head(df_arrest_ytd)
+```
 
 ## NYPD Hate Crimes
 
@@ -11,9 +22,7 @@ head(df_hate_crimes)
 
 ## NYC Population Data
 
-### About the Dataset
-
-#### New York City Population By Neighborhood
+### New York City Population By Neighborhood
 
 *Source: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp*
 
@@ -32,7 +41,8 @@ Column description:
 df_population_yearly <- readr::read_csv("datasets/New_York_City_Population_By_Neighborhood_Tabulation_Areas.csv")
 head(df_population_yearly)
 ```
-#### Projected population per age group
+
+### Projected population per age group
 
 *Source: https://data.cityofnewyork.us/City-Government/Projected-Population-2010-2040-Total-By-Age-Groups/97pn-acdf*
 
@@ -42,13 +52,12 @@ head(df_population_age)
 ```
 
 ### Initial Questions
+
  - This census data can help identify the areas with higher crimes based on percentage of its own Population
 
 ## NYC Shooting Data 
 
-### About Dataset
-
-#### NYPD Shooting Incident Data (Year To Date)
+### NYPD Shooting Incident Data (Year To Date)
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8*
 
@@ -61,7 +70,7 @@ head(df_shooting_ytd)
 Each record represents a shooting incident in NYC and includes information about the event, the location and time of occurrence. 
  - In addition, information related to suspect and victim demographics is also included. For example, has information about the sex, Age, Race of the victim.
 
-#### NYPD Shooting Incident Historic Data
+### NYPD Shooting Incident Historic Data
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8*
 
@@ -79,15 +88,6 @@ head(df_shooting_old)
  - Further, Historical data of the shootings can help identify dangerous  neighborhoods for different groups. Possible hot-spots to avoid.
  - Also, might help analyze the overall trend in shooting across NYC over the years/months/day-of-week/time-of-day.
 
-## NYPD Arrest Data (Year to Date)
-
-*Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc*
-
-```{r}
-df_arrest_ytd <- readr::read_csv("datasets/NYPD_Arrest_Data__Year_to_Date_.csv")
-head(df_arrest_ytd)
-```
-
 ## FBI Human Trafficking Data
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
@@ -99,7 +99,9 @@ head(df_fbi_ht)
 
 *Many other important datasets can be found on this website.*
 
-## FBI Arrest Data - Reported Number of Drug Arrests
+## FBI Drug Arrests Data
+
+*(Reported Number of Drug Arrests)*
 
 *Source: https://crime-data-explorer.fr.cloud.gov/downloads-and-docs*
 
@@ -108,9 +110,9 @@ df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
 head(df_fbi_drug_arrests)
 ```
 
-## NYC citizen CENSUS DATA
+## NYC citizen Census Data
 
-*Source: https://datausa.io/profile/geo/new-york-ny#economy
+*Source: https://datausa.io/profile/geo/new-york-ny#economy*
 
 ```{r}
 df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")

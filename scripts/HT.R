@@ -42,6 +42,8 @@ df_fbi_ht_states_year <- df_fbi_ht %>%
 df_temp <- df_fbi_ht_by_states %>% filter(Total>=100)
 df_temp <- df_temp[, "STATE_NAME"]
 
+#is_lodes_form(df_fbi_ht_states_year %>% filter(STATE_NAME %in% df_temp$STATE_NAME))
+
 ggplot(df_fbi_ht_states_year %>% 
          filter(STATE_NAME %in% df_temp$STATE_NAME), 
        aes(alluvium = STATE_NAME, x = DATA_YEAR, stratum = Total)) +
@@ -61,4 +63,23 @@ state_choropleth(df_fbi_ht_by_states %>%
                    transmute(region = tolower(`STATE_NAME`), value = Total),
                  title = "",
                  legend = "")
+
+View(df_fbi_ht_temp)
+
+NY_info <- data.frame("New York", 0)      
+names(NY_info) <- c("STATE_NAME", "Total")  
+df_fbi_ht_temp <- rbind(df_fbi_ht_temp, NY_info)
+
+new_info <- data.frame( c("New York", "District of Columbia", "Pennsylvania", "California", "Alabama","Iowa"),  
+                        c(0, 0, 0, 0, 0, 0))  
+
+names(new_info) <- c("STATE_NAME", "Total")
+
+df_fbi_ht_temp <- rbind(df_fbi_ht_temp, new_info)
+
+state_choropleth(df_fbi_ht_temp %>% 
+                   as.data.frame() %>% 
+                   transmute(region = tolower(`STATE_NAME`), value = Total),
+                 title = "Human Trafficking Cases (2013-19)",
+                 legend = "Total Cases")
        
