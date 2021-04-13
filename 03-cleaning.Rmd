@@ -114,10 +114,34 @@ df_shooting_total<-df_shooting_total %>%
          murder = ifelse(STATISTICAL_MURDER_FLAG==TRUE, 1, 0))
 ```
  
-  - Extracted year, month, day of the week and hour of shooting
-  - #TODO!!!!!!!!!!!!!!!!!!!
+  - Extracted year, month and day of the week
   - Calculated Percentage change in number of shootings every month.
+  
+```{r}
 
+df_shooting_total$date<-as.Date(paste(df_shooting_total$year, df_shooting_total$month,"1",sep="-"), format = "%Y-%b-%d")
+temp_df<- df_shooting_total %>% 
+  # filter(year>=2015) %>%
+  group_by(date, month) %>%
+  summarize(total_shots= n())#%>%
+  # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
+
+temp_df$monthly_change<- ((temp_df$total_shots/shift(temp_df$total_shots, n=1, fill=NA, type="lag"))-1)
+
+ggplot(temp_df, aes(x= date)) + 
+  geom_bar(aes(y = total_shots, fill = factor(month)), stat="identity") +
+  ggtitle("Shootings over time",
+          subtitle = "Number of Shootings over time in NYC") +
+  labs(y = "Number of Shootings", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
+  theme(plot.title = element_text(face = "bold", size=rel(1.5))) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue") +
+  theme(axis.text.y = element_text(size = rel(1.25)),axis.text.x = element_text(size = rel(1.25)), axis.title.x=element_text(size=rel(1.25)), axis.title.y=element_text(size=rel(1.25)))
+```
+
+ - The data is very similar over the years and hence to keep our analysis latest, it is filtered to the last 5 years.
+ 
+ 
 ## Park Crime Data
 
 The raw data we obtained was in the form of quarterly data from the year 2015 to 2020. In order to carry out effective analysis, we put together the individual datasets into one large .csv file. 

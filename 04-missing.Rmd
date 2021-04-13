@@ -53,7 +53,8 @@ There are some missing values for feature OFNS_DESC. Since this is an important 
 gg_miss_var(df_shooting_total)
 ```
 
- - dropping the missing columns, as they cannot be imputed in anyway. We intend to focus on the victim trend in this analysis. Hence, it is fine to not consider the above columns in the current analysis.
+ - dropping the missing perpetrator columns, as they cannot be imputed in anyway. We intend to focus on the victim trend in this analysis. Hence, it is fine to not consider the above columns in the current analysis.
+
 
 ## FBI Drug Arrests Data
 
