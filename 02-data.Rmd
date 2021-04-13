@@ -6,9 +6,18 @@
 
 *Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc*
 
+**Data Provided By**: New York Police Department
+
+**Total records**: 140,413
+
+**Type of variables**: 
+
+**Issues with the data**:
+
+
 ```{r}
 df_arrest_ytd <- readr::read_csv("datasets/NYPD_Arrest_Data__Year_to_Date_.csv")
-head(df_arrest_ytd)
+str(df_arrest_ytd)
 ```
 
 ## NYPD Hate Crimes
@@ -17,7 +26,7 @@ head(df_arrest_ytd)
 
 ```{r}
 df_hate_crimes <- readr::read_csv("datasets/NYPD_Hate_Crimes.csv")
-head(df_hate_crimes)
+str(df_hate_crimes)
 ```
 
 ## NYC Population Data
@@ -39,7 +48,7 @@ Column description:
 
 ```{r}
 df_population_yearly <- readr::read_csv("datasets/New_York_City_Population_By_Neighborhood_Tabulation_Areas.csv")
-head(df_population_yearly)
+str(df_population_yearly)
 ```
 
 ### Projected population per age group
@@ -48,7 +57,7 @@ head(df_population_yearly)
 
 ```{r}
 df_population_age <- readr::read_csv("datasets/Projected_Population_2010-2040_-_Total_By_Age_Groups.csv")
-head(df_population_age)
+str(df_population_age)
 ```
 
 ### Initial Questions
@@ -63,7 +72,7 @@ head(df_population_age)
 
 ```{r}
 df_shooting_ytd <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Year_To_Date_.csv")
-head(df_shooting_ytd)
+str(df_shooting_ytd)
 ```
 
  - This is a breakdown of every shooting incident that occurred in NYC during the current calendar year. (2020) This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning before being posted on the NYPD website.
@@ -76,7 +85,7 @@ Each record represents a shooting incident in NYC and includes information about
 
 ```{r}
 df_shooting_old <- readr::read_csv("datasets/NYPD_Shooting_Incident_Data__Historic_.csv")
-head(df_shooting_old)
+str(df_shooting_old)
 ```
  
  
@@ -94,7 +103,7 @@ head(df_shooting_old)
 
 ```{r}
 df_fbi_ht <- readr::read_csv("datasets/HT_2013_2019.csv")
-head(df_fbi_ht)
+str(df_fbi_ht)
 ```
 
 *Many other important datasets can be found on this website.*
@@ -107,7 +116,7 @@ head(df_fbi_ht)
 
 ```{r}
 df_fbi_drug_arrests <- readr::read_csv("datasets/arrests_national_drug.csv")
-head(df_fbi_drug_arrests)
+str(df_fbi_drug_arrests)
 ```
 
 ## NYC citizen Census Data
@@ -116,7 +125,7 @@ head(df_fbi_drug_arrests)
 
 ```{r}
 df_nyc_earnings<- readr::read_csv("https://datausa.io/api/data?measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&Geography=16000US3651000:parents,16000US3651000,16000US3651000:similar")
-head(df_nyc_earnings)
+str(df_nyc_earnings)
 ```
 
 ## NYC park crime data
@@ -125,5 +134,5 @@ head(df_nyc_earnings)
 
 ```{r}
 df_parks<- readr::read_csv("datasets/parks/finalpark.csv")
-head(df_parks)
+str(df_parks)
 ```
