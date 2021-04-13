@@ -301,7 +301,7 @@ nrow(park_data)
 ## Hate Crime Data
 ```{r}
 df_hate <- read.csv("datasets/NYPD_Hate_Crimes.csv")
-View(df_hate)
+#View(df_hate)
 df_hate$County[df_hate$County == "KINGS"] <- "BROOKLYN"
 df_hate$County[df_hate$County == "NEW YORK"] <- "MANHATTAN"
 df_hate$County[df_hate$County == "RICHMOND"] <- "STATEN ISLAND"
