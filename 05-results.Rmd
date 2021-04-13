@@ -33,9 +33,9 @@ df_shoot_grouped_week <- df_shooting_total %>%
 
 ```
 
-```{r, fig.width=10,fig.height=11}
+```{r, fig.width=15,fig.height=11}
 temp_df<- df_shoot_grouped_NYC %>% 
-  filter(year>=2019) %>%
+  filter(year>=2015) %>%
   group_by(date, month) %>%
   summarize(total_shots= sum(occurances))#%>%
   # mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)*100)
@@ -56,9 +56,9 @@ ggplot(temp_df, aes(x= date)) +
 ```
 
  - The number of shootings have clearly gone up after covid (blue line).
- - Also, We see a trend increase in the number of shootings in the middle of the year which comes down in winter.
+ - Also, We see a trend increase in the number of shootings in the middle of the year which comes down in every winter.
 
-```{r, fig.width=10,fig.height=11}
+```{r, fig.width=15,fig.height=11}
 
 ggplot(temp_df, aes(x= date)) + 
   geom_bar(aes(y = monthly_change, fill = factor(month)), stat="identity") +
@@ -70,12 +70,12 @@ ggplot(temp_df, aes(x= date)) +
   labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold", size=rel(1.5))) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68")) +
+  theme(plot.caption = element_text(color = "grey68")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue") +
   theme(axis.text.y = element_text(size = rel(1.25)),axis.text.x = element_text(size = rel(1.25)), axis.title.x=element_text(size=rel(1.25)), axis.title.y=element_text(size=rel(1.25)))
 ```
 
- - We see every year in the month of May and June the number of shootings rise from previous month.
- - Last year, (possibly due to covid restrictions easing up) saw 92-95% increase in these months.
+ - Almost every year the number of shootings rise rise sharply after march and then start decreasing in August.
+ - Last year, April and may have the highest increase in any month over the pat years.  (possibly due to covid restrictions easing up, and people out of money, had to resort to other means) 
 
 ### Hot-spot neighbourhoods/AREAS 
 
@@ -84,7 +84,7 @@ ggplot(temp_df, aes(x= date)) +
 ```{r}
 
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019) %>%
+  filter(year>=2015) %>%
   group_by(date,BORO) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
@@ -102,14 +102,14 @@ ggplot(temp_df, aes(x = date, color = BORO, y = total_shots)) +
   labs(color = "Borough", x="Date", y="Number of shootings", caption = "Source: NYC-open-Data::Shooting Incident Data")
 ```
 
- - This graph tells us, staten island is at an all time low in the number of shootings, relatively.
- - Also, Brooklyn and Bronx have the most number of shootings which peaked duing the month of july in 2020.
+ - This graph tells us, Staten island is at an all time low in the number of shootings, relatively.
+ - Also, Brooklyn and Bronx have the most number of shootings which peaked during the month of july in 2020.
 
 #### Percentage Change in number of shootings in different boroughs
 
 ```{r}
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019) %>%
+  filter(year>=2015) %>%
   group_by(BORO,date) %>%
   summarize(total_shots= sum(occurances)) %>%
   mutate(monthly_change = (total_shots/shift(total_shots, n=1, fill = NA, type="lag") -1)/10)
@@ -126,13 +126,13 @@ ggplot(temp_df, aes(x= date)) +
           subtitle = "Percentage change in number of Shootings in borough by month") +
   labs(y = "Percentage Change", x="Date", fill="Month", caption = "Source: NYC-open-Data::Shooting Incident Data") +
   theme(plot.title = element_text(face = "bold", size=rel(1.5))) +
-  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +geom_vline(xintercept = covid_date, linetype="dashed", color = "blue") +
+  theme(plot.caption = element_text(color = "grey68")) + 
   theme(axis.text.y = element_text(size = rel(1.25)),axis.text.x = element_text(size = rel(1.25)), axis.title.x=element_text(size=rel(1.25)), axis.title.y=element_text(size=rel(1.25)))
 
 ```
  
- - This faceted graph gives us a deeper dive in just the numbers to explain that even though total number of shootings has been at an all time high in Brooklyn and Bronx, The recent numbers have started to decrease. can be due to active action taken by authorities or better awareness.
+ - This faceted graph gives us a deeper dive in just the highest increase. Staten island and queens show an anomalous increase post covid. much higher than Brooklyn and Bronx. 
  - Also, in case of Staten island, the behavior is very erratic, hinting at a more loose control than other boroughs.
 
 
@@ -161,12 +161,12 @@ ggplot(temp_df, aes(x= day, y = total_shots, fill = factor(day), label=sprintf("
   theme(axis.text.y = element_text(size = rel(1.25)),axis.text.x = element_text(size = rel(1.25)), axis.title.x=element_text(size=rel(1.25)), axis.title.y=element_text(size=rel(1.25)))
 ```
 
- - This graph shows that irrespective of the day of the week it is almost equally like for a shooting to be there.
+ - Against the stereotypical belief people going out more on the weekends then weekdays and staying late. This graph shows that the day of the week is does not matter as much for a shooting incident.
 
 ### Trend in number of deaths
 ```{r, fig.width=10,fig.height=11}
 temp_df<- df_shoot_grouped_NYC %>% 
-  filter(year>=2019, murder==1) %>%
+  filter(year>=2015, murder==1) %>%
   group_by(date, month) %>%
   summarize(total_shots= sum(occurances))
 
@@ -183,7 +183,8 @@ ggplot(temp_df, aes(x= date)) +
   theme(axis.text.y = element_text(size = rel(1.25)),axis.text.x = element_text(size = rel(1.25)), axis.title.x=element_text(size=rel(1.25)), axis.title.y=element_text(size=rel(1.25)))
 ```
 
- - The number of shootings lead to death increases from April to June and least every year in March.
+ - The number of shootings lead to death increases from April to June and least every year in March. 
+ - This follows from our previous finding of increase in the number of shootings during the same time of the year.
 
 ### Susceptible groups
 
@@ -191,7 +192,7 @@ ggplot(temp_df, aes(x= date)) +
 
 ```{r}
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019, VIC_AGE_GROUP!="UNKNOWN") %>%
+  filter(year>=2015, VIC_AGE_GROUP!="UNKNOWN") %>%
   group_by(date,BORO, VIC_AGE_GROUP) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
@@ -225,7 +226,7 @@ ggplot(temp_df, aes(x = date, y = VIC_AGE_GROUP)) +
 ```{r}
 
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019, VIC_SEX!="U") %>%
+  filter(year>=2015, VIC_SEX!="U") %>%
   group_by(date,BORO, VIC_SEX) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
@@ -239,13 +240,13 @@ ggplot(temp_df, aes(x = date, color = BORO, y = total_shots)) +
   geom_vline(xintercept = covid_date, linetype="dashed", color = "blue")
 ```
   
- - The data on number of female victims in shootings is less but among them, brooklyn has the highest in the past 2 years.
+ - The data on number of female victims in shootings is less but among them, brooklyn has the highest.
  - In general, we see a clear increase in the number of shootings post covid (blue-line)
 
 
 ```{r}
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019, VIC_SEX!="U") %>%
+  filter(year>=2015, VIC_SEX!="U") %>%
   group_by(date, VIC_SEX) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
@@ -267,7 +268,7 @@ ggplot(temp_df, aes(x = date, color = VIC_SEX, y = total_shots)) +
 ```{r, fig.width=10,fig.height=11}
 
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
+  filter(year>=2015, VIC_RACE!="UNKNOWN", VIC_RACE!="AMERICAN INDIAN/ALASKAN NATIVE") %>%
   group_by(year,BORO, VIC_RACE) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
@@ -295,7 +296,7 @@ ggplot(temp_df, aes(x = year, fill = BORO, y = total_shots)) +
 
 ```{r}
 temp_df<- df_shoot_grouped_BORO %>% 
-  filter(year>=2019, VIC_RACE!="UNKNOWN") %>%
+  filter(year>=2015, VIC_RACE!="UNKNOWN", VIC_RACE!="AMERICAN INDIAN/ALASKAN NATIVE") %>%
   group_by(year, VIC_RACE) %>%
   summarize(total_shots= sum(occurances)) %>%
   ungroup()
